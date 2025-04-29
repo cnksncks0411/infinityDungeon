@@ -1,4 +1,5 @@
 [
+    // 1티어
     {
         "id": "warrior",
         "name": "전사",
@@ -1007,6 +1008,8 @@
             "alchemical_catalyst"
         ]
     },
+
+    // 2티어
     {
         "id": "spellblade",
         "name": "마검사",
@@ -3170,6 +3173,8 @@
         ],
         "requiredLevel": 10
     },
+
+    // 3티어
     {
         "id": "death_knight",
         "name": "죽음의 기사",
@@ -4819,6 +4824,8 @@
         ],
         "requiredLevel": 20
     },
+
+    // 4티어
     {
         "id": "dragon_knight",
         "name": "드래곤 나이트",

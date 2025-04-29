@@ -1,0 +1,1529 @@
+[
+    // =========== 무기 (Weapons) ===========
+    {
+        "id": "basic_sword",
+        "name": "기본 검",
+        "type": "weapon",
+        "subType": "sword",
+        "rarity": "common",
+        "description": "기본적인 철제 검입니다.",
+        "stats": {
+            "damage": 5,
+            "attackSpeed": 1.0
+        },
+        "requiredLevel": 1,
+        "classRestriction": [
+            "전사",
+            "마검사",
+            "광전사",
+            "수호자"
+        ],
+        "dropRate": 0.05,
+        "value": 10
+    },
+    {
+        "id": "bone_sword",
+        "name": "뼈 검",
+        "type": "weapon",
+        "subType": "sword",
+        "rarity": "common",
+        "description": "단단한 뼈로 만든 날카로운 검입니다.",
+        "stats": {
+            "damage": 7,
+            "attackSpeed": 1.1
+        },
+        "effects": [
+            {
+                "type": "damage_bonus",
+                "target": "undead",
+                "value": 0.1
+            }
+        ],
+        "requiredLevel": 3,
+        "classRestriction": [
+            "전사",
+            "마검사",
+            "광전사",
+            "수호자"
+        ],
+        "dropRate": 0.03,
+        "value": 25
+    },
+    {
+        "id": "battle_axe",
+        "name": "전투 도끼",
+        "type": "weapon",
+        "subType": "axe",
+        "rarity": "uncommon",
+        "description": "무겁지만 강력한 양손 도끼입니다.",
+        "stats": {
+            "damage": 12,
+            "attackSpeed": 0.8,
+            "criticalChance": 0.05
+        },
+        "requiredLevel": 5,
+        "classRestriction": [
+            "전사",
+            "광전사"
+        ],
+        "dropRate": 0.02,
+        "value": 45
+    },
+    {
+        "id": "dagger",
+        "name": "단검",
+        "type": "weapon",
+        "subType": "dagger",
+        "rarity": "common",
+        "description": "빠른 공격이 가능한 작은 단검입니다.",
+        "stats": {
+            "damage": 4,
+            "attackSpeed": 1.5,
+            "criticalChance": 0.08
+        },
+        "requiredLevel": 1,
+        "classRestriction": [
+            "도적",
+            "어쌔신",
+            "그림자춤꾼",
+            "닌자"
+        ],
+        "dropRate": 0.05,
+        "value": 15
+    },
+    {
+        "id": "magic_wand",
+        "name": "마법 지팡이",
+        "type": "weapon",
+        "subType": "wand",
+        "rarity": "common",
+        "description": "기본적인 마법 지팡이입니다.",
+        "stats": {
+            "damage": 6,
+            "magicPower": 8,
+            "manaRegen": 0.5
+        },
+        "requiredLevel": 1,
+        "classRestriction": [
+            "마법사",
+            "배틀메이지",
+            "드루이드"
+        ],
+        "dropRate": 0.04,
+        "value": 20
+    },
+    {
+        "id": "lich_staff",
+        "name": "리치의 지팡이",
+        "type": "weapon",
+        "subType": "staff",
+        "rarity": "epic",
+        "description": "어둠의 마법이 깃든 강력한 지팡이입니다.",
+        "stats": {
+            "damage": 15,
+            "magicPower": 25,
+            "manaRegen": 1.5
+        },
+        "effects": [
+            {
+                "type": "damage_bonus",
+                "element": "dark",
+                "value": 0.3
+            },
+            {
+                "type": "life_steal",
+                "value": 0.05
+            }
+        ],
+        "requiredLevel": 20,
+        "classRestriction": [
+            "마법사",
+            "암흑마법사",
+            "소환사"
+        ],
+        "dropRate": 0.005,
+        "value": 500
+    },
+    {
+        "id": "bow",
+        "name": "활",
+        "type": "weapon",
+        "subType": "bow",
+        "rarity": "common",
+        "description": "기본적인 장거리 공격용 활입니다.",
+        "stats": {
+            "damage": 6,
+            "attackSpeed": 1.0,
+            "range": 8
+        },
+        "requiredLevel": 1,
+        "classRestriction": [
+            "궁수",
+            "레인저",
+            "정찰병"
+        ],
+        "dropRate": 0.04,
+        "value": 20
+    },
+    {
+        "id": "crossbow",
+        "name": "석궁",
+        "type": "weapon",
+        "subType": "crossbow",
+        "rarity": "uncommon",
+        "description": "강력한 관통력을 가진 석궁입니다.",
+        "stats": {
+            "damage": 10,
+            "attackSpeed": 0.7,
+            "range": 7,
+            "armorPenetration": 0.1
+        },
+        "requiredLevel": 5,
+        "classRestriction": [
+            "사냥꾼",
+            "레인저"
+        ],
+        "dropRate": 0.03,
+        "value": 45
+    },
+    {
+        "id": "spear",
+        "name": "창",
+        "type": "weapon",
+        "subType": "spear",
+        "rarity": "common",
+        "description": "기본적인 장거리 근접 무기입니다.",
+        "stats": {
+            "damage": 7,
+            "attackSpeed": 0.9,
+            "range": 2
+        },
+        "requiredLevel": 1,
+        "classRestriction": [
+            "창병",
+            "스펠블레이드"
+        ],
+        "dropRate": 0.04,
+        "value": 18
+    },
+    {
+        "id": "nature_staff",
+        "name": "자연의 지팡이",
+        "type": "weapon",
+        "subType": "staff",
+        "rarity": "rare",
+        "description": "생명의 기운이 깃든 나무 지팡이입니다.",
+        "stats": {
+            "damage": 12,
+            "magicPower": 18,
+            "healPower": 15
+        },
+        "effects": [
+            {
+                "type": "healing_bonus",
+                "value": 0.2
+            },
+            {
+                "type": "mana_cost_reduction",
+                "spellType": "nature",
+                "value": 0.15
+            }
+        ],
+        "requiredLevel": 15,
+        "classRestriction": [
+            "드루이드",
+            "약초학자",
+            "숲의 수호자"
+        ],
+        "dropRate": 0.015,
+        "value": 180
+    },
+    {
+        "id": "flameblade",
+        "name": "화염검",
+        "type": "weapon",
+        "subType": "sword",
+        "rarity": "rare",
+        "description": "불꽃이 타오르는 마법 검입니다.",
+        "stats": {
+            "damage": 14,
+            "attackSpeed": 1.1,
+            "magicPower": 8
+        },
+        "effects": [
+            {
+                "type": "elemental_damage",
+                "element": "fire",
+                "value": 5
+            },
+            {
+                "type": "burn_chance",
+                "value": 0.2,
+                "duration": 3,
+                "damagePerTick": 3
+            }
+        ],
+        "requiredLevel": 10,
+        "classRestriction": [
+            "마검사",
+            "스펠블레이드",
+            "검무도가"
+        ],
+        "dropRate": 0.02,
+        "value": 150
+    },
+    {
+        "id": "cursed_blade",
+        "name": "저주받은 검",
+        "type": "weapon",
+        "subType": "sword",
+        "rarity": "epic",
+        "description": "어둠의 기운이 서린 검입니다. 사용시 주의가 필요합니다.",
+        "stats": {
+            "damage": 20,
+            "attackSpeed": 1.2,
+            "criticalChance": 0.15,
+            "criticalDamage": 2.0
+        },
+        "effects": [
+            {
+                "type": "life_steal",
+                "value": 0.1
+            },
+            {
+                "type": "health_drain",
+                "value": 1,
+                "interval": 5
+            }
+        ],
+        "requiredLevel": 18,
+        "classRestriction": [
+            "죽음의 기사",
+            "종말의 인도자",
+            "혈마법사"
+        ],
+        "dropRate": 0.008,
+        "value": 380
+    },
+    {
+        "id": "arcane_staff",
+        "name": "비전 지팡이",
+        "type": "weapon",
+        "subType": "staff",
+        "rarity": "rare",
+        "description": "마력이 농축된 고급 지팡이입니다.",
+        "stats": {
+            "damage": 10,
+            "magicPower": 20,
+            "manaRegen": 1.8,
+            "cooldownReduction": 0.1
+        },
+        "effects": [
+            {
+                "type": "spell_amplification",
+                "value": 0.15
+            }
+        ],
+        "requiredLevel": 15,
+        "classRestriction": [
+            "마법사",
+            "대마법사",
+            "정령술사"
+        ],
+        "dropRate": 0.015,
+        "value": 200
+    },
+    {
+        "id": "troll_club",
+        "name": "트롤 몽둥이",
+        "type": "weapon",
+        "subType": "club",
+        "rarity": "uncommon",
+        "description": "트롤이 사용하던 거대한 몽둥이입니다.",
+        "stats": {
+            "damage": 18,
+            "attackSpeed": 0.6,
+            "knockback": 3
+        },
+        "effects": [
+            {
+                "type": "stun_chance",
+                "value": 0.15,
+                "duration": 1.5
+            }
+        ],
+        "requiredLevel": 12,
+        "classRestriction": [
+            "전사",
+            "광전사"
+        ],
+        "dropRate": 0.025,
+        "value": 120
+    },
+    {
+        "id": "void_blade",
+        "name": "공허의 검",
+        "type": "weapon",
+        "subType": "sword",
+        "rarity": "legendary",
+        "description": "공허의 힘이 깃든 현실을 베는 검입니다.",
+        "stats": {
+            "damage": 25,
+            "attackSpeed": 1.0,
+            "magicPower": 15,
+            "armorPenetration": 0.2
+        },
+        "effects": [
+            {
+                "type": "reality_cut",
+                "chance": 0.1,
+                "damage_multiplier": 3.0
+            },
+            {
+                "type": "void_mark",
+                "stacks": 3,
+                "damage_per_stack": 8
+            }
+        ],
+        "requiredLevel": 25,
+        "classRestriction": [
+            "공허 추적자",
+            "종말의 인도자"
+        ],
+        "dropRate": 0.002,
+        "value": 800
+    },
+    // =========== 방어구 (Armor) ===========
+    {
+        "id": "leather_armor",
+        "name": "가죽 갑옷",
+        "type": "armor",
+        "subType": "body",
+        "rarity": "common",
+        "description": "기본적인 가죽 갑옷입니다.",
+        "stats": {
+            "defense": 5,
+            "moveSpeed": 0.05
+        },
+        "requiredLevel": 1,
+        "classRestriction": [],
+        "dropRate": 0.05,
+        "value": 15
+    },
+    {
+        "id": "chain_mail",
+        "name": "사슬 갑옷",
+        "type": "armor",
+        "subType": "body",
+        "rarity": "uncommon",
+        "description": "쇠사슬로 만든 유연한 갑옷입니다.",
+        "stats": {
+            "defense": 8,
+            "moveSpeed": -0.05
+        },
+        "requiredLevel": 5,
+        "classRestriction": [
+            "전사",
+            "창병",
+            "수호자",
+            "기사"
+        ],
+        "dropRate": 0.04,
+        "value": 35
+    },
+    {
+        "id": "plate_armor",
+        "name": "판금 갑옷",
+        "type": "armor",
+        "subType": "body",
+        "rarity": "rare",
+        "description": "강력한 보호를 제공하는 중장갑입니다.",
+        "stats": {
+            "defense": 15,
+            "moveSpeed": -0.1,
+            "damageReduction": 0.05
+        },
+        "requiredLevel": 10,
+        "classRestriction": [
+            "전사",
+            "기사",
+            "수호자",
+            "팔라딘"
+        ],
+        "dropRate": 0.02,
+        "value": 120
+    },
+    {
+        "id": "shadow_plate",
+        "name": "그림자 판금갑",
+        "type": "armor",
+        "subType": "body",
+        "rarity": "epic",
+        "description": "어둠의 기운이 깃든 판금 갑옷입니다.",
+        "stats": {
+            "defense": 18,
+            "moveSpeed": 0,
+            "damageReduction": 0.1
+        },
+        "effects": [
+            {
+                "type": "shadow_merge",
+                "chance": 0.15,
+                "duration": 2
+            },
+            {
+                "type": "dark_resistance",
+                "value": 0.3
+            }
+        ],
+        "requiredLevel": 20,
+        "classRestriction": [
+            "죽음의 기사",
+            "암흑마법사"
+        ],
+        "dropRate": 0.01,
+        "value": 350
+    },
+    {
+        "id": "mage_robe",
+        "name": "마법사 로브",
+        "type": "armor",
+        "subType": "body",
+        "rarity": "uncommon",
+        "description": "마력 향상에 특화된 로브입니다.",
+        "stats": {
+            "defense": 4,
+            "magicPower": 10,
+            "manaRegen": 1.0
+        },
+        "requiredLevel": 5,
+        "classRestriction": [
+            "마법사",
+            "대마법사",
+            "정령술사",
+            "암흑마법사"
+        ],
+        "dropRate": 0.03,
+        "value": 40
+    },
+    {
+        "id": "ranger_cloak",
+        "name": "레인저 망토",
+        "type": "armor",
+        "subType": "body",
+        "rarity": "uncommon",
+        "description": "이동성과 은신에 특화된 망토입니다.",
+        "stats": {
+            "defense": 6,
+            "moveSpeed": 0.1,
+            "evasion": 0.05
+        },
+        "effects": [
+            {
+                "type": "stealth_bonus",
+                "value": 0.2
+            }
+        ],
+        "requiredLevel": 8,
+        "classRestriction": [
+            "궁수",
+            "사냥꾼",
+            "레인저"
+        ],
+        "dropRate": 0.03,
+        "value": 65
+    },
+    {
+        "id": "helmet",
+        "name": "투구",
+        "type": "armor",
+        "subType": "head",
+        "rarity": "common",
+        "description": "기본적인 금속 투구입니다.",
+        "stats": {
+            "defense": 4,
+            "maxHealth": 10
+        },
+        "requiredLevel": 3,
+        "classRestriction": [],
+        "dropRate": 0.04,
+        "value": 20
+    },
+    {
+        "id": "gloves",
+        "name": "장갑",
+        "type": "armor",
+        "subType": "hands",
+        "rarity": "common",
+        "description": "기본적인 가죽 장갑입니다.",
+        "stats": {
+            "defense": 2,
+            "attackSpeed": 0.05
+        },
+        "requiredLevel": 2,
+        "classRestriction": [],
+        "dropRate": 0.05,
+        "value": 15
+    },
+    {
+        "id": "boots",
+        "name": "부츠",
+        "type": "armor",
+        "subType": "feet",
+        "rarity": "common",
+        "description": "기본적인 가죽 부츠입니다.",
+        "stats": {
+            "defense": 2,
+            "moveSpeed": 0.05
+        },
+        "requiredLevel": 2,
+        "classRestriction": [],
+        "dropRate": 0.05,
+        "value": 15
+    },
+    {
+        "id": "archmage_hat",
+        "name": "대마법사의 모자",
+        "type": "armor",
+        "subType": "head",
+        "rarity": "epic",
+        "description": "마법 증폭에 특화된 고급 마법사 모자입니다.",
+        "stats": {
+            "defense": 6,
+            "magicPower": 15,
+            "manaRegen": 2.0,
+            "cooldownReduction": 0.15
+        },
+        "effects": [
+            {
+                "type": "spell_amplification",
+                "value": 0.2
+            },
+            {
+                "type": "mana_cost_reduction",
+                "value": 0.12
+            }
+        ],
+        "requiredLevel": 22,
+        "classRestriction": [
+            "마법사",
+            "대마법사",
+            "정령술사"
+        ],
+        "dropRate": 0.008,
+        "value": 400
+    },
+    {
+        "id": "dragon_scale_armor",
+        "name": "용비늘 갑옷",
+        "type": "armor",
+        "subType": "body",
+        "rarity": "legendary",
+        "description": "용의 비늘로 만든 전설적인 갑옷입니다.",
+        "stats": {
+            "defense": 25,
+            "moveSpeed": 0.05,
+            "damageReduction": 0.15,
+            "maxHealth": 50
+        },
+        "effects": [
+            {
+                "type": "elemental_resistance",
+                "elements": [
+                    "fire",
+                    "ice",
+                    "lightning"
+                ],
+                "value": 0.25
+            },
+            {
+                "type": "dragon_aspect",
+                "chance": 0.1,
+                "duration": 5
+            }
+        ],
+        "requiredLevel": 30,
+        "classRestriction": [
+            "용 조련사",
+            "드래곤 나이트"
+        ],
+        "dropRate": 0.002,
+        "value": 1000
+    },
+    // =========== 소비 아이템 (Consumables) ===========
+    {
+        "id": "small_health_potion",
+        "name": "작은 체력 포션",
+        "type": "consumable",
+        "subType": "potion",
+        "rarity": "common",
+        "description": "체력을 소량 회복합니다.",
+        "effect": {
+            "type": "heal",
+            "value": 30,
+            "duration": 0
+        },
+        "stackable": true,
+        "maxStack": 10,
+        "dropRate": 0.1,
+        "value": 5
+    },
+    {
+        "id": "medium_health_potion",
+        "name": "중간 체력 포션",
+        "type": "consumable",
+        "subType": "potion",
+        "rarity": "uncommon",
+        "description": "체력을 중간 정도 회복합니다.",
+        "effect": {
+            "type": "heal",
+            "value": 80,
+            "duration": 0
+        },
+        "stackable": true,
+        "maxStack": 10,
+        "dropRate": 0.05,
+        "value": 20
+    },
+    {
+        "id": "large_health_potion",
+        "name": "큰 체력 포션",
+        "type": "consumable",
+        "subType": "potion",
+        "rarity": "rare",
+        "description": "체력을 대량 회복합니다.",
+        "effect": {
+            "type": "heal",
+            "value": 200,
+            "duration": 0
+        },
+        "stackable": true,
+        "maxStack": 5,
+        "dropRate": 0.02,
+        "value": 50
+    },
+    {
+        "id": "mana_potion",
+        "name": "마나 포션",
+        "type": "consumable",
+        "subType": "potion",
+        "rarity": "uncommon",
+        "description": "마나를 회복합니다.",
+        "effect": {
+            "type": "restore_mana",
+            "value": 50,
+            "duration": 0
+        },
+        "stackable": true,
+        "maxStack": 10,
+        "dropRate": 0.05,
+        "value": 15
+    },
+    {
+        "id": "strength_potion",
+        "name": "힘 포션",
+        "type": "consumable",
+        "subType": "potion",
+        "rarity": "rare",
+        "description": "일시적으로 공격력을 증가시킵니다.",
+        "effect": {
+            "type": "buff_attack",
+            "value": 0.2,
+            "duration": 60
+        },
+        "stackable": true,
+        "maxStack": 5,
+        "dropRate": 0.03,
+        "value": 35
+    },
+    {
+        "id": "speed_potion",
+        "name": "속도 포션",
+        "type": "consumable",
+        "subType": "potion",
+        "rarity": "rare",
+        "description": "일시적으로 이동 속도와 공격 속도를 증가시킵니다.",
+        "effect": {
+            "type": "buff_speed",
+            "moveSpeed": 0.3,
+            "attackSpeed": 0.2,
+            "duration": 45
+        },
+        "stackable": true,
+        "maxStack": 5,
+        "dropRate": 0.03,
+        "value": 40
+    },
+    {
+        "id": "invisibility_potion",
+        "name": "투명 포션",
+        "type": "consumable",
+        "subType": "potion",
+        "rarity": "epic",
+        "description": "일정 시간 동안 투명 상태가 됩니다.",
+        "effect": {
+            "type": "invisibility",
+            "duration": 10
+        },
+        "stackable": true,
+        "maxStack": 3,
+        "dropRate": 0.01,
+        "value": 75
+    },
+    {
+        "id": "potion_of_resistance",
+        "name": "저항의 포션",
+        "type": "consumable",
+        "subType": "potion",
+        "rarity": "rare",
+        "description": "일시적으로 모든 속성에 대한 저항력을 증가시킵니다.",
+        "effect": {
+            "type": "elemental_resistance",
+            "value": 0.3,
+            "duration": 60
+        },
+        "stackable": true,
+        "maxStack": 5,
+        "dropRate": 0.02,
+        "value": 45
+    },
+    {
+        "id": "stone_skin_potion",
+        "name": "석화 포션",
+        "type": "consumable",
+        "subType": "potion",
+        "rarity": "rare",
+        "description": "일시적으로 방어력을 크게 증가시키지만 이동 속도가 감소합니다.",
+        "effect": {
+            "type": "stone_skin",
+            "defense": 0.5,
+            "moveSpeed": -0.2,
+            "duration": 30
+        },
+        "stackable": true,
+        "maxStack": 5,
+        "dropRate": 0.02,
+        "value": 40
+    },
+    // =========== 재료 (Materials) ===========
+    {
+        "id": "wolf_pelt",
+        "name": "늑대 가죽",
+        "type": "material",
+        "subType": "leather",
+        "rarity": "common",
+        "description": "늑대에서 얻은 가죽입니다. 방어구 제작에 사용됩니다.",
+        "stackable": true,
+        "maxStack": 20,
+        "dropRate": 0.08,
+        "value": 8
+    },
+    {
+        "id": "slime_jelly",
+        "name": "슬라임 젤리",
+        "type": "material",
+        "subType": "goo",
+        "rarity": "common",
+        "description": "슬라임에서 얻은 젤리입니다. 포션 제작에 사용됩니다.",
+        "stackable": true,
+        "maxStack": 20,
+        "dropRate": 0.08,
+        "value": 5
+    },
+    {
+        "id": "rotten_flesh",
+        "name": "썩은 살점",
+        "type": "material",
+        "subType": "organic",
+        "rarity": "common",
+        "description": "언데드에서 얻은 살점입니다. 특수 포션 제작에 사용됩니다.",
+        "stackable": true,
+        "maxStack": 20,
+        "dropRate": 0.1,
+        "value": 3
+    },
+    {
+        "id": "bone",
+        "name": "뼈",
+        "type": "material",
+        "subType": "bone",
+        "rarity": "common",
+        "description": "언데드에서 얻은 뼈입니다. 무기 제작에 사용됩니다.",
+        "stackable": true,
+        "maxStack": 20,
+        "dropRate": 0.1,
+        "value": 4
+    },
+    {
+        "id": "crystal_shard",
+        "name": "크리스탈 파편",
+        "type": "material",
+        "subType": "crystal",
+        "rarity": "uncommon",
+        "description": "빛나는 크리스탈 파편입니다. 마법 아이템 제작에 사용됩니다.",
+        "stackable": true,
+        "maxStack": 15,
+        "dropRate": 0.05,
+        "value": 15
+    },
+    {
+        "id": "fire_essence",
+        "name": "화염 정수",
+        "type": "material",
+        "subType": "essence",
+        "rarity": "rare",
+        "description": "화염 원소의 정수입니다. 강력한 마법 아이템 제작에 사용됩니다.",
+        "stackable": true,
+        "maxStack": 10,
+        "dropRate": 0.03,
+        "value": 35
+    },
+    {
+        "id": "ice_essence",
+        "name": "얼음 정수",
+        "type": "material",
+        "subType": "essence",
+        "rarity": "rare",
+        "description": "얼음 원소의 정수입니다. 강력한 마법 아이템 제작에 사용됩니다.",
+        "stackable": true,
+        "maxStack": 10,
+        "dropRate": 0.03,
+        "value": 35
+    },
+    {
+        "id": "lightning_essence",
+        "name": "번개 정수",
+        "type": "material",
+        "subType": "essence",
+        "rarity": "rare",
+        "description": "번개 원소의 정수입니다. 강력한 마법 아이템 제작에 사용됩니다.",
+        "stackable": true,
+        "maxStack": 10,
+        "dropRate": 0.03,
+        "value": 40
+    },
+    {
+        "id": "dark_essence",
+        "name": "암흑 정수",
+        "type": "material",
+        "subType": "essence",
+        "rarity": "rare",
+        "description": "암흑 원소의 정수입니다. 강력한 마법 아이템 제작에 사용됩니다.",
+        "stackable": true,
+        "maxStack": 10,
+        "dropRate": 0.02,
+        "value": 45
+    },
+    {
+        "id": "void_essence",
+        "name": "공허 정수",
+        "type": "material",
+        "subType": "essence",
+        "rarity": "epic",
+        "description": "공허의 원소 정수입니다. 전설적인 아이템 제작에 필수적입니다.",
+        "stackable": true,
+        "maxStack": 5,
+        "dropRate": 0.01,
+        "value": 90
+    },
+    {
+        "id": "dragon_scale",
+        "name": "용 비늘",
+        "type": "material",
+        "subType": "scale",
+        "rarity": "epic",
+        "description": "드래곤의 비늘입니다. 전설적인 방어구 제작에 사용됩니다.",
+        "stackable": true,
+        "maxStack": 5,
+        "dropRate": 0.008,
+        "value": 100
+    },
+    {
+        "id": "ancient_bark",
+        "name": "고대 나무껍질",
+        "type": "material",
+        "subType": "wood",
+        "rarity": "rare",
+        "description": "고대 나무정령에서 얻은 나무껍질입니다. 자연 마법 아이템에 사용됩니다.",
+        "stackable": true,
+        "maxStack": 10,
+        "dropRate": 0.025,
+        "value": 55
+    },
+    {
+        "id": "iron_ore",
+        "name": "철광석",
+        "type": "material",
+        "subType": "ore",
+        "rarity": "common",
+        "description": "기본적인 금속 장비 제작에 사용되는 광석입니다.",
+        "stackable": true,
+        "maxStack": 20,
+        "dropRate": 0.07,
+        "value": 10
+    },
+    {
+        "id": "silver_ore",
+        "name": "은광석",
+        "type": "material",
+        "subType": "ore",
+        "rarity": "uncommon",
+        "description": "고급 금속 장비 제작에 사용되는 광석입니다. 언데드에게 효과적입니다.",
+        "stackable": true,
+        "maxStack": 15,
+        "dropRate": 0.04,
+        "value": 25
+    },
+    {
+        "id": "gold_ore",
+        "name": "금광석",
+        "type": "material",
+        "subType": "ore",
+        "rarity": "rare",
+        "description": "마법 전도성이 뛰어난 광석입니다. 마법 장비 제작에 사용됩니다.",
+        "stackable": true,
+        "maxStack": 10,
+        "dropRate": 0.02,
+        "value": 50
+    },
+    {
+        "id": "mithril_ore",
+        "name": "미스릴 광석",
+        "type": "material",
+        "subType": "ore",
+        "rarity": "epic",
+        "description": "가볍고 강한 전설적인 금속 광석입니다. 최고급 장비 제작에 사용됩니다.",
+        "stackable": true,
+        "maxStack": 5,
+        "dropRate": 0.01,
+        "value": 120
+    },
+    // =========== 악세사리 (Accessories) ===========
+    {
+        "id": "amulet_of_health",
+        "name": "생명의 목걸이",
+        "type": "accessory",
+        "subType": "amulet",
+        "rarity": "uncommon",
+        "description": "최대 체력을 증가시키는 목걸이입니다.",
+        "stats": {
+            "maxHealth": 30,
+            "healthRegen": 0.5
+        },
+        "requiredLevel": 5,
+        "classRestriction": [],
+        "dropRate": 0.03,
+        "value": 45
+    },
+    {
+        "id": "ring_of_protection",
+        "name": "보호의 반지",
+        "type": "accessory",
+        "subType": "ring",
+        "rarity": "uncommon",
+        "description": "방어력을 증가시키는 반지입니다.",
+        "stats": {
+            "defense": 5,
+            "damageReduction": 0.05
+        },
+        "requiredLevel": 5,
+        "classRestriction": [],
+        "dropRate": 0.03,
+        "value": 40
+    },
+    {
+        "id": "magic_ring",
+        "name": "마법 반지",
+        "type": "accessory",
+        "subType": "ring",
+        "rarity": "uncommon",
+        "description": "마력을 증가시키는 반지입니다.",
+        "stats": {
+            "magicPower": 8,
+            "manaRegen": 0.8
+        },
+        "requiredLevel": 5,
+        "classRestriction": [
+            "마법사",
+            "대마법사",
+            "암흑마법사",
+            "정령술사",
+            "소환사"
+        ],
+        "dropRate": 0.03,
+        "value": 45
+    },
+    {
+        "id": "agility_bracelet",
+        "name": "민첩의 팔찌",
+        "type": "accessory",
+        "subType": "bracelet",
+        "rarity": "uncommon",
+        "description": "공격 속도와 이동 속도를 증가시키는 팔찌입니다.",
+        "stats": {
+            "attackSpeed": 0.1,
+            "moveSpeed": 0.08,
+            "evasion": 0.03
+        },
+        "requiredLevel": 8,
+        "classRestriction": [],
+        "dropRate": 0.03,
+        "value": 50
+    },
+    {
+        "id": "soul_gem",
+        "name": "영혼 보석",
+        "type": "accessory",
+        "subType": "amulet",
+        "rarity": "rare",
+        "description": "영혼의 힘이 깃든 보석입니다. 죽음과 관련된 마법을 강화합니다.",
+        "stats": {
+            "magicPower": 12,
+            "manaRegen": 1.2
+        },
+        "effects": [
+            {
+                "type": "damage_bonus",
+                "element": "dark",
+                "value": 0.2
+            },
+            {
+                "type": "life_steal",
+                "value": 0.05
+            }
+        ],
+        "requiredLevel": 15,
+        "classRestriction": [
+            "암흑마법사",
+            "소환사",
+            "죽음의 기사"
+        ],
+        "dropRate": 0.015,
+        "value": 200
+    },
+    {
+        "id": "elemental_charm",
+        "name": "원소 부적",
+        "type": "accessory",
+        "subType": "charm",
+        "rarity": "rare",
+        "description": "원소 마법의 힘을 강화하는 부적입니다.",
+        "stats": {
+            "magicPower": 10,
+            "cooldownReduction": 0.1
+        },
+        "effects": [
+            {
+                "type": "elemental_damage",
+                "elements": [
+                    "fire",
+                    "ice",
+                    "lightning"
+                ],
+                "value": 0.15
+            }
+        ],
+        "requiredLevel": 12,
+        "classRestriction": [
+            "마법사",
+            "정령술사",
+            "마검사"
+        ],
+        "dropRate": 0.02,
+        "value": 160
+    },
+    {
+        "id": "berserker_talisman",
+        "name": "광전사의 부적",
+        "type": "accessory",
+        "subType": "talisman",
+        "rarity": "rare",
+        "description": "HP가 낮을수록 공격력이 증가하는 부적입니다.",
+        "stats": {
+            "attackPower": 8,
+            "criticalChance": 0.05
+        },
+        "effects": [
+            {
+                "type": "berserk",
+                "scaling": true,
+                "maxBonus": 0.5,
+                "threshold": 0.3
+            }
+        ],
+        "requiredLevel": 15,
+        "classRestriction": [
+            "전사",
+            "광전사",
+            "죽음의 기사"
+        ],
+        "dropRate": 0.015,
+        "value": 180
+    },
+    {
+        "id": "crown_of_wisdom",
+        "name": "지혜의 왕관",
+        "type": "accessory",
+        "subType": "crown",
+        "rarity": "epic",
+        "description": "고대의 지혜가 깃든 왕관입니다. 마법 능력을 크게 강화합니다.",
+        "stats": {
+            "magicPower": 20,
+            "manaRegen": 2.5,
+            "cooldownReduction": 0.2,
+            "maxMana": 50
+        },
+        "effects": [
+            {
+                "type": "spell_amplification",
+                "value": 0.25
+            },
+            {
+                "type": "mana_cost_reduction",
+                "value": 0.15
+            }
+        ],
+        "requiredLevel": 25,
+        "classRestriction": [
+            "대마법사",
+            "천공의 현자"
+        ],
+        "dropRate": 0.005,
+        "value": 650
+    },
+    {
+        "id": "dragonheart_pendant",
+        "name": "용심장 목걸이",
+        "type": "accessory",
+        "subType": "amulet",
+        "rarity": "legendary",
+        "description": "드래곤의 심장 일부가 담긴 전설적인 목걸이입니다.",
+        "stats": {
+            "maxHealth": 100,
+            "healthRegen": 3.0,
+            "defense": 15,
+            "attackPower": 15
+        },
+        "effects": [
+            {
+                "type": "dragon_blood",
+                "chance": 0.2,
+                "duration": 5
+            },
+            {
+                "type": "elemental_resistance",
+                "elements": [
+                    "all"
+                ],
+                "value": 0.2
+            },
+            {
+                "type": "revival",
+                "healthPercent": 0.3,
+                "cooldown": 300
+            }
+        ],
+        "requiredLevel": 30,
+        "classRestriction": [
+            "드래곤 나이트",
+            "용 조련사"
+        ],
+        "dropRate": 0.002,
+        "value": 1200
+    },
+    // =========== 레거시 아이템 (Legacy Items) ===========
+    {
+        "id": "soul_guardian_stone",
+        "name": "영혼 수호석",
+        "type": "legacy",
+        "subType": "artifact",
+        "rarity": "legendary",
+        "description": "던전당 1회 부활할 수 있는 고대의 유물입니다. 플레이 간에 유지됩니다.",
+        "effect": {
+            "type": "revival",
+            "usesPerDungeon": 1
+        },
+        "dropRate": 0.0001,
+        "value": 5000
+    },
+    {
+        "id": "golden_key",
+        "name": "황금 열쇠",
+        "type": "legacy",
+        "subType": "artifact",
+        "rarity": "legendary",
+        "description": "클래스 조합 성공률을 20% 높여줍니다. 플레이 간에 유지됩니다.",
+        "effect": {
+            "type": "combination_bonus",
+            "value": 0.2
+        },
+        "dropRate": 0.0001,
+        "value": 5000
+    },
+    {
+        "id": "ancient_compass",
+        "name": "고대 나침반",
+        "type": "legacy",
+        "subType": "artifact",
+        "rarity": "legendary",
+        "description": "던전의 전체 지도를 공개합니다. 플레이 간에 유지됩니다.",
+        "effect": {
+            "type": "map_reveal"
+        },
+        "dropRate": 0.0001,
+        "value": 5000
+    },
+    {
+        "id": "philosophers_stone",
+        "name": "현자의 돌",
+        "type": "legacy",
+        "subType": "artifact",
+        "rarity": "legendary",
+        "description": "몬스터로부터 재료 획득률을 30% 증가시킵니다. 플레이 간에 유지됩니다.",
+        "effect": {
+            "type": "material_drop_bonus",
+            "value": 0.3
+        },
+        "dropRate": 0.0001,
+        "value": 5000
+    },
+    {
+        "id": "kings_crown",
+        "name": "왕의 왕관",
+        "type": "legacy",
+        "subType": "artifact",
+        "rarity": "legendary",
+        "description": "경험치 획득을 20% 증가시킵니다. 플레이 간에 유지됩니다.",
+        "effect": {
+            "type": "exp_bonus",
+            "value": 0.2
+        },
+        "dropRate": 0.0001,
+        "value": 5000
+    },
+    {
+        "id": "dragon_heart",
+        "name": "드래곤 하트",
+        "type": "legacy",
+        "subType": "artifact",
+        "rarity": "legendary",
+        "description": "모든 스탯을 15% 증가시킵니다. 플레이 간에 유지됩니다.",
+        "effect": {
+            "type": "all_stats_bonus",
+            "value": 0.15
+        },
+        "dropRate": 0.0001,
+        "value": 5000
+    },
+    {
+        "id": "time_hourglass",
+        "name": "시간 모래시계",
+        "type": "legacy",
+        "subType": "artifact",
+        "rarity": "legendary",
+        "description": "던전 난이도 스케일링을 감소시킵니다. 플레이 간에 유지됩니다.",
+        "effect": {
+            "type": "scaling_reduction",
+            "value": 0.25
+        },
+        "dropRate": 0.0001,
+        "value": 5000
+    },
+    {
+        "id": "dimensional_bag",
+        "name": "차원 주머니",
+        "type": "legacy",
+        "subType": "artifact",
+        "rarity": "legendary",
+        "description": "인벤토리 슬롯을 10개 추가합니다. 플레이 간에 유지됩니다.",
+        "effect": {
+            "type": "inventory_slots",
+            "value": 10
+        },
+        "dropRate": 0.0001,
+        "value": 5000
+    },
+    {
+        "id": "alchemists_pendant",
+        "name": "연금술사의 펜던트",
+        "type": "legacy",
+        "subType": "artifact",
+        "rarity": "legendary",
+        "description": "20% 확률로 재료를 소비하지 않습니다. 플레이 간에 유지됩니다.",
+        "effect": {
+            "type": "material_conservation",
+            "chance": 0.2
+        },
+        "dropRate": 0.0001,
+        "value": 5000
+    },
+    {
+        "id": "book_of_secrets",
+        "name": "비밀의 책",
+        "type": "legacy",
+        "subType": "artifact",
+        "rarity": "legendary",
+        "description": "적에 대한 숨겨진 정보를 공개합니다. 플레이 간에 유지됩니다.",
+        "effect": {
+            "type": "enemy_info"
+        },
+        "dropRate": 0.0001,
+        "value": 5000
+    },
+    // =========== 특수 아이템 (Special Items) ===========
+    {
+        "id": "rune_of_fire",
+        "name": "화염의 룬",
+        "type": "special",
+        "subType": "rune",
+        "rarity": "rare",
+        "description": "무기에 화염 속성을 부여하는 룬입니다.",
+        "effect": {
+            "type": "enchant",
+            "element": "fire",
+            "damage": 8
+        },
+        "requiredLevel": 10,
+        "dropRate": 0.02,
+        "value": 120
+    },
+    {
+        "id": "rune_of_ice",
+        "name": "얼음의 룬",
+        "type": "special",
+        "subType": "rune",
+        "rarity": "rare",
+        "description": "무기에 얼음 속성을 부여하는 룬입니다.",
+        "effect": {
+            "type": "enchant",
+            "element": "ice",
+            "slow": {
+                "value": 0.2,
+                "duration": 2
+            }
+        },
+        "requiredLevel": 10,
+        "dropRate": 0.02,
+        "value": 120
+    },
+    {
+        "id": "rune_of_lightning",
+        "name": "번개의 룬",
+        "type": "special",
+        "subType": "rune",
+        "rarity": "rare",
+        "description": "무기에 번개 속성을 부여하는 룬입니다.",
+        "effect": {
+            "type": "enchant",
+            "element": "lightning",
+            "chainChance": 0.3,
+            "chainTargets": 2,
+            "chainDamage": 0.5
+        },
+        "requiredLevel": 10,
+        "dropRate": 0.02,
+        "value": 130
+    },
+    {
+        "id": "rune_of_earth",
+        "name": "대지의 룬",
+        "type": "special",
+        "subType": "rune",
+        "rarity": "rare",
+        "description": "무기에 대지 속성을 부여하는 룬입니다.",
+        "effect": {
+            "type": "enchant",
+            "element": "earth",
+            "stunChance": 0.15,
+            "stunDuration": 1.5
+        },
+        "requiredLevel": 10,
+        "dropRate": 0.02,
+        "value": 120
+    },
+    {
+        "id": "forbidden_scroll",
+        "name": "금단의 스크롤",
+        "type": "special",
+        "subType": "scroll",
+        "rarity": "epic",
+        "description": "금지된 마법 지식이 담긴 스크롤입니다. 특수 능력을 얻을 수 있지만 대가가 있을 수 있습니다.",
+        "effect": {
+            "type": "forbidden_knowledge",
+            "statBonus": 0.3,
+            "healthCost": 0.2
+        },
+        "requiredLevel": 20,
+        "dropRate": 0.01,
+        "value": 300
+    },
+    {
+        "id": "enchanted_map",
+        "name": "마법의 지도",
+        "type": "special",
+        "subType": "map",
+        "rarity": "uncommon",
+        "description": "특정 던전에 대한 마법의 지도입니다. 해당 던전의 숨겨진 보물 위치를 보여줍니다.",
+        "effect": {
+            "type": "treasure_map",
+            "treasureQuality": "rare"
+        },
+        "dropRate": 0.03,
+        "value": 80
+    },
+    {
+        "id": "teleportation_stone",
+        "name": "순간이동 돌",
+        "type": "special",
+        "subType": "stone",
+        "rarity": "rare",
+        "description": "사용 시 던전 입구로 즉시 순간이동합니다.",
+        "effect": {
+            "type": "teleport"
+        },
+        "usesLeft": 1,
+        "stackable": true,
+        "maxStack": 3,
+        "dropRate": 0.02,
+        "value": 100
+    },
+    {
+        "id": "ancient_coin",
+        "name": "고대 동전",
+        "type": "special",
+        "subType": "currency",
+        "rarity": "uncommon",
+        "description": "특별한 상인에게 거래할 수 있는 고대 동전입니다.",
+        "stackable": true,
+        "maxStack": 99,
+        "dropRate": 0.05,
+        "value": 50
+    },
+    {
+        "id": "memory_fragment",
+        "name": "기억의 파편",
+        "type": "special",
+        "subType": "fragment",
+        "rarity": "epic",
+        "description": "특정 클래스의 기억이 담긴 파편입니다. 클래스 해금에 사용됩니다.",
+        "effect": {
+            "type": "class_memory"
+        },
+        "stackable": true,
+        "maxStack": 10,
+        "dropRate": 0.015,
+        "value": 200
+    },
+    {
+        "id": "artifact_fragment",
+        "name": "유물 파편",
+        "type": "special",
+        "subType": "fragment",
+        "rarity": "epic",
+        "description": "고대 유물의 파편입니다. 특별한 아이템 제작에 사용됩니다.",
+        "stackable": true,
+        "maxStack": 5,
+        "dropRate": 0.01,
+        "value": 250
+    }
+]
