@@ -1,0 +1,5373 @@
+[
+    {
+        "id": "warrior",
+        "name": "전사",
+        "description": "강력한 근접 공격으로 적을 압도하는 클래스",
+        "tier": 1,
+        "baseStats": {
+            "hp": 120,
+            "mp": 50,
+            "attack": 15,
+            "defense": 12,
+            "speed": 90
+        },
+        "growthStats": {
+            "hp": 15,
+            "mp": 5,
+            "attack": 3,
+            "defense": 2,
+            "speed": 1
+        },
+        "abilities": [
+            {
+                "id": "whirlwind",
+                "name": "회오리 베기",
+                "description": "주변의 모든 적에게 공격력의 80%로 피해를 입힙니다.",
+                "manaCost": 20,
+                "cooldown": 8,
+                "targetType": "aoe",
+                "radius": 3,
+                "damageMultiplier": 80
+            },
+            {
+                "id": "battle_cry",
+                "name": "전투 함성",
+                "description": "공격력을 20% 증가시킵니다. 지속시간: 10초",
+                "manaCost": 15,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "stat_boost",
+                    "stat": "attack",
+                    "value": 20,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "guard",
+                "name": "방어 태세",
+                "description": "방어력을 30% 증가시킵니다. 지속시간: 8초",
+                "manaCost": 15,
+                "cooldown": 15,
+                "targetType": "self",
+                "effect": {
+                    "type": "stat_boost",
+                    "stat": "defense",
+                    "value": 30,
+                    "duration": 8
+                }
+            },
+            {
+                "id": "raging_strike",
+                "name": "분노의 일격",
+                "description": "단일 대상에게 공격력의 150%로 피해를 입힙니다.",
+                "manaCost": 25,
+                "cooldown": 10,
+                "targetType": "enemy",
+                "damageMultiplier": 150
+            }
+        ],
+        "passiveEffect": {
+            "type": "stat_increase",
+            "stat": "hp",
+            "value": 10,
+            "description": "체력이 10% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "berserker_rage",
+            "name": "광전사의 분노",
+            "description": "모든 스탯이 크게 증가하고 공격 속도가 빨라집니다. 지속시간: 15초",
+            "manaCost": 50,
+            "cooldown": 60,
+            "effect": {
+                "type": "multi_stat_boost",
+                "attack": 40,
+                "defense": 20,
+                "speed": 30,
+                "duration": 15
+            }
+        },
+        "compatibleWeapons": [
+            "sword",
+            "axe",
+            "mace",
+            "hammer"
+        ],
+        "exclusiveWeapons": [
+            "berserker_axe"
+        ]
+    },
+    {
+        "id": "archer",
+        "name": "궁수",
+        "description": "장거리에서 정확한 공격을 하는 클래스",
+        "tier": 1,
+        "baseStats": {
+            "hp": 90,
+            "mp": 70,
+            "attack": 14,
+            "defense": 8,
+            "speed": 100
+        },
+        "growthStats": {
+            "hp": 10,
+            "mp": 7,
+            "attack": 2.8,
+            "defense": 1.2,
+            "speed": 1.5
+        },
+        "abilities": [
+            {
+                "id": "precise_shot",
+                "name": "정밀 사격",
+                "description": "단일 대상에게 공격력의 130%로 피해를 입히고, 치명타 확률이 50% 증가합니다.",
+                "manaCost": 15,
+                "cooldown": 8,
+                "targetType": "enemy",
+                "damageMultiplier": 130,
+                "effect": {
+                    "type": "critical_bonus",
+                    "value": 50
+                }
+            },
+            {
+                "id": "multi_shot",
+                "name": "다중 사격",
+                "description": "3발의 화살을 쏘아 공격력의 60%씩 피해를 입힙니다.",
+                "manaCost": 20,
+                "cooldown": 12,
+                "targetType": "enemy",
+                "damageMultiplier": 60,
+                "shotCount": 3
+            },
+            {
+                "id": "eagle_eye",
+                "name": "독수리의 눈",
+                "description": "치명타 확률이 20% 증가합니다. 지속시간: 15초",
+                "manaCost": 15,
+                "cooldown": 25,
+                "targetType": "self",
+                "effect": {
+                    "type": "critical_bonus",
+                    "value": 20,
+                    "duration": 15
+                }
+            },
+            {
+                "id": "trap",
+                "name": "함정 설치",
+                "description": "대상 지역에 함정을 설치합니다. 함정을 밟는 적은 2초간 이동속도가 50% 감소합니다.",
+                "manaCost": 25,
+                "cooldown": 18,
+                "targetType": "position",
+                "effect": {
+                    "type": "trap",
+                    "slow": 50,
+                    "duration": 2,
+                    "damage": 30
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "stat_increase",
+            "stat": "speed",
+            "value": 10,
+            "description": "이동 속도가 10% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "arrow_storm",
+            "name": "화살 폭풍",
+            "description": "화살의 폭풍을 내려 주변 적들에게 5초 동안 지속적인 피해를 입힙니다.",
+            "manaCost": 45,
+            "cooldown": 60,
+            "targetType": "aoe",
+            "radius": 5,
+            "effect": {
+                "type": "damage_over_time",
+                "damagePerTick": 30,
+                "tickCount": 10,
+                "tickInterval": 0.5
+            }
+        },
+        "compatibleWeapons": [
+            "bow",
+            "crossbow",
+            "throwing"
+        ],
+        "exclusiveWeapons": [
+            "longbow_of_wind"
+        ]
+    },
+    {
+        "id": "mage",
+        "name": "마법사",
+        "description": "강력한 원소 마법을 다루는 클래스",
+        "tier": 1,
+        "baseStats": {
+            "hp": 80,
+            "mp": 120,
+            "attack": 16,
+            "defense": 6,
+            "speed": 85
+        },
+        "growthStats": {
+            "hp": 8,
+            "mp": 15,
+            "attack": 3.2,
+            "defense": 1,
+            "speed": 1.2
+        },
+        "abilities": [
+            {
+                "id": "arcane_bolt",
+                "name": "비전 화살",
+                "description": "단일 대상에게 강력한 마법 공격을 합니다. 공격력의 140%로 피해를 입힙니다.",
+                "manaCost": 20,
+                "cooldown": 6,
+                "targetType": "enemy",
+                "damageMultiplier": 140,
+                "damageType": "magic"
+            },
+            {
+                "id": "fireball",
+                "name": "화염구",
+                "description": "대상 지역에 화염구를 날려 공격력의 120%로 광역 피해를 입히고, 3초간 지속 피해를 입힙니다.",
+                "manaCost": 25,
+                "cooldown": 10,
+                "targetType": "position",
+                "radius": 3,
+                "damageMultiplier": 120,
+                "damageType": "fire",
+                "effect": {
+                    "type": "burn",
+                    "damage": 15,
+                    "duration": 3
+                }
+            },
+            {
+                "id": "frost_nova",
+                "name": "얼음 폭풍",
+                "description": "주변의 모든 적을 얼려 공격력의 100%로 피해를 입히고, 3초간 이동속도를 70% 감소시킵니다.",
+                "manaCost": 30,
+                "cooldown": 15,
+                "targetType": "aoe",
+                "radius": 4,
+                "damageMultiplier": 100,
+                "damageType": "ice",
+                "effect": {
+                    "type": "slow",
+                    "value": 70,
+                    "duration": 3
+                }
+            },
+            {
+                "id": "mana_shield",
+                "name": "마나 보호막",
+                "description": "마나를 소모하여 보호막을 생성합니다. 10초간 받는 피해의 70%를 마나로 대신 받습니다.",
+                "manaCost": 40,
+                "cooldown": 25,
+                "targetType": "self",
+                "effect": {
+                    "type": "mana_shield",
+                    "ratio": 70,
+                    "duration": 10
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "stat_increase",
+            "stat": "mp",
+            "value": 15,
+            "description": "마나가 15% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "meteor_strike",
+            "name": "메테오 스트라이크",
+            "description": "하늘에서 거대한 운석을 떨어뜨려 광범위한 지역에 대량의 화염 피해를 입힙니다.",
+            "manaCost": 60,
+            "cooldown": 60,
+            "targetType": "position",
+            "radius": 6,
+            "damageMultiplier": 300,
+            "damageType": "fire",
+            "effect": {
+                "type": "burn",
+                "damage": 30,
+                "duration": 5
+            }
+        },
+        "compatibleWeapons": [
+            "staff",
+            "wand",
+            "orb"
+        ],
+        "exclusiveWeapons": [
+            "archmage_staff"
+        ]
+    },
+    {
+        "id": "thief",
+        "name": "도적",
+        "description": "빠른 공격과 회피를 통해 적을 처치하는 클래스",
+        "tier": 1,
+        "baseStats": {
+            "hp": 85,
+            "mp": 70,
+            "attack": 13,
+            "defense": 7,
+            "speed": 110
+        },
+        "growthStats": {
+            "hp": 9,
+            "mp": 7,
+            "attack": 2.5,
+            "defense": 1.1,
+            "speed": 1.8
+        },
+        "abilities": [
+            {
+                "id": "backstab",
+                "name": "암습",
+                "description": "적의 뒤에서 공격하면 공격력의 200%로 피해를 입힙니다. 그렇지 않으면 150%로 피해를 입힙니다.",
+                "manaCost": 15,
+                "cooldown": 8,
+                "targetType": "enemy",
+                "damageMultiplier": 150,
+                "backDamageMultiplier": 200
+            },
+            {
+                "id": "vanish",
+                "name": "은신",
+                "description": "5초간 은신 상태가 되어 적의 주의를 피합니다. 은신 상태에서 나올 때 첫 공격의 피해가 50% 증가합니다.",
+                "manaCost": 20,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "stealth",
+                    "duration": 5,
+                    "bonusDamage": 50
+                }
+            },
+            {
+                "id": "poison_strike",
+                "name": "독 공격",
+                "description": "대상에게 공격력의 110%로 피해를 입히고, 5초간 지속 독 피해를 줍니다.",
+                "manaCost": 18,
+                "cooldown": 12,
+                "targetType": "enemy",
+                "damageMultiplier": 110,
+                "effect": {
+                    "type": "poison",
+                    "damage": 10,
+                    "duration": 5
+                }
+            },
+            {
+                "id": "quick_escape",
+                "name": "신속한 도주",
+                "description": "빠르게 지정된 위치로 이동합니다. 3초간 이동 속도가 30% 증가합니다.",
+                "manaCost": 15,
+                "cooldown": 15,
+                "targetType": "position",
+                "effect": {
+                    "type": "teleport",
+                    "range": 5,
+                    "speedBoost": 30,
+                    "duration": 3
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "special_effect",
+            "effect": "dodge_chance",
+            "value": 10,
+            "description": "회피 확률이 10% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "thousand_cuts",
+            "name": "천개의 칼날",
+            "description": "대상 주변을 빠르게 움직이며 여러 번 공격하여 대량의 피해를 입힙니다.",
+            "manaCost": 40,
+            "cooldown": 60,
+            "targetType": "enemy",
+            "hitCount": 10,
+            "damageMultiplier": 50
+        },
+        "compatibleWeapons": [
+            "dagger",
+            "shortsword",
+            "throwing"
+        ],
+        "exclusiveWeapons": [
+            "shadow_fang"
+        ]
+    },
+    {
+        "id": "lancer",
+        "name": "창기사",
+        "description": "긴 무기로 적을 제압하는 클래스",
+        "tier": 1,
+        "baseStats": {
+            "hp": 100,
+            "mp": 60,
+            "attack": 14,
+            "defense": 10,
+            "speed": 95
+        },
+        "growthStats": {
+            "hp": 12,
+            "mp": 6,
+            "attack": 2.7,
+            "defense": 1.5,
+            "speed": 1.3
+        },
+        "abilities": [
+            {
+                "id": "piercing_thrust",
+                "name": "관통 찌르기",
+                "description": "직선 상의 여러 적을 관통하여 공격력의 120%로 피해를 줍니다.",
+                "manaCost": 20,
+                "cooldown": 10,
+                "targetType": "direction",
+                "damageMultiplier": 120,
+                "range": 5
+            },
+            {
+                "id": "sweep",
+                "name": "휩쓸기",
+                "description": "전방의 넓은 범위에 공격력의 100%로 피해를 주고 적의 이동속도를 2초간 30% 감소시킵니다.",
+                "manaCost": 25,
+                "cooldown": 12,
+                "targetType": "cone",
+                "radius": 3,
+                "damageMultiplier": 100,
+                "effect": {
+                    "type": "slow",
+                    "value": 30,
+                    "duration": 2
+                }
+            },
+            {
+                "id": "guardian_stance",
+                "name": "수호자의 태세",
+                "description": "8초간 받는 피해를 20% 감소시키고, 방어력을 25% 증가시킵니다.",
+                "manaCost": 30,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "damage_reduction",
+                    "value": 20,
+                    "defenseBoost": 25,
+                    "duration": 8
+                }
+            },
+            {
+                "id": "intervene",
+                "name": "개입",
+                "description": "지정된 아군에게 빠르게 이동하여 5초간 아군이 받는 피해의 30%를 대신 받습니다.",
+                "manaCost": 20,
+                "cooldown": 25,
+                "targetType": "ally",
+                "effect": {
+                    "type": "intervene",
+                    "value": 30,
+                    "duration": 5
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "special_effect",
+            "effect": "attack_range",
+            "value": 20,
+            "description": "공격 범위가 20% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "dragons_charge",
+            "name": "용의 돌진",
+            "description": "앞으로 돌진하며 경로에 있는 모든 적에게 막대한 피해를 입히고 2초간 기절시킵니다.",
+            "manaCost": 45,
+            "cooldown": 60,
+            "targetType": "direction",
+            "range": 8,
+            "damageMultiplier": 250,
+            "effect": {
+                "type": "stun",
+                "duration": 2
+            }
+        },
+        "compatibleWeapons": [
+            "spear",
+            "halberd",
+            "lance"
+        ],
+        "exclusiveWeapons": [
+            "dragonheart_lance"
+        ]
+    },
+    {
+        "id": "monk",
+        "name": "수도사",
+        "description": "맨손 전투와 자기 수양에 능한 클래스",
+        "tier": 1,
+        "baseStats": {
+            "hp": 95,
+            "mp": 90,
+            "attack": 12,
+            "defense": 9,
+            "speed": 105
+        },
+        "growthStats": {
+            "hp": 11,
+            "mp": 9,
+            "attack": 2.4,
+            "defense": 1.3,
+            "speed": 1.7
+        },
+        "abilities": [
+            {
+                "id": "flying_kick",
+                "name": "비행 킥",
+                "description": "대상에게 빠르게 접근하여 공격력의 140%로 피해를 입힙니다.",
+                "manaCost": 15,
+                "cooldown": 8,
+                "targetType": "enemy",
+                "damageMultiplier": 140,
+                "effect": {
+                    "type": "dash",
+                    "range": 5
+                }
+            },
+            {
+                "id": "palm_strike",
+                "name": "충격파 장풍",
+                "description": "전방으로 충격파를 발사하여 직선 상의 적들에게 공격력의 110%로 피해를 입힙니다.",
+                "manaCost": 20,
+                "cooldown": 10,
+                "targetType": "direction",
+                "range": 4,
+                "damageMultiplier": 110
+            },
+            {
+                "id": "inner_peace",
+                "name": "내면의 평화",
+                "description": "10초 동안 HP와 MP를 초당 2%씩 회복합니다.",
+                "manaCost": 25,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "regeneration",
+                    "hpPercent": 2,
+                    "mpPercent": 2,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "counter_stance",
+                "name": "반격 태세",
+                "description": "5초 동안 적의 공격을 받으면 공격력의 150%로 반격합니다.",
+                "manaCost": 20,
+                "cooldown": 15,
+                "targetType": "self",
+                "effect": {
+                    "type": "counter",
+                    "damageMultiplier": 150,
+                    "duration": 5
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "special_effect",
+            "effect": "attack_speed",
+            "value": 15,
+            "description": "공격 속도가 15% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "spirit_barrage",
+            "name": "영혼의 연타",
+            "description": "빠른 속도로 연속 공격하여 대상에게 대량의 피해를 줍니다.",
+            "manaCost": 40,
+            "cooldown": 60,
+            "targetType": "enemy",
+            "hitCount": 20,
+            "damageMultiplier": 30
+        },
+        "compatibleWeapons": [
+            "fist",
+            "staff",
+            "shortsword"
+        ],
+        "exclusiveWeapons": [
+            "spirit_gauntlets"
+        ]
+    },
+    {
+        "id": "cleric",
+        "name": "성직자",
+        "description": "치유와 버프에 특화된 클래스",
+        "tier": 1,
+        "baseStats": {
+            "hp": 90,
+            "mp": 110,
+            "attack": 10,
+            "defense": 8,
+            "speed": 90
+        },
+        "growthStats": {
+            "hp": 10,
+            "mp": 12,
+            "attack": 2,
+            "defense": 1.4,
+            "speed": 1.2
+        },
+        "abilities": [
+            {
+                "id": "holy_light",
+                "name": "신성한 빛",
+                "description": "아군의 체력을 회복하거나 언데드 적에게 큰 피해를 줍니다.",
+                "manaCost": 20,
+                "cooldown": 8,
+                "targetType": "any",
+                "healMultiplier": 150,
+                "damageMultiplier": 180,
+                "damageType": "light"
+            },
+            {
+                "id": "blessing",
+                "name": "축복",
+                "description": "대상 아군의 공격력과 방어력을 8초간 20% 증가시킵니다.",
+                "manaCost": 25,
+                "cooldown": 15,
+                "targetType": "ally",
+                "effect": {
+                    "type": "buff",
+                    "attack": 20,
+                    "defense": 20,
+                    "duration": 8
+                }
+            },
+            {
+                "id": "smite",
+                "name": "천벌",
+                "description": "신성한 힘으로 적을 공격하여 공격력의 130%로 피해를 줍니다.",
+                "manaCost": 15,
+                "cooldown": 10,
+                "targetType": "enemy",
+                "damageMultiplier": 130,
+                "damageType": "light"
+            },
+            {
+                "id": "sanctuary",
+                "name": "성역",
+                "description": "주변 아군들을 8초간 보호하는 장벽을 생성하여 받는 피해를 30% 감소시킵니다.",
+                "manaCost": 35,
+                "cooldown": 25,
+                "targetType": "aoe",
+                "radius": 4,
+                "effect": {
+                    "type": "damage_reduction",
+                    "value": 30,
+                    "duration": 8
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "special_effect",
+            "effect": "healing_bonus",
+            "value": 20,
+            "description": "모든 치유 효과가 20% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "divine_intervention",
+            "name": "신의 개입",
+            "description": "주변 아군들의 체력을 대량 회복하고 모든 부정적인 상태를 제거합니다.",
+            "manaCost": 50,
+            "cooldown": 60,
+            "targetType": "aoe",
+            "radius": 6,
+            "healMultiplier": 300,
+            "effect": {
+                "type": "cleanse",
+                "shield": 100,
+                "duration": 5
+            }
+        },
+        "compatibleWeapons": [
+            "mace",
+            "staff",
+            "wand"
+        ],
+        "exclusiveWeapons": [
+            "divine_scepter"
+        ]
+    },
+    {
+        "id": "hunter",
+        "name": "사냥꾼",
+        "description": "자연과 함께하는 추적자 클래스",
+        "tier": 1,
+        "baseStats": {
+            "hp": 95,
+            "mp": 80,
+            "attack": 13,
+            "defense": 7,
+            "speed": 100
+        },
+        "growthStats": {
+            "hp": 11,
+            "mp": 8,
+            "attack": 2.6,
+            "defense": 1.1,
+            "speed": 1.6
+        },
+        "abilities": [
+            {
+                "id": "aimed_shot",
+                "name": "조준 사격",
+                "description": "적을 조준하여 공격력의 160%로 피해를 입힙니다. 치명타 확률 30% 증가.",
+                "manaCost": 20,
+                "cooldown": 10,
+                "targetType": "enemy",
+                "damageMultiplier": 160,
+                "effect": {
+                    "type": "critical_bonus",
+                    "value": 30
+                }
+            },
+            {
+                "id": "trap_setting",
+                "name": "덫 설치",
+                "description": "대상 지역에 덫을 설치합니다. 적이 밟으면 3초간 이동 불가 상태가 되고 피해를 입습니다.",
+                "manaCost": 20,
+                "cooldown": 15,
+                "targetType": "position",
+                "trapDamage": 50,
+                "effect": {
+                    "type": "root",
+                    "duration": 3
+                }
+            },
+            {
+                "id": "animal_companion",
+                "name": "동물 동료",
+                "description": "30초간 함께 싸울 동물을 소환합니다.",
+                "manaCost": 30,
+                "cooldown": 40,
+                "targetType": "position",
+                "effect": {
+                    "type": "summon",
+                    "summonType": "animal",
+                    "duration": 30,
+                    "attackMultiplier": 70
+                }
+            },
+            {
+                "id": "trackless_step",
+                "name": "흔적없는 걸음",
+                "description": "10초간 이동 속도가 30% 증가하고 적에게 발견되지 않습니다.",
+                "manaCost": 25,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "stealth",
+                    "speedBoost": 30,
+                    "duration": 10
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "special_effect",
+            "effect": "enemy_detection",
+            "value": 1,
+            "description": "일정 거리 내의 적을 자동으로 탐지합니다."
+        },
+        "ultimateSkill": {
+            "id": "apex_predator",
+            "name": "최상위 포식자",
+            "description": "15초간 모든 적의 약점을 간파해 공격력이 50% 증가하고 모든 공격이 치명타 적중률이 100%가 됩니다.",
+            "manaCost": 45,
+            "cooldown": 60,
+            "targetType": "self",
+            "effect": {
+                "type": "predator_instinct",
+                "attackBoost": 50,
+                "criticalChance": 100,
+                "duration": 15
+            }
+        },
+        "compatibleWeapons": [
+            "bow",
+            "crossbow",
+            "dagger"
+        ],
+        "exclusiveWeapons": [
+            "beast_tamer_bow"
+        ]
+    },
+    {
+        "id": "knight",
+        "name": "기사",
+        "description": "방패를 사용해 동료를 보호하는 수호자 클래스",
+        "tier": 1,
+        "baseStats": {
+            "hp": 110,
+            "mp": 60,
+            "attack": 12,
+            "defense": 15,
+            "speed": 85
+        },
+        "growthStats": {
+            "hp": 13,
+            "mp": 6,
+            "attack": 2.2,
+            "defense": 2.5,
+            "speed": 1.1
+        },
+        "abilities": [
+            {
+                "id": "shield_bash",
+                "name": "방패 강타",
+                "description": "방패로 적을 강타하여 공격력의 120%로 피해를 주고 2초간 기절시킵니다.",
+                "manaCost": 20,
+                "cooldown": 12,
+                "targetType": "enemy",
+                "damageMultiplier": 120,
+                "effect": {
+                    "type": "stun",
+                    "duration": 2
+                }
+            },
+            {
+                "id": "defensive_stance",
+                "name": "방어 자세",
+                "description": "8초간 방어력이 40% 증가하고 적의 공격을 끌어들입니다.",
+                "manaCost": 15,
+                "cooldown": 18,
+                "targetType": "self",
+                "effect": {
+                    "type": "stat_boost",
+                    "stat": "defense",
+                    "value": 40,
+                    "duration": 8,
+                    "taunt": true
+                }
+            },
+            {
+                "id": "shield_wall",
+                "name": "방패의 벽",
+                "description": "5초간 방패로 앞을 막아 전방의 투사체를 모두 차단하고 접촉한 적에게 피해를 줍니다.",
+                "manaCost": 30,
+                "cooldown": 20,
+                "targetType": "direction",
+                "damageMultiplier": 80,
+                "effect": {
+                    "type": "projectile_block",
+                    "duration": 5
+                }
+            },
+            {
+                "id": "rally",
+                "name": "사기 진작",
+                "description": "주변 아군의 공격력과.방어력을 10초간 15% 증가시킵니다.",
+                "manaCost": 25,
+                "cooldown": 25,
+                "targetType": "aoe",
+                "radius": 4,
+                "effect": {
+                    "type": "multi_stat_boost",
+                    "attack": 15,
+                    "defense": 15,
+                    "duration": 10
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "damage_reduction",
+            "value": 15,
+            "description": "받는 피해량이 15% 감소합니다."
+        },
+        "ultimateSkill": {
+            "id": "bulwark",
+            "name": "철벽 수호",
+            "description": "12초간 방어력이 대폭 증가하고 받는 피해의 50%를 공격자에게 반사합니다.",
+            "manaCost": 45,
+            "cooldown": 60,
+            "effect": {
+                "type": "damage_reflection",
+                "defenseBoost": 50,
+                "reflectionRatio": 50,
+                "duration": 12
+            }
+        },
+        "compatibleWeapons": [
+            "sword",
+            "mace",
+            "shield"
+        ],
+        "exclusiveWeapons": [
+            "tower_shield"
+        ]
+    },
+    {
+        "id": "alchemist",
+        "name": "연금술사",
+        "description": "다양한 포션과 폭발물을 사용하는 지식 기반 클래스",
+        "tier": 1,
+        "baseStats": {
+            "hp": 85,
+            "mp": 95,
+            "attack": 11,
+            "defense": 7,
+            "speed": 95
+        },
+        "growthStats": {
+            "hp": 9,
+            "mp": 10,
+            "attack": 2.1,
+            "defense": 1.2,
+            "speed": 1.4
+        },
+        "abilities": [
+            {
+                "id": "explosive_flask",
+                "name": "폭발 플라스크",
+                "description": "폭발하는 플라스크를 던져 공격력의 140%로 광역 피해를 입힙니다.",
+                "manaCost": 20,
+                "cooldown": 12,
+                "targetType": "position",
+                "radius": 3,
+                "damageMultiplier": 140
+            },
+            {
+                "id": "healing_potion",
+                "name": "치유 포션",
+                "description": "대상 아군의 HP를 30% 회복하고 5초간 초당 5%의 HP를 추가로 회복합니다.",
+                "manaCost": 25,
+                "cooldown": 15,
+                "targetType": "ally",
+                "effect": {
+                    "type": "heal",
+                    "value": 30,
+                    "hpRegenPercent": 5,
+                    "duration": 5
+                }
+            },
+            {
+                "id": "transmutation",
+                "name": "변환",
+                "description": "10초간 공격력의 50%를 방어력으로 변환하거나 방어력의 50%를 공격력으로 변환합니다.",
+                "manaCost": 15,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "stat_conversion",
+                    "value": 50,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "poison_cloud",
+                "name": "독 구름",
+                "description": "대상 지역에 5초간 지속되는 독 구름을 생성하여 구름 안의 적들에게 지속적인 피해를 입힙니다.",
+                "manaCost": 30,
+                "cooldown": 18,
+                "targetType": "position",
+                "radius": 4,
+                "effect": {
+                    "type": "poison_area",
+                    "damagePerTick": 15,
+                    "tickCount": 10,
+                    "tickInterval": 0.5
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "potion_effect",
+            "value": 20,
+            "description": "사용하는 모든 포션의 효과가 20% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "philosophers_stone",
+            "name": "현자의 돌",
+            "description": "15초간 모든 능력의 쿨다운이 50% 감소하고 포션 효과가 100% 증가합니다.",
+            "manaCost": 50,
+            "cooldown": 60,
+            "effect": {
+                "type": "cooldown_reduction",
+                "value": 50,
+                "potionBoost": 100,
+                "duration": 15
+            }
+        },
+        "compatibleWeapons": [
+            "wand",
+            "dagger",
+            "orb"
+        ],
+        "exclusiveWeapons": [
+            "alchemical_catalyst"
+        ]
+    },
+    {
+        "id": "spellblade",
+        "name": "마검사",
+        "description": "마법과 검술을 결합한 하이브리드 클래스",
+        "tier": 2,
+        "baseStats": {
+            "hp": 105,
+            "mp": 90,
+            "attack": 14,
+            "defense": 10,
+            "speed": 95
+        },
+        "growthStats": {
+            "hp": 12,
+            "mp": 10,
+            "attack": 3,
+            "defense": 1.5,
+            "speed": 1.4
+        },
+        "abilities": [
+            {
+                "id": "magic_slash",
+                "name": "마법 베기",
+                "description": "마법의 힘이 깃든 검으로 공격하여 공격력의 140%로 물리와 마법 피해를 동시에 입힙니다.",
+                "manaCost": 20,
+                "cooldown": 8,
+                "targetType": "enemy",
+                "damageMultiplier": 140,
+                "damageType": "hybrid"
+            },
+            {
+                "id": "rune_blade",
+                "name": "룬 블레이드",
+                "description": "검에 원소의 힘을 부여하여 12초간 공격 시 추가 원소 피해를 입힙니다.",
+                "manaCost": 25,
+                "cooldown": 15,
+                "targetType": "self",
+                "effect": {
+                    "type": "weapon_enchant",
+                    "elementalDamage": 30,
+                    "duration": 12
+                }
+            },
+            {
+                "id": "spell_strike",
+                "name": "주문 타격",
+                "description": "강력한 마법 에너지를 검에 집중시켜 공격력의 180%로 피해를 입히고 2초간 침묵시킵니다.",
+                "manaCost": 30,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "damageMultiplier": 180,
+                "effect": {
+                    "type": "silence",
+                    "duration": 2
+                }
+            },
+            {
+                "id": "arcane_barrier",
+                "name": "비전 장벽",
+                "description": "8초간 주변에 마법 장벽을 생성하여 받는 마법 피해를 40% 감소시킵니다.",
+                "manaCost": 30,
+                "cooldown": 20,
+                "targetType": "self",
+                "radius": 2,
+                "effect": {
+                    "type": "magic_resistance",
+                    "value": 40,
+                    "duration": 8
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "dual_resistance",
+            "value": 10,
+            "description": "물리 및 마법 저항이 10% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "arcane_storm",
+            "name": "비전 폭풍",
+            "description": "10초간 주변에 비전 폭풍을 생성하여 근처 적들에게 지속적인 피해를 입히고 자신의 공격력을 30% 증가시킵니다.",
+            "manaCost": 60,
+            "cooldown": 60,
+            "targetType": "aoe",
+            "radius": 5,
+            "effect": {
+                "type": "damage_over_time",
+                "damagePerTick": 40,
+                "tickCount": 10,
+                "tickInterval": 1,
+                "attackBoost": 30,
+                "duration": 10
+            }
+        },
+        "compatibleWeapons": [
+            "sword",
+            "staff",
+            "wand"
+        ],
+        "exclusiveWeapons": [
+            "arcane_blade"
+        ],
+        "requiredClasses": [
+            "warrior",
+            "mage"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "ranger",
+        "name": "레인저",
+        "description": "장거리 공격과 추적에 특화된 사냥꾼",
+        "tier": 2,
+        "baseStats": {
+            "hp": 95,
+            "mp": 85,
+            "attack": 15,
+            "defense": 8,
+            "speed": 105
+        },
+        "growthStats": {
+            "hp": 11,
+            "mp": 9,
+            "attack": 3,
+            "defense": 1.2,
+            "speed": 1.7
+        },
+        "abilities": [
+            {
+                "id": "multi_shot",
+                "name": "멀티샷",
+                "description": "한 번에 3발의 화살을 발사하여 각각 공격력의 70%로 피해를 입힙니다.",
+                "manaCost": 20,
+                "cooldown": 10,
+                "targetType": "enemy",
+                "damageMultiplier": 70,
+                "shotCount": 3
+            },
+            {
+                "id": "tracking_arrow",
+                "name": "추적 화살",
+                "description": "대상을 추적하는 화살을 발사하여 공격력의 150%로 피해를 입히고 5초간 대상의 위치를 표시합니다.",
+                "manaCost": 25,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "damageMultiplier": 150,
+                "effect": {
+                    "type": "tracking",
+                    "duration": 5
+                }
+            },
+            {
+                "id": "wilderness_step",
+                "name": "야생의 걸음",
+                "description": "10초간 이동 속도가 40% 증가하고 지형 장애물에 의한 이동 제한을 무시합니다.",
+                "manaCost": 15,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "terrain_mastery",
+                    "speedBoost": 40,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "volley",
+                "name": "집중 사격",
+                "description": "대상 지역에 화살 비를 내려 공격력의 120%로 광역 피해를 입힙니다.",
+                "manaCost": 30,
+                "cooldown": 18,
+                "targetType": "position",
+                "radius": 4,
+                "damageMultiplier": 120
+            }
+        ],
+        "passiveEffect": {
+            "type": "enemy_detection",
+            "radius": 50,
+            "description": "일정 범위 내의 적의 위치를 자동으로 감지합니다."
+        },
+        "ultimateSkill": {
+            "id": "arrow_storm",
+            "name": "화살 폭풍",
+            "description": "15초간 지속되는 화살 폭풍을 생성하여 넓은 지역의 적들에게 지속적인 피해를 입힙니다.",
+            "manaCost": 50,
+            "cooldown": 60,
+            "targetType": "position",
+            "radius": 8,
+            "effect": {
+                "type": "damage_over_time",
+                "damagePerTick": 40,
+                "tickCount": 15,
+                "tickInterval": 1
+            }
+        },
+        "compatibleWeapons": [
+            "bow",
+            "crossbow",
+            "throwing"
+        ],
+        "exclusiveWeapons": [
+            "longbow_of_wind"
+        ],
+        "requiredClasses": [
+            "archer",
+            "hunter"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "assassin",
+        "name": "어쌔신",
+        "description": "은밀하고 치명적인 공격에 특화된 암살자",
+        "tier": 2,
+        "baseStats": {
+            "hp": 90,
+            "mp": 80,
+            "attack": 16,
+            "defense": 7,
+            "speed": 120
+        },
+        "growthStats": {
+            "hp": 9,
+            "mp": 8,
+            "attack": 3.2,
+            "defense": 1,
+            "speed": 2
+        },
+        "abilities": [
+            {
+                "id": "shadow_strike",
+                "name": "그림자 습격",
+                "description": "은신 상태에서 적을 공격하면 공격력의 250%로 피해를 입힙니다.",
+                "manaCost": 25,
+                "cooldown": 12,
+                "targetType": "enemy",
+                "damageMultiplier": 250,
+                "requirement": "stealth"
+            },
+            {
+                "id": "smoke_bomb",
+                "name": "연막탄",
+                "description": "연막을 터뜨려 5초간 주변 지역을 가려 적의 시야를 차단하고 자신은 은신 상태가 됩니다.",
+                "manaCost": 20,
+                "cooldown": 18,
+                "targetType": "position",
+                "radius": 4,
+                "effect": {
+                    "type": "stealth",
+                    "duration": 5,
+                    "visionBlock": true
+                }
+            },
+            {
+                "id": "blade_flurry",
+                "name": "칼날 연타",
+                "description": "빠르게 적을 여러 번 공격하여 공격력의 60%로 5회 피해를 입힙니다.",
+                "manaCost": 30,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "damageMultiplier": 60,
+                "hitCount": 5
+            },
+            {
+                "id": "mark_target",
+                "name": "표적 지정",
+                "description": "대상을 8초간 표시하여 치명타 확률을 50% 증가시키고 은신을 무효화합니다.",
+                "manaCost": 15,
+                "cooldown": 20,
+                "targetType": "enemy",
+                "effect": {
+                    "type": "mark",
+                    "criticalBonus": 50,
+                    "revealStealth": true,
+                    "duration": 8
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "critical_damage",
+            "value": 30,
+            "description": "치명타 피해가 30% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "death_blossom",
+            "name": "죽음의 꽃",
+            "description": "주변을 빠르게 회전하며 근처의 모든 적에게 총 10회 공격하여 각각 공격력의 80%로 피해를 입힙니다.",
+            "manaCost": 50,
+            "cooldown": 60,
+            "targetType": "aoe",
+            "radius": 5,
+            "hitCount": 10,
+            "damageMultiplier": 80
+        },
+        "compatibleWeapons": [
+            "dagger",
+            "shortsword",
+            "throwing"
+        ],
+        "exclusiveWeapons": [
+            "assassin_blades"
+        ],
+        "requiredClasses": [
+            "thief",
+            "hunter"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "battle_mage",
+        "name": "배틀메이지",
+        "description": "전장에서 마법으로 싸우는 강인한 마법사",
+        "tier": 2,
+        "baseStats": {
+            "hp": 110,
+            "mp": 100,
+            "attack": 13,
+            "defense": 10,
+            "speed": 90
+        },
+        "growthStats": {
+            "hp": 13,
+            "mp": 11,
+            "attack": 2.8,
+            "defense": 1.5,
+            "speed": 1.2
+        },
+        "abilities": [
+            {
+                "id": "force_wave",
+                "name": "힘의 파동",
+                "description": "전방으로 강력한 마법 파동을 발사하여 공격력의 130%로 피해를 입히고 적을 밀쳐냅니다.",
+                "manaCost": 25,
+                "cooldown": 10,
+                "targetType": "direction",
+                "range": 5,
+                "damageMultiplier": 130,
+                "effect": {
+                    "type": "knockback",
+                    "distance": 3
+                }
+            },
+            {
+                "id": "arcane_armor",
+                "name": "비전 갑옷",
+                "description": "10초간 마법 갑옷을 생성하여 방어력을 30% 증가시키고 공격자에게 피해의 20%를 반사합니다.",
+                "manaCost": 30,
+                "cooldown": 18,
+                "targetType": "self",
+                "effect": {
+                    "type": "reflect_shield",
+                    "defenseBoost": 30,
+                    "reflectRatio": 20,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "mana_strike",
+                "name": "마나 타격",
+                "description": "마나를 무기에 집중시켜 공격력의 150%로 피해를 입히고 적의 마나를 20% 감소시킵니다.",
+                "manaCost": 20,
+                "cooldown": 12,
+                "targetType": "enemy",
+                "damageMultiplier": 150,
+                "effect": {
+                    "type": "mana_drain",
+                    "value": 20
+                }
+            },
+            {
+                "id": "battle_meditation",
+                "name": "전투 명상",
+                "description": "8초간 명상 상태가 되어 방어력이 20% 감소하지만 매초 HP의 5%와 MP의 10%를 회복합니다.",
+                "manaCost": 35,
+                "cooldown": 25,
+                "targetType": "self",
+                "effect": {
+                    "type": "meditation",
+                    "defenseReduction": 20,
+                    "hpRegenPercent": 5,
+                    "mpRegenPercent": 10,
+                    "duration": 8
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "hp_to_damage",
+            "ratio": 10,
+            "description": "최대 HP의 10%가 공격력에 추가됩니다."
+        },
+        "ultimateSkill": {
+            "id": "arcane_surge",
+            "name": "비전 쇄도",
+            "description": "15초간 모든 공격에 비전 에너지가 주입되어 공격력의 50%만큼 추가 마법 피해를 입히고 주문력이 30% 증가합니다.",
+            "manaCost": 60,
+            "cooldown": 60,
+            "effect": {
+                "type": "spell_empowerment",
+                "additionalDamage": 50,
+                "spellPowerBoost": 30,
+                "duration": 15
+            }
+        },
+        "compatibleWeapons": [
+            "staff",
+            "mace",
+            "sword"
+        ],
+        "exclusiveWeapons": [
+            "battle_staff"
+        ],
+        "requiredClasses": [
+            "mage",
+            "warrior"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "crusader",
+        "name": "십자군",
+        "description": "신성한 힘으로 팀을 보호하는 성기사",
+        "tier": 2,
+        "baseStats": {
+            "hp": 120,
+            "mp": 80,
+            "attack": 13,
+            "defense": 14,
+            "speed": 85
+        },
+        "growthStats": {
+            "hp": 14,
+            "mp": 8,
+            "attack": 2.3,
+            "defense": 2.2,
+            "speed": 1.1
+        },
+        "abilities": [
+            {
+                "id": "holy_strike",
+                "name": "신성한 타격",
+                "description": "신성한 힘이 깃든 공격으로 공격력의 140%로 피해를 입히며, 언데드 적에게는 200%로 피해를 입힙니다.",
+                "manaCost": 20,
+                "cooldown": 10,
+                "targetType": "enemy",
+                "damageMultiplier": 140,
+                "undeadDamageMultiplier": 200,
+                "damageType": "holy"
+            },
+            {
+                "id": "divine_shield",
+                "name": "신성 방패",
+                "description": "8초간 피해를 80%까지 흡수하는 보호막을 생성합니다.",
+                "manaCost": 35,
+                "cooldown": 25,
+                "targetType": "self",
+                "effect": {
+                    "type": "absorption_shield",
+                    "value": 80,
+                    "duration": 8
+                }
+            },
+            {
+                "id": "blessing",
+                "name": "축복",
+                "description": "대상 아군의 공격력과 방어력을 10초간 20% 증가시킵니다.",
+                "manaCost": 25,
+                "cooldown": 15,
+                "targetType": "ally",
+                "effect": {
+                    "type": "buff",
+                    "attack": 20,
+                    "defense": 20,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "holy_aura",
+                "name": "성스러운 오라",
+                "description": "10초간 주변 아군의 HP를 초당 3%씩 회복시키고 적의 공격력을 15% 감소시킵니다.",
+                "manaCost": 30,
+                "cooldown": 20,
+                "targetType": "aoe",
+                "radius": 5,
+                "effect": {
+                    "type": "healing_aura",
+                    "hpRegenPercent": 3,
+                    "enemyAttackReduction": 15,
+                    "duration": 10
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "holy_protection",
+            "dmgReduction": 15,
+            "allyHeal": 5,
+            "description": "언데드로부터 받는 피해가 15% 감소하고 주변 아군이 초당 HP 5%를 회복합니다."
+        },
+        "ultimateSkill": {
+            "id": "divine_intervention",
+            "name": "신의 개입",
+            "description": "주변 모든 아군의 HP를 50% 회복시키고 10초간 받는 피해를 40% 감소시킵니다.",
+            "manaCost": 60,
+            "cooldown": 60,
+            "targetType": "aoe",
+            "radius": 6,
+            "effect": {
+                "type": "mass_heal",
+                "healPercent": 50,
+                "damageReduction": 40,
+                "duration": 10
+            }
+        },
+        "compatibleWeapons": [
+            "mace",
+            "sword",
+            "shield"
+        ],
+        "exclusiveWeapons": [
+            "crusader_hammer"
+        ],
+        "requiredClasses": [
+            "knight",
+            "cleric"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "druid",
+        "name": "드루이드",
+        "description": "자연의 힘을 다루는 변신 마법사",
+        "tier": 2,
+        "baseStats": {
+            "hp": 100,
+            "mp": 110,
+            "attack": 13,
+            "defense": 9,
+            "speed": 95
+        },
+        "growthStats": {
+            "hp": 12,
+            "mp": 12,
+            "attack": 2.6,
+            "defense": 1.4,
+            "speed": 1.5
+        },
+        "abilities": [
+            {
+                "id": "animal_form",
+                "name": "동물 변신",
+                "description": "15초간 곰, 늑대, 표범 중 하나의 형태로 변신하여 각기 다른 능력 보너스를 얻습니다.",
+                "manaCost": 35,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "shapeshift",
+                    "forms": [
+                        "bear",
+                        "wolf",
+                        "panther"
+                    ],
+                    "duration": 15
+                }
+            },
+            {
+                "id": "nature_wrath",
+                "name": "자연의 분노",
+                "description": "덩굴과 뿌리가 대상 지역에서 솟아나 적들을 2초간 속박하고 공격력의 140%로 피해를 입힙니다.",
+                "manaCost": 30,
+                "cooldown": 15,
+                "targetType": "position",
+                "radius": 5,
+                "damageMultiplier": 140,
+                "effect": {
+                    "type": "root",
+                    "duration": 2
+                }
+            },
+            {
+                "id": "healing_bloom",
+                "name": "치유의 꽃",
+                "description": "치유의 꽃을 소환하여 주변 아군의 HP를 초당 5%씩 15초간 회복시킵니다.",
+                "manaCost": 40,
+                "cooldown": 25,
+                "targetType": "position",
+                "radius": 4,
+                "effect": {
+                    "type": "healing_field",
+                    "hpRegenPercent": 5,
+                    "duration": 15
+                }
+            },
+            {
+                "id": "sunlight_beam",
+                "name": "태양광선",
+                "description": "태양 에너지를 집중시켜 공격력의 180%로 적에게 피해를 입히고 주변의 아군 HP를 15% 회복시킵니다.",
+                "manaCost": 25,
+                "cooldown": 18,
+                "targetType": "enemy",
+                "damageMultiplier": 180,
+                "radius": 4,
+                "effect": {
+                    "type": "allied_heal",
+                    "healPercent": 15
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "nature_affinity",
+            "value": 25,
+            "description": "자연 및 회복 마법의 효과가 25% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "forces_of_nature",
+            "name": "자연의 힘",
+            "description": "20초간 자연의 모든 힘을 불러일으켜 주변에 폭풍, 지진, 화산 활동을 일으켜 적들에게 지속적인 피해를 입히고 아군을 강화합니다.",
+            "manaCost": 70,
+            "cooldown": 60,
+            "targetType": "aoe",
+            "radius": 8,
+            "effect": {
+                "type": "nature_cataclysm",
+                "damagePerTick": 40,
+                "alliedStatBoost": 30,
+                "duration": 20
+            }
+        },
+        "compatibleWeapons": [
+            "staff",
+            "dagger",
+            "wand"
+        ],
+        "exclusiveWeapons": [
+            "living_branch"
+        ],
+        "requiredClasses": [
+            "mage",
+            "hunter"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "ninja",
+        "name": "닌자",
+        "description": "은밀하고 빠른 공격이 특기인 무술가",
+        "tier": 2,
+        "baseStats": {
+            "hp": 95,
+            "mp": 85,
+            "attack": 14,
+            "defense": 8,
+            "speed": 115
+        },
+        "growthStats": {
+            "hp": 10,
+            "mp": 9,
+            "attack": 2.8,
+            "defense": 1.2,
+            "speed": 2
+        },
+        "abilities": [
+            {
+                "id": "shadow_step",
+                "name": "그림자 걸음",
+                "description": "짧은 거리를 순간이동하여 대상 적에게 공격력의 160%로 피해를 입힙니다.",
+                "manaCost": 20,
+                "cooldown": 10,
+                "targetType": "enemy",
+                "range": 6,
+                "damageMultiplier": 160,
+                "effect": {
+                    "type": "teleport_strike"
+                }
+            },
+            {
+                "id": "smoke_bomb",
+                "name": "연막탄",
+                "description": "연막을 터뜨려 6초간 주변 지역에 있는 모든 아군의 회피율을 40% 증가시키고 적의 명중률을 30% 감소시킵니다.",
+                "manaCost": 25,
+                "cooldown": 18,
+                "targetType": "position",
+                "radius": 5,
+                "effect": {
+                    "type": "evasion_field",
+                    "dodgeBoost": 40,
+                    "accuracyReduction": 30,
+                    "duration": 6
+                }
+            },
+            {
+                "id": "kunai_throw",
+                "name": "쿠나이 던지기",
+                "description": "여러 개의 쿠나이를 던져 최대 3명의 적에게 공격력의 100%로 피해를 입힙니다.",
+                "manaCost": 15,
+                "cooldown": 12,
+                "targetType": "enemy",
+                "maxTargets": 3,
+                "damageMultiplier": 100
+            },
+            {
+                "id": "substitution",
+                "name": "변신술",
+                "description": "5초간 분신을 남기고 은신 상태가 되어 다음 공격이 치명타가 됩니다.",
+                "manaCost": 30,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "stealth",
+                    "duration": 5,
+                    "decoy": true,
+                    "guaranteedCritical": true
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "swift_movement",
+            "value": 25,
+            "description": "이동 속도가 25% 증가하고 벽 너머로 짧은 거리를 통과할 수 있습니다."
+        },
+        "ultimateSkill": {
+            "id": "thousand_cuts",
+            "name": "천개의 칼날",
+            "description": "대상 주변을 빠르게 움직이며 15회 공격하여 각각 공격력의 50%로 피해를 입히고 2초간 출혈 효과를 부여합니다.",
+            "manaCost": 50,
+            "cooldown": 60,
+            "targetType": "enemy",
+            "hitCount": 15,
+            "damageMultiplier": 50,
+            "effect": {
+                "type": "bleed",
+                "damagePerTick": 10,
+                "duration": 2
+            }
+        },
+        "compatibleWeapons": [
+            "dagger",
+            "shortsword",
+            "throwing"
+        ],
+        "exclusiveWeapons": [
+            "katana"
+        ],
+        "requiredClasses": [
+            "monk",
+            "thief"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "paladin",
+        "name": "팔라딘",
+        "description": "신앙의 힘으로 싸우는 신성한 전사",
+        "tier": 2,
+        "baseStats": {
+            "hp": 120,
+            "mp": 90,
+            "attack": 12,
+            "defense": 14,
+            "speed": 85
+        },
+        "growthStats": {
+            "hp": 14,
+            "mp": 9,
+            "attack": 2.3,
+            "defense": 2.2,
+            "speed": 1.1
+        },
+        "abilities": [
+            {
+                "id": "holy_strike",
+                "name": "신성 강타",
+                "description": "신성한 힘이 깃든 공격으로 공격력의 150%로 피해를 입히며, 언데드 적에게는 250%로 피해를 입힙니다.",
+                "manaCost": 20,
+                "cooldown": 10,
+                "targetType": "enemy",
+                "damageMultiplier": 150,
+                "undeadDamageMultiplier": 250,
+                "damageType": "holy"
+            },
+            {
+                "id": "divine_shield",
+                "name": "신성 방패",
+                "description": "8초간 자신이나 아군에게 보호막을 생성하여 모든 피해를 70% 감소시킵니다.",
+                "manaCost": 35,
+                "cooldown": 25,
+                "targetType": "ally",
+                "effect": {
+                    "type": "damage_reduction",
+                    "value": 70,
+                    "duration": 8
+                }
+            },
+            {
+                "id": "aura_of_light",
+                "name": "빛의 오라",
+                "description": "10초간 주변 적의 공격력을 15% 감소시키고 언데드 적에게 지속적인 피해를 입힙니다.",
+                "manaCost": 30,
+                "cooldown": 18,
+                "targetType": "aoe",
+                "radius": 5,
+                "effect": {
+                    "type": "aura",
+                    "enemyAttackReduction": 15,
+                    "undeadDamage": 20,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "lay_on_hands",
+                "name": "신성한 손길",
+                "description": "대상 아군의 HP를 40% 회복시키고 모든 부정적 상태 효과를 제거합니다.",
+                "manaCost": 40,
+                "cooldown": 30,
+                "targetType": "ally",
+                "effect": {
+                    "type": "heal",
+                    "healPercent": 40,
+                    "cleanse": true
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "divine_favor",
+            "value": 10,
+            "description": "모든 회복 효과가 10% 증가하고 언데드로부터 받는 피해가 20% 감소합니다."
+        },
+        "ultimateSkill": {
+            "id": "divine_judgment",
+            "name": "신성한 심판",
+            "description": "주변 모든 적에게 공격력의 250%로 신성한 피해를 입히고 언데드는 4초간 기절합니다.",
+            "manaCost": 60,
+            "cooldown": 60,
+            "targetType": "aoe",
+            "radius": 6,
+            "damageMultiplier": 250,
+            "damageType": "holy",
+            "effect": {
+                "type": "stun",
+                "duration": 4,
+                "undeadOnly": true
+            }
+        },
+        "compatibleWeapons": [
+            "mace",
+            "sword",
+            "shield"
+        ],
+        "exclusiveWeapons": [
+            "holy_avenger"
+        ],
+        "requiredClasses": [
+            "knight",
+            "cleric"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "gunner",
+        "name": "거너",
+        "description": "총기와 화약 무기를 다루는 원거리 전문가",
+        "tier": 2,
+        "baseStats": {
+            "hp": 95,
+            "mp": 85,
+            "attack": 15,
+            "defense": 7,
+            "speed": 100
+        },
+        "growthStats": {
+            "hp": 10,
+            "mp": 9,
+            "attack": 3,
+            "defense": 1.2,
+            "speed": 1.6
+        },
+        "abilities": [
+            {
+                "id": "headshot",
+                "name": "헤드샷",
+                "description": "정확한 사격으로 적의 약점을 공격하여 공격력의 220%로 피해를 입히고 90% 확률로 치명타가 발생합니다.",
+                "manaCost": 25,
+                "cooldown": 12,
+                "targetType": "enemy",
+                "damageMultiplier": 220,
+                "effect": {
+                    "type": "critical_hit",
+                    "chance": 90
+                }
+            },
+            {
+                "id": "rapid_fire",
+                "name": "속사",
+                "description": "빠르게 연속으로 6발을 발사하여 각각 공격력의 50%로 피해를 입힙니다.",
+                "manaCost": 30,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "hitCount": 6,
+                "damageMultiplier": 50
+            },
+            {
+                "id": "smoke_grenade",
+                "name": "연막탄",
+                "description": "연막탄을 던져 8초간 지속되는 연기를 생성하여 적의 시야를 차단하고 아군의 회피율을 30% 증가시킵니다.",
+                "manaCost": 20,
+                "cooldown": 20,
+                "targetType": "position",
+                "radius": 5,
+                "effect": {
+                    "type": "smoke_screen",
+                    "dodgeBoost": 30,
+                    "duration": 8
+                }
+            },
+            {
+                "id": "explosive_shot",
+                "name": "폭발탄",
+                "description": "폭발하는 탄환을 발사하여 목표와 주변에 공격력의 150%로 광역 피해를 입힙니다.",
+                "manaCost": 35,
+                "cooldown": 18,
+                "targetType": "enemy",
+                "radius": 3,
+                "damageMultiplier": 150
+            }
+        ],
+        "passiveEffect": {
+            "type": "ammunition_craft",
+            "chance": 20,
+            "damageBoost": 50,
+            "description": "전투 중 20% 확률로 특수 탄환을 생성하여 다음 공격이 50% 추가 피해를 입힙니다."
+        },
+        "ultimateSkill": {
+            "id": "bullet_time",
+            "name": "불릿 타임",
+            "description": "10초간 시간 지각이 느려져 공격 속도가 100% 증가하고 모든 공격이 30% 확률로 치명타가 됩니다.",
+            "manaCost": 60,
+            "cooldown": 60,
+            "effect": {
+                "type": "slow_time",
+                "attackSpeedBoost": 100,
+                "criticalChance": 30,
+                "duration": 10
+            }
+        },
+        "compatibleWeapons": [
+            "bow",
+            "crossbow",
+            "gun"
+        ],
+        "exclusiveWeapons": [
+            "twin_pistols"
+        ],
+        "requiredClasses": [
+            "archer",
+            "alchemist"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "berserker",
+        "name": "광전사",
+        "description": "분노로 싸우는 파괴적인 전사",
+        "tier": 2,
+        "baseStats": {
+            "hp": 130,
+            "mp": 60,
+            "attack": 18,
+            "defense": 9,
+            "speed": 100
+        },
+        "growthStats": {
+            "hp": 15,
+            "mp": 6,
+            "attack": 3.5,
+            "defense": 1.3,
+            "speed": 1.5
+        },
+        "abilities": [
+            {
+                "id": "rage",
+                "name": "분노",
+                "description": "12초간 분노 상태가 되어 공격력이 50% 증가하지만 방어력이 20% 감소합니다.",
+                "manaCost": 25,
+                "cooldown": 18,
+                "targetType": "self",
+                "effect": {
+                    "type": "rage",
+                    "attackBoost": 50,
+                    "defenseReduction": 20,
+                    "duration": 12
+                }
+            },
+            {
+                "id": "reckless_swing",
+                "name": "무모한 휘두르기",
+                "description": "주변 모든 적에게 공격력의 180%로 피해를 입히지만 대신 자신의 HP를 10% 소모합니다.",
+                "manaCost": 20,
+                "cooldown": 12,
+                "targetType": "aoe",
+                "radius": 4,
+                "damageMultiplier": 180,
+                "effect": {
+                    "type": "health_cost",
+                    "cost": 10
+                }
+            },
+            {
+                "id": "bloodlust",
+                "name": "피의 갈증",
+                "description": "10초간 모든 공격 시 피해량의 30%만큼 HP를 회복하고 공격 속도가 25% 증가합니다.",
+                "manaCost": 30,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "lifesteal",
+                    "lifeStealRatio": 30,
+                    "attackSpeedBoost": 25,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "unstoppable_charge",
+                "name": "멈출 수 없는 돌진",
+                "description": "대상 방향으로 빠르게 돌진하여 경로상의 모든 적에게 공격력의 150%로 피해를 입히고 넘어뜨립니다.",
+                "manaCost": 35,
+                "cooldown": 15,
+                "targetType": "direction",
+                "range": 10,
+                "damageMultiplier": 150,
+                "effect": {
+                    "type": "knockdown",
+                    "duration": 1.5
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "fury",
+            "maxBoost": 50,
+            "description": "HP가 낮을수록 공격력이 증가하여 HP 20% 이하일 때 최대 50%까지 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "berserk",
+            "name": "광폭화",
+            "description": "15초간 완전한 광폭 상태가 되어 공격력과 공격 속도가 100% 증가하고 모든 공격이 치명타가 되지만 방어력이 50% 감소합니다.",
+            "manaCost": 50,
+            "cooldown": 60,
+            "effect": {
+                "type": "berserk",
+                "attackBoost": 100,
+                "attackSpeedBoost": 100,
+                "guaranteedCritical": true,
+                "defenseReduction": 50,
+                "duration": 15
+            }
+        },
+        "compatibleWeapons": [
+            "axe",
+            "hammer",
+            "sword"
+        ],
+        "exclusiveWeapons": [
+            "rage_axe"
+        ],
+        "requiredClasses": [
+            "warrior",
+            "monk"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "bard",
+        "name": "음유시인",
+        "description": "노래와 음악으로 아군을 지원하고 적을 약화시키는 클래스",
+        "tier": 2,
+        "baseStats": {
+            "hp": 95,
+            "mp": 100,
+            "attack": 11,
+            "defense": 8,
+            "speed": 95
+        },
+        "growthStats": {
+            "hp": 10,
+            "mp": 12,
+            "attack": 2.2,
+            "defense": 1.3,
+            "speed": 1.5
+        },
+        "abilities": [
+            {
+                "id": "inspiring_melody",
+                "name": "격려의 선율",
+                "description": "12초간 주변 아군의 공격력과 이동 속도를 20% 증가시킵니다.",
+                "manaCost": 25,
+                "cooldown": 18,
+                "targetType": "aoe",
+                "radius": 6,
+                "effect": {
+                    "type": "buff_aura",
+                    "attack": 20,
+                    "speed": 20,
+                    "duration": 12
+                }
+            },
+            {
+                "id": "dissonant_note",
+                "name": "불협화음",
+                "description": "강력한 불협화음을 내어 주변의 적들에게 공격력의 120%로 피해를 입히고 3초간 기절시킵니다.",
+                "manaCost": 30,
+                "cooldown": 15,
+                "targetType": "aoe",
+                "radius": 5,
+                "damageMultiplier": 120,
+                "effect": {
+                    "type": "stun",
+                    "duration": 3
+                }
+            },
+            {
+                "id": "soothing_ballad",
+                "name": "치유의 발라드",
+                "description": "치유의 노래를 불러 10초간 주변 아군의 HP를 초당 5%씩 회복시킵니다.",
+                "manaCost": 35,
+                "cooldown": 20,
+                "targetType": "aoe",
+                "radius": 6,
+                "effect": {
+                    "type": "heal_over_time",
+                    "hpPercentPerTick": 5,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "song_of_fortune",
+                "name": "행운의 노래",
+                "description": "8초간 주변 아군의 치명타 확률을 30% 증가시키고 아이템 드롭률을 20% 증가시킵니다.",
+                "manaCost": 20,
+                "cooldown": 25,
+                "targetType": "aoe",
+                "radius": 6,
+                "effect": {
+                    "type": "luck_boost",
+                    "criticalChance": 30,
+                    "itemDropRate": 20,
+                    "duration": 8
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "gold_generation",
+            "amount": 1,
+            "interval": 10,
+            "description": "10초마다 골드를 1개씩 생성합니다."
+        },
+        "ultimateSkill": {
+            "id": "epic_performance",
+            "name": "영웅 서사시",
+            "description": "15초간 강력한 연주를 통해 주변 아군의 모든 능력치를 40% 증가시키고 적의 모든 능력치를 20% 감소시킵니다.",
+            "manaCost": 60,
+            "cooldown": 60,
+            "targetType": "aoe",
+            "radius": 8,
+            "effect": {
+                "type": "epic_song",
+                "alliedStatBoost": 40,
+                "enemyStatReduction": 20,
+                "duration": 15
+            }
+        },
+        "compatibleWeapons": [
+            "staff",
+            "dagger",
+            "orb"
+        ],
+        "exclusiveWeapons": [
+            "legendary_lute"
+        ],
+        "requiredClasses": [
+            "thief",
+            "cleric"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "summoner",
+        "name": "소환사",
+        "description": "강력한 소환수를 부르는 마법사",
+        "tier": 2,
+        "baseStats": {
+            "hp": 90,
+            "mp": 130,
+            "attack": 12,
+            "defense": 8,
+            "speed": 90
+        },
+        "growthStats": {
+            "hp": 9,
+            "mp": 15,
+            "attack": 2.5,
+            "defense": 1.3,
+            "speed": 1.3
+        },
+        "abilities": [
+            {
+                "id": "elemental_summon",
+                "name": "정령 소환",
+                "description": "화염, 물, 대지, 바람 중 하나의 정령을 소환하여 40초간 함께 싸웁니다.",
+                "manaCost": 40,
+                "cooldown": 25,
+                "targetType": "position",
+                "effect": {
+                    "type": "summon",
+                    "summonType": "elemental",
+                    "duration": 40,
+                    "attackMultiplier": 80,
+                    "maxSummons": 1
+                }
+            },
+            {
+                "id": "summon_swarm",
+                "name": "소형 소환수 무리",
+                "description": "다수의 작은 소환수를 불러내어 30초간 주변 적들을 공격하게 합니다.",
+                "manaCost": 35,
+                "cooldown": 20,
+                "targetType": "position",
+                "radius": 6,
+                "effect": {
+                    "type": "swarm_summon",
+                    "count": 8,
+                    "duration": 30,
+                    "attackMultiplier": 30
+                }
+            },
+            {
+                "id": "summon_enhancement",
+                "name": "소환수 강화",
+                "description": "15초간 모든 소환수의 공격력과 방어력을 50% 증가시킵니다.",
+                "manaCost": 30,
+                "cooldown": 18,
+                "targetType": "summon",
+                "effect": {
+                    "type": "summon_buff",
+                    "attackBoost": 50,
+                    "defenseBoost": 50,
+                    "duration": 15
+                }
+            },
+            {
+                "id": "sacrificial_pact",
+                "name": "희생의 계약",
+                "description": "소환수 하나를 희생시켜 대상 적에게 공격력의 300%로 피해를 입히고 자신의 HP와 MP를 20% 회복합니다.",
+                "manaCost": 25,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "requirement": "active_summon",
+                "damageMultiplier": 300,
+                "effect": {
+                    "type": "sacrifice",
+                    "healPercent": 20,
+                    "manaPercent": 20
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "summon_mastery",
+            "value": 20,
+            "description": "모든 소환수의 HP와 공격력이 20% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "greater_summon",
+            "name": "대형 소환",
+            "description": "거대한 고급 소환수를 불러내어 60초간 함께 싸웁니다. 이 소환수는 특수 능력을 가지고 있습니다.",
+            "manaCost": 80,
+            "cooldown": 60,
+            "targetType": "position",
+            "effect": {
+                "type": "greater_summon",
+                "summonType": "greater",
+                "duration": 60,
+                "attackMultiplier": 150,
+                "specialAbilities": true
+            }
+        },
+        "compatibleWeapons": [
+            "staff",
+            "wand",
+            "orb"
+        ],
+        "exclusiveWeapons": [
+            "summoners_staff"
+        ],
+        "requiredClasses": [
+            "mage",
+            "alchemist"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "dark_mage",
+        "name": "암흑마법사",
+        "description": "어둠과 금단의 마법을 다루는 마법사",
+        "tier": 2,
+        "baseStats": {
+            "hp": 85,
+            "mp": 120,
+            "attack": 16,
+            "defense": 7,
+            "speed": 90
+        },
+        "growthStats": {
+            "hp": 9,
+            "mp": 13,
+            "attack": 3.3,
+            "defense": 1.1,
+            "speed": 1.3
+        },
+        "abilities": [
+            {
+                "id": "shadow_bolt",
+                "name": "암흑 화살",
+                "description": "어둠의 에너지로 된 화살을 발사하여 공격력의 160%로 피해를 입히고 5초간 대상의 방어력을 20% 감소시킵니다.",
+                "manaCost": 20,
+                "cooldown": 8,
+                "targetType": "enemy",
+                "damageMultiplier": 160,
+                "damageType": "shadow",
+                "effect": {
+                    "type": "defense_reduction",
+                    "value": 20,
+                    "duration": 5
+                }
+            },
+            {
+                "id": "life_drain",
+                "name": "생명력 흡수",
+                "description": "대상의 생명력을 흡수하여 공격력의 130%로 피해를 입히고 그 중 50%만큼 자신의 HP를 회복합니다.",
+                "manaCost": 25,
+                "cooldown": 12,
+                "targetType": "enemy",
+                "damageMultiplier": 130,
+                "effect": {
+                    "type": "life_steal",
+                    "ratio": 50
+                }
+            },
+            {
+                "id": "curse",
+                "name": "저주",
+                "description": "대상에게 저주를 걸어 8초간 모든 회복 효과를 70% 감소시키고 매초 공격력의 15%만큼 피해를 입힙니다.",
+                "manaCost": 30,
+                "cooldown": 18,
+                "targetType": "enemy",
+                "effect": {
+                    "type": "curse",
+                    "healingReduction": 70,
+                    "damagePerTick": 15,
+                    "duration": 8
+                }
+            },
+            {
+                "id": "dark_pact",
+                "name": "어둠의 계약",
+                "description": "HP를 15% 소모하여 15초간 모든 주문의 피해량을 40% 증가시키고 MP 소모량을 30% 감소시킵니다.",
+                "manaCost": 20,
+                "cooldown": 25,
+                "targetType": "self",
+                "effect": {
+                    "type": "dark_empowerment",
+                    "hpCost": 15,
+                    "spellDamageBoost": 40,
+                    "manaCostReduction": 30,
+                    "duration": 15
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "mana_efficiency",
+            "value": 15,
+            "description": "모든 능력의 마나 소모량이 15% 감소합니다."
+        },
+        "ultimateSkill": {
+            "id": "darkness_unleashed",
+            "name": "어둠의 해방",
+            "description": "10초간 완전한 어둠의 존재로 변하여 모든 주문이 추가로 암흑 피해를 입히고, 적이 가한 피해의 25%만큼 자신의 HP를 회복합니다.",
+            "manaCost": 60,
+            "cooldown": 60,
+            "effect": {
+                "type": "darkness_transformation",
+                "additionalShadowDamage": 50,
+                "damageAsHeal": 25,
+                "duration": 10
+            }
+        },
+        "compatibleWeapons": [
+            "staff",
+            "wand",
+            "dagger"
+        ],
+        "exclusiveWeapons": [
+            "staff_of_shadows"
+        ],
+        "requiredClasses": [
+            "mage",
+            "thief"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "guardian",
+        "name": "수호자",
+        "description": "팀을 보호하는 방어 전문가",
+        "tier": 2,
+        "baseStats": {
+            "hp": 130,
+            "mp": 70,
+            "attack": 10,
+            "defense": 16,
+            "speed": 85
+        },
+        "growthStats": {
+            "hp": 15,
+            "mp": 7,
+            "attack": 2,
+            "defense": 2.8,
+            "speed": 1
+        },
+        "abilities": [
+            {
+                "id": "taunt",
+                "name": "도발",
+                "description": "주변 모든 적의 시선을 끌어 6초간 플레이어를 공격하도록 하고 방어력이 30% 증가합니다.",
+                "manaCost": 20,
+                "cooldown": 12,
+                "targetType": "aoe",
+                "radius": 8,
+                "effect": {
+                    "type": "provoke",
+                    "defenseBoost": 30,
+                    "duration": 6
+                }
+            },
+            {
+                "id": "shield_wall",
+                "name": "방패 벽",
+                "description": "8초간 자신과 주변 아군이 받는 피해를 50% 감소시키는 보호막을 생성합니다.",
+                "manaCost": 35,
+                "cooldown": 20,
+                "targetType": "aoe",
+                "radius": 5,
+                "effect": {
+                    "type": "team_protection",
+                    "damageReduction": 50,
+                    "duration": 8
+                }
+            },
+            {
+                "id": "shield_bash",
+                "name": "방패 강타",
+                "description": "방패로 적을 강타하여 공격력의 150%로 피해를 입히고 3초간 기절시킵니다.",
+                "manaCost": 25,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "damageMultiplier": 150,
+                "effect": {
+                    "type": "stun",
+                    "duration": 3
+                }
+            },
+            {
+                "id": "intervene",
+                "name": "개입",
+                "description": "대상 아군에게 빠르게 이동하여 8초간 그 아군이 받는 피해의 60%를 대신 받습니다.",
+                "manaCost": 30,
+                "cooldown": 18,
+                "targetType": "ally",
+                "effect": {
+                    "type": "intercept",
+                    "damageRedirect": 60,
+                    "duration": 8
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "damage_reflection",
+            "value": 10,
+            "description": "받는 피해의 10%를 공격자에게 반사합니다."
+        },
+        "ultimateSkill": {
+            "id": "impenetrable_defense",
+            "name": "불가침 방어",
+            "description": "12초간 자신과 주변 아군이 받는 모든 피해를 80% 감소시키고 상태이상 면역을 부여합니다.",
+            "manaCost": 60,
+            "cooldown": 60,
+            "targetType": "aoe",
+            "radius": 6,
+            "effect": {
+                "type": "ultimate_protection",
+                "damageReduction": 80,
+                "statusImmunity": true,
+                "duration": 12
+            }
+        },
+        "compatibleWeapons": [
+            "shield",
+            "mace",
+            "sword"
+        ],
+        "exclusiveWeapons": [
+            "sentinel_shield"
+        ],
+        "requiredClasses": [
+            "knight",
+            "warrior"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "spellspear",
+        "name": "스펠블레이드",
+        "description": "마법과 창술을 결합한 하이브리드 전사",
+        "tier": 2,
+        "baseStats": {
+            "hp": 105,
+            "mp": 100,
+            "attack": 15,
+            "defense": 9,
+            "speed": 95
+        },
+        "growthStats": {
+            "hp": 12,
+            "mp": 11,
+            "attack": 3,
+            "defense": 1.4,
+            "speed": 1.5
+        },
+        "abilities": [
+            {
+                "id": "arcane_thrust",
+                "name": "비전 관통",
+                "description": "마법의 힘이 깃든 창으로 적을 관통하여 공격력의 170%로 피해를 입히고 관통된 모든 적에게 5초간 마법 저항력을 15% 감소시킵니다.",
+                "manaCost": 25,
+                "cooldown": 10,
+                "targetType": "direction",
+                "range": 6,
+                "damageMultiplier": 170,
+                "damageType": "hybrid",
+                "effect": {
+                    "type": "magic_resistance_reduction",
+                    "value": 15,
+                    "duration": 5
+                }
+            },
+            {
+                "id": "lightning_spear",
+                "name": "번개 창",
+                "description": "번개의 힘을 담은 창을 던져 공격력의 160%로 피해를 입히고 2초간 적을 기절시킵니다.",
+                "manaCost": 30,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "damageMultiplier": 160,
+                "damageType": "lightning",
+                "effect": {
+                    "type": "stun",
+                    "duration": 2
+                }
+            },
+            {
+                "id": "arcane_barrier",
+                "name": "비전 장벽",
+                "description": "10초간 비전 장벽을 생성하여 받는 마법 피해를 40% 감소시키고 근접 공격을 받을 때 공격자에게 공격력의 30%로 피해를 입힙니다.",
+                "manaCost": 35,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "magic_barrier",
+                    "magicDamageReduction": 40,
+                    "counterDamage": 30,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "magic_lance",
+                "name": "마법 창술",
+                "description": "마법으로 강화된 창으로 적을 공격하여 공격력의 190%로 피해를 입히고 스킬 쿨다운을 2초 감소시킵니다.",
+                "manaCost": 30,
+                "cooldown": 18,
+                "targetType": "enemy",
+                "damageMultiplier": 190,
+                "effect": {
+                    "type": "cooldown_reduction",
+                    "value": 2
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "spell_penetration",
+            "value": 15,
+            "description": "모든 마법 공격이 대상의 마법 저항력을 15% 무시합니다."
+        },
+        "ultimateSkill": {
+            "id": "thousand_spears",
+            "name": "천개의 마법창",
+            "description": "마법의 창 수십 개를 소환하여 대상 지역에 연속으로 떨어뜨려 각각 공격력의 50%로 총 20회 피해를 입힙니다.",
+            "manaCost": 70,
+            "cooldown": 60,
+            "targetType": "position",
+            "radius": 6,
+            "hitCount": 20,
+            "damageMultiplier": 50,
+            "damageType": "magical"
+        },
+        "compatibleWeapons": [
+            "spear",
+            "staff",
+            "halberd"
+        ],
+        "exclusiveWeapons": [
+            "arcane_spear"
+        ],
+        "requiredClasses": [
+            "mage",
+            "lancer"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "scout",
+        "name": "정찰병",
+        "description": "빠른 이동과 적 탐지에 특화된 원거리 전문가",
+        "tier": 2,
+        "baseStats": {
+            "hp": 90,
+            "mp": 80,
+            "attack": 14,
+            "defense": 7,
+            "speed": 110
+        },
+        "growthStats": {
+            "hp": 9,
+            "mp": 8,
+            "attack": 2.8,
+            "defense": 1.2,
+            "speed": 1.9
+        },
+        "abilities": [
+            {
+                "id": "mark_target",
+                "name": "표적 지정",
+                "description": "적을 10초간 표시하여 모든 아군의 해당 적에 대한 대미지를 25% 증가시킵니다.",
+                "manaCost": 20,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "effect": {
+                    "type": "mark",
+                    "damageIncrease": 25,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "quick_shot",
+                "name": "신속 사격",
+                "description": "빠르게 3발의 화살을 연속으로 발사하여 각각 공격력의 60%로 피해를 입힙니다.",
+                "manaCost": 25,
+                "cooldown": 12,
+                "targetType": "enemy",
+                "hitCount": 3,
+                "damageMultiplier": 60
+            },
+            {
+                "id": "camouflage",
+                "name": "위장",
+                "description": "8초간 은신 상태가 되어 적에게 발견되지 않고 이동 속도가 40% 증가합니다.",
+                "manaCost": 30,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "stealth",
+                    "speedBoost": 40,
+                    "duration": 8
+                }
+            },
+            {
+                "id": "trap",
+                "name": "덫 설치",
+                "description": "대상 지역에 덫을 설치하여 밟는 적을 3초간 속박하고 공격력의 100%로 피해를 입힙니다.",
+                "manaCost": 20,
+                "cooldown": 18,
+                "targetType": "position",
+                "damageMultiplier": 100,
+                "effect": {
+                    "type": "trap",
+                    "rootDuration": 3
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "treasure_hunter",
+            "radius": 100,
+            "description": "일정 범위 내의 보물과 희귀 아이템을 자동으로 감지합니다."
+        },
+        "ultimateSkill": {
+            "id": "rain_of_arrows",
+            "name": "화살비",
+            "description": "광범위한 지역에 화살비를 내려 모든 적에게 공격력의 300%로 피해를 입히고 5초간 이동 속도를 50% 감소시킵니다.",
+            "manaCost": 50,
+            "cooldown": 60,
+            "targetType": "position",
+            "radius": 8,
+            "damageMultiplier": 300,
+            "effect": {
+                "type": "slow",
+                "value": 50,
+                "duration": 5
+            }
+        },
+        "compatibleWeapons": [
+            "bow",
+            "dagger",
+            "throwing"
+        ],
+        "exclusiveWeapons": [
+            "scout_bow"
+        ],
+        "requiredClasses": [
+            "archer",
+            "thief"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "warden",
+        "name": "와든",
+        "description": "자연과 함께하는 방어적인 수호자",
+        "tier": 2,
+        "baseStats": {
+            "hp": 115,
+            "mp": 90,
+            "attack": 13,
+            "defense": 12,
+            "speed": 95
+        },
+        "growthStats": {
+            "hp": 13,
+            "mp": 9,
+            "attack": 2.5,
+            "defense": 2,
+            "speed": 1.4
+        },
+        "abilities": [
+            {
+                "id": "natures_fury",
+                "name": "자연의 분노",
+                "description": "주변 식물들이 적들을 공격하여 공격력의 160%로 광역 피해를 입히고 3초간 이동 속도를 40% 감소시킵니다.",
+                "manaCost": 30,
+                "cooldown": 15,
+                "targetType": "aoe",
+                "radius": 5,
+                "damageMultiplier": 160,
+                "effect": {
+                    "type": "slow",
+                    "value": 40,
+                    "duration": 3
+                }
+            },
+            {
+                "id": "bark_skin",
+                "name": "나무 껍질 피부",
+                "description": "12초간 피부가 나무껍질처럼 변하여 방어력이 40% 증가하고 물리 피해를 20% 감소시킵니다.",
+                "manaCost": 25,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "defense_boost",
+                    "defenseIncrease": 40,
+                    "physicalDamageReduction": 20,
+                    "duration": 12
+                }
+            },
+            {
+                "id": "entangling_roots",
+                "name": "뿌리 속박",
+                "description": "땅에서 뿌리가 솟아나 적을 4초간 속박하고 매초 공격력의 30%로 피해를 입힙니다.",
+                "manaCost": 30,
+                "cooldown": 18,
+                "targetType": "enemy",
+                "effect": {
+                    "type": "root",
+                    "damagePerTick": 30,
+                    "duration": 4
+                }
+            },
+            {
+                "id": "forest_blessing",
+                "name": "숲의 축복",
+                "description": "자신과 주변 아군의 HP를 25% 회복시키고 10초간 초당 HP의 3%를 추가로 회복시킵니다.",
+                "manaCost": 35,
+                "cooldown": 25,
+                "targetType": "aoe",
+                "radius": 6,
+                "effect": {
+                    "type": "heal",
+                    "healPercent": 25,
+                    "hpRegenPercent": 3,
+                    "duration": 10
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "forest_empowerment",
+            "value": 20,
+            "description": "숲 지형에서 모든 방어력이 20% 증가하고 HP 회복량이 15% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "guardian_of_the_forest",
+            "name": "숲의 수호자",
+            "description": "15초간 거대한 나무 정령으로 변신하여 방어력이 100% 증가하고 주변 적들에게 초당 공격력의 40%로 피해를 입힙니다.",
+            "manaCost": 60,
+            "cooldown": 60,
+            "effect": {
+                "type": "transformation",
+                "defenseBoost": 100,
+                "aoeTickDamage": 40,
+                "radius": 5,
+                "duration": 15
+            }
+        },
+        "compatibleWeapons": [
+            "spear",
+            "staff",
+            "shield"
+        ],
+        "exclusiveWeapons": [
+            "guardian_spear"
+        ],
+        "requiredClasses": [
+            "hunter",
+            "knight"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "shadow_dancer",
+        "name": "그림자춤꾼",
+        "description": "그림자와 하나가 되어 춤추듯 싸우는 암살자",
+        "tier": 2,
+        "baseStats": {
+            "hp": 90,
+            "mp": 85,
+            "attack": 15,
+            "defense": 7,
+            "speed": 120
+        },
+        "growthStats": {
+            "hp": 9,
+            "mp": 9,
+            "attack": 3,
+            "defense": 1.1,
+            "speed": 2.1
+        },
+        "abilities": [
+            {
+                "id": "shadow_step",
+                "name": "그림자 걸음",
+                "description": "그림자를 통해 대상 지점으로 순간이동하고 5초간 공격 속도가 30% 증가합니다.",
+                "manaCost": 20,
+                "cooldown": 10,
+                "targetType": "position",
+                "range": 8,
+                "effect": {
+                    "type": "teleport",
+                    "attackSpeedBoost": 30,
+                    "duration": 5
+                }
+            },
+            {
+                "id": "dancing_blades",
+                "name": "춤추는 칼날",
+                "description": "빠르게 회전하며 주변의 모든 적에게 총 6회 공격하여 각각 공격력의 50%로 피해를 입힙니다.",
+                "manaCost": 30,
+                "cooldown": 15,
+                "targetType": "aoe",
+                "radius": 5,
+                "hitCount": 6,
+                "damageMultiplier": 50
+            },
+            {
+                "id": "shadow_meld",
+                "name": "그림자 숨기",
+                "description": "8초간 그림자에 숨어 은신 상태가 되며 이동해도 은신 상태가 유지됩니다.",
+                "manaCost": 25,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "improved_stealth",
+                    "duration": 8,
+                    "movementStealth": true
+                }
+            },
+            {
+                "id": "chains_of_shadow",
+                "name": "그림자 사슬",
+                "description": "그림자 사슬로 대상을 속박하여 3초간 이동불가 상태로 만들고 공격력의 130%로 피해를 입힙니다.",
+                "manaCost": 25,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "damageMultiplier": 130,
+                "effect": {
+                    "type": "root",
+                    "duration": 3
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "evasion_mastery",
+            "value": 15,
+            "description": "이동 중에 15% 확률로 공격을 회피하며, 그림자가 짙은 곳에서는 30%로 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "dance_of_shadows",
+            "name": "그림자의 춤",
+            "description": "12초간 그림자와 하나가 되어 모든 공격이 50% 확률로 회피되고 공격 속도가 80% 증가합니다.",
+            "manaCost": 60,
+            "cooldown": 60,
+            "effect": {
+                "type": "shadow_form",
+                "dodgeChance": 50,
+                "attackSpeedBoost": 80,
+                "duration": 12
+            }
+        },
+        "compatibleWeapons": [
+            "dagger",
+            "shortsword",
+            "chain_weapon"
+        ],
+        "exclusiveWeapons": [
+            "shadow_chain"
+        ],
+        "requiredClasses": [
+            "thief",
+            "monk"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "elementalist",
+        "name": "정령술사",
+        "description": "다양한 원소를 다루는 마법사",
+        "tier": 2,
+        "baseStats": {
+            "hp": 85,
+            "mp": 130,
+            "attack": 15,
+            "defense": 7,
+            "speed": 90
+        },
+        "growthStats": {
+            "hp": 9,
+            "mp": 14,
+            "attack": 3,
+            "defense": 1.1,
+            "speed": 1.3
+        },
+        "abilities": [
+            {
+                "id": "element_shift",
+                "name": "원소 변환",
+                "description": "사용하는 원소를 화염, 얼음, 번개, 대지 중 하나로 전환하여 다른 능력의 효과를 변경합니다.",
+                "manaCost": 15,
+                "cooldown": 5,
+                "targetType": "self",
+                "effect": {
+                    "type": "attunement",
+                    "elements": [
+                        "fire",
+                        "ice",
+                        "lightning",
+                        "earth"
+                    ]
+                }
+            },
+            {
+                "id": "elemental_bolt",
+                "name": "원소 화살",
+                "description": "현재 원소의 화살을 발사하여 공격력의 160%로 피해를 입히고 원소에 따른 추가 효과를 적용합니다.",
+                "manaCost": 25,
+                "cooldown": 8,
+                "targetType": "enemy",
+                "damageMultiplier": 160,
+                "effect": {
+                    "type": "elemental_effect",
+                    "fire": "burn",
+                    "ice": "freeze",
+                    "lightning": "shock",
+                    "earth": "slow"
+                }
+            },
+            {
+                "id": "elemental_shield",
+                "name": "원소 보호막",
+                "description": "10초간 현재 원소에 해당하는 보호막을 생성하여 해당 원소 피해를 80% 감소시키고 공격자에게 원소 효과를 적용합니다.",
+                "manaCost": 30,
+                "cooldown": 18,
+                "targetType": "self",
+                "effect": {
+                    "type": "elemental_barrier",
+                    "resistance": 80,
+                    "duration": 10,
+                    "counterEffect": true
+                }
+            },
+            {
+                "id": "elemental_explosion",
+                "name": "원소 폭발",
+                "description": "현재 원소의 강력한 폭발을 일으켜 공격력의 200%로 광역 피해를 입히고 원소 효과를 적용합니다.",
+                "manaCost": 40,
+                "cooldown": 15,
+                "targetType": "position",
+                "radius": 5,
+                "damageMultiplier": 200
+            }
+        ],
+        "passiveEffect": {
+            "type": "elemental_mastery",
+            "value": 20,
+            "description": "모든 원소 피해가 20% 증가하고 모든 원소 저항이 20% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "elemental_harmony",
+            "name": "원소 조화",
+            "description": "15초간 모든 원소의 힘을 동시에 다룰 수 있게 되어 모든 공격에 모든 원소 효과가 적용되고 원소 피해가 50% 증가합니다.",
+            "manaCost": 70,
+            "cooldown": 60,
+            "effect": {
+                "type": "elemental_unity",
+                "allElements": true,
+                "elementalDamageBoost": 50,
+                "duration": 15
+            }
+        },
+        "compatibleWeapons": [
+            "staff",
+            "wand",
+            "orb"
+        ],
+        "exclusiveWeapons": [
+            "elemental_focus"
+        ],
+        "requiredClasses": [
+            "mage",
+            "mage"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "herbalist",
+        "name": "약초학자",
+        "description": "치유와 버프 효과를 강화하는 전문가",
+        "tier": 2,
+        "baseStats": {
+            "hp": 90,
+            "mp": 110,
+            "attack": 10,
+            "defense": 8,
+            "speed": 95
+        },
+        "growthStats": {
+            "hp": 10,
+            "mp": 12,
+            "attack": 2,
+            "defense": 1.3,
+            "speed": 1.4
+        },
+        "abilities": [
+            {
+                "id": "healing_herb",
+                "name": "치유의 약초",
+                "description": "강력한 약초의 힘으로 대상의 HP를 50% 회복시키고 6초간 추가로 초당 5%씩 회복시킵니다.",
+                "manaCost": 30,
+                "cooldown": 15,
+                "targetType": "ally",
+                "effect": {
+                    "type": "heal",
+                    "healPercent": 50,
+                    "hpRegenPercent": 5,
+                    "duration": 6
+                }
+            },
+            {
+                "id": "herbal_remedy",
+                "name": "약초 치료법",
+                "description": "대상의 모든 상태이상을 제거하고 12초간 상태이상 면역을 부여합니다.",
+                "manaCost": 25,
+                "cooldown": 18,
+                "targetType": "ally",
+                "effect": {
+                    "type": "cleanse",
+                    "statusImmunity": true,
+                    "duration": 12
+                }
+            },
+            {
+                "id": "vigor_potion",
+                "name": "활력의 포션",
+                "description": "대상에게 활력 포션을 사용하여 10초간 모든 능력치를 20% 증가시킵니다.",
+                "manaCost": 35,
+                "cooldown": 20,
+                "targetType": "ally",
+                "effect": {
+                    "type": "stat_boost",
+                    "allStats": 20,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "toxic_cloud",
+                "name": "독성 구름",
+                "description": "대상 지역에 독성 구름을 생성하여 8초간 적의 공격력과 이동 속도를 30% 감소시키고 초당 공격력의 15%로 피해를 입힙니다.",
+                "manaCost": 40,
+                "cooldown": 25,
+                "targetType": "position",
+                "radius": 5,
+                "effect": {
+                    "type": "poison_field",
+                    "attackReduction": 30,
+                    "speedReduction": 30,
+                    "damagePerTick": 15,
+                    "duration": 8
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "potion_mastery",
+            "value": 50,
+            "description": "모든 포션과 치유 효과의 지속시간이 50% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "miracle_cure",
+            "name": "기적의 치료",
+            "description": "주변 모든 아군의 HP를 70% 회복시키고 15초간 모든 능력치를 30% 증가시키며 상태이상 면역을 부여합니다.",
+            "manaCost": 60,
+            "cooldown": 60,
+            "targetType": "aoe",
+            "radius": 8,
+            "effect": {
+                "type": "mass_heal",
+                "healPercent": 70,
+                "statBoost": 30,
+                "statusImmunity": true,
+                "duration": 15
+            }
+        },
+        "compatibleWeapons": [
+            "staff",
+            "wand",
+            "dagger"
+        ],
+        "exclusiveWeapons": [
+            "staff_of_regrowth"
+        ],
+        "requiredClasses": [
+            "alchemist",
+            "cleric"
+        ],
+        "requiredLevel": 10
+    },
+    {
+        "id": "death_knight",
+        "name": "죽음의 기사",
+        "description": "어둠의 힘을 이용해 싸우는 불멸의 기사",
+        "tier": 3,
+        "baseStats": {
+            "hp": 125,
+            "mp": 100,
+            "attack": 19,
+            "defense": 14,
+            "speed": 90
+        },
+        "growthStats": {
+            "hp": 14,
+            "mp": 10,
+            "attack": 3.8,
+            "defense": 2.2,
+            "speed": 1.3
+        },
+        "abilities": [
+            {
+                "id": "deathblow",
+                "name": "죽음의 일격",
+                "description": "어둠의 힘을 담은 강력한 일격으로 공격력의 220%로 피해를 입히고 5초간 출혈 효과를 부여합니다.",
+                "manaCost": 35,
+                "cooldown": 12,
+                "targetType": "enemy",
+                "damageMultiplier": 220,
+                "damageType": "dark",
+                "effect": {
+                    "type": "bleed",
+                    "damagePerTick": 20,
+                    "duration": 5
+                }
+            },
+            {
+                "id": "death_grip",
+                "name": "죽음의 손아귀",
+                "description": "대상 적을 자신에게 끌어당기고 3초간 기절시킵니다.",
+                "manaCost": 30,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "range": 10,
+                "effect": {
+                    "type": "pull",
+                    "stunDuration": 3
+                }
+            },
+            {
+                "id": "unholy_aura",
+                "name": "부정한 오라",
+                "description": "12초간 주변에 부정한 오라를 생성하여 적들에게 초당 공격력의 30%로 피해를 입히고 아군 언데드의 공격력을 40% 증가시킵니다.",
+                "manaCost": 45,
+                "cooldown": 20,
+                "targetType": "aoe",
+                "radius": 5,
+                "effect": {
+                    "type": "unholy_field",
+                    "damagePerTick": 30,
+                    "undeadBoost": 40,
+                    "duration": 12
+                }
+            },
+            {
+                "id": "blood_boil",
+                "name": "피의 끓음",
+                "description": "주변 적들의 피를 끓게 하여 공격력의 150%로 피해를 입히고 HP가 낮은 적에게는 추가 피해를 입힙니다.",
+                "manaCost": 40,
+                "cooldown": 18,
+                "targetType": "aoe",
+                "radius": 5,
+                "damageMultiplier": 150,
+                "effect": {
+                    "type": "execute",
+                    "threshold": 30,
+                    "bonusDamage": 100
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "life_steal",
+            "value": 10,
+            "description": "모든 공격이 피해량의 10%만큼 생명력을 회복시킵니다."
+        },
+        "ultimateSkill": {
+            "id": "army_of_dead",
+            "name": "죽은 자들의 군단",
+            "description": "25초간 8마리의 언데드 병사를 소환하여 함께 싸우게 하고, 적 처치 시 소환수가 추가로 생성됩니다.",
+            "manaCost": 70,
+            "cooldown": 60,
+            "effect": {
+                "type": "undead_army",
+                "summonCount": 8,
+                "attackMultiplier": 70,
+                "duration": 25,
+                "spawnOnKill": true
+            }
+        },
+        "compatibleWeapons": [
+            "sword",
+            "axe",
+            "mace"
+        ],
+        "exclusiveWeapons": [
+            "soul_reaver"
+        ],
+        "requiredClasses": [
+            "berserker",
+            "dark_mage"
+        ],
+        "requiredLevel": 20
+    },
+    {
+        "id": "arcane_ranger",
+        "name": "비전 레인저",
+        "description": "마법의 화살로 원소의 힘을 다루는 궁수",
+        "tier": 3,
+        "baseStats": {
+            "hp": 100,
+            "mp": 120,
+            "attack": 20,
+            "defense": 8,
+            "speed": 110
+        },
+        "growthStats": {
+            "hp": 11,
+            "mp": 12,
+            "attack": 4,
+            "defense": 1.2,
+            "speed": 1.8
+        },
+        "abilities": [
+            {
+                "id": "elemental_arrow",
+                "name": "원소 화살",
+                "description": "화염, 얼음, 번개, 대지 중 선택한 원소의 화살을 발사하여 공격력의 180%로 피해를 입히고 원소 효과를 부여합니다.",
+                "manaCost": 30,
+                "cooldown": 8,
+                "targetType": "enemy",
+                "damageMultiplier": 180,
+                "effect": {
+                    "type": "elemental_proc",
+                    "elements": [
+                        "fire",
+                        "ice",
+                        "lightning",
+                        "earth"
+                    ]
+                }
+            },
+            {
+                "id": "arcane_volley",
+                "name": "비전 연발",
+                "description": "5발의 비전 화살을 빠르게 발사하여 각각 공격력의 80%로 피해를 입히고 마법 저항력을 10% 감소시킵니다.",
+                "manaCost": 40,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "hitCount": 5,
+                "damageMultiplier": 80,
+                "damageType": "arcane",
+                "effect": {
+                    "type": "magic_resistance_reduction",
+                    "value": 10,
+                    "duration": 5
+                }
+            },
+            {
+                "id": "magic_trap",
+                "name": "마법 덫",
+                "description": "마법 덫을 설치하여 적이 밟으면 3초간 속박하고 공격력의 150%로 원소 피해를 입힙니다.",
+                "manaCost": 35,
+                "cooldown": 18,
+                "targetType": "position",
+                "damageMultiplier": 150,
+                "damageType": "elemental",
+                "effect": {
+                    "type": "magical_trap",
+                    "rootDuration": 3
+                }
+            },
+            {
+                "id": "enchanted_agility",
+                "name": "마법 민첩",
+                "description": "10초간 마법으로 몸을 강화하여 이동 속도가 50% 증가하고 공격 속도가 30% 증가합니다.",
+                "manaCost": 25,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "enhanced_mobility",
+                    "speedBoost": 50,
+                    "attackSpeedBoost": 30,
+                    "duration": 10
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "spell_arrow",
+            "description": "모든 화살에 비전 에너지가 깃들어 공격력의 20%를 추가 마법 피해로 입힙니다."
+        },
+        "ultimateSkill": {
+            "id": "arrow_storm",
+            "name": "화살 폭풍",
+            "description": "모든 원소의 힘이 담긴 화살 비를 만들어 넓은 지역에 8초간 매초 공격력의 100%로 피해를 입히고 다양한 원소 효과를 적용합니다.",
+            "manaCost": 80,
+            "cooldown": 60,
+            "targetType": "position",
+            "radius": 10,
+            "effect": {
+                "type": "elemental_rain",
+                "damagePerTick": 100,
+                "duration": 8,
+                "elementalProcs": true
+            }
+        },
+        "compatibleWeapons": [
+            "bow",
+            "crossbow",
+            "wand"
+        ],
+        "exclusiveWeapons": [
+            "arcane_bow"
+        ],
+        "requiredClasses": [
+            "ranger",
+            "elementalist"
+        ],
+        "requiredLevel": 20
+    },
+    {
+        "id": "shadow_dancer",
+        "name": "그림자 댄서",
+        "description": "그림자와 하나가 되어 적을 처치하는 궁극의 암살자",
+        "tier": 3,
+        "baseStats": {
+            "hp": 95,
+            "mp": 90,
+            "attack": 22,
+            "defense": 8,
+            "speed": 130
+        },
+        "growthStats": {
+            "hp": 10,
+            "mp": 9,
+            "attack": 4.5,
+            "defense": 1.2,
+            "speed": 2.2
+        },
+        "abilities": [
+            {
+                "id": "shadow_step",
+                "name": "그림자 걸음",
+                "description": "그림자를 타고 즉시 목표 지점으로 이동하여 주변 적들에게 공격력의 150%로 피해를 입히고 2초간 기절시킵니다.",
+                "manaCost": 30,
+                "cooldown": 12,
+                "targetType": "position",
+                "range": 12,
+                "radius": 3,
+                "damageMultiplier": 150,
+                "effect": {
+                    "type": "teleport_strike",
+                    "stunDuration": 2
+                }
+            },
+            {
+                "id": "dancing_blades",
+                "name": "춤추는 칼날",
+                "description": "빠르게 회전하며 주변의 모든 적에게 총 10회 공격하여 각각 공격력의 60%로 피해를 입힙니다.",
+                "manaCost": 40,
+                "cooldown": 18,
+                "targetType": "aoe",
+                "radius": 5,
+                "hitCount": 10,
+                "damageMultiplier": 60
+            },
+            {
+                "id": "shadow_cloak",
+                "name": "그림자 망토",
+                "description": "10초간 그림자 속으로 들어가 완전한 은신 상태가 되며 이동해도 은신이 풀리지 않고 다음 공격이 치명타로 적용됩니다.",
+                "manaCost": 35,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "perfect_stealth",
+                    "duration": 10,
+                    "guaranteedCritical": true
+                }
+            },
+            {
+                "id": "shadow_mirage",
+                "name": "그림자 분신",
+                "description": "그림자 분신 3개를 생성하여 15초간 함께 싸우게 합니다. 분신은 플레이어 공격력의 50%로 피해를 입힙니다.",
+                "manaCost": 50,
+                "cooldown": 25,
+                "targetType": "self",
+                "effect": {
+                    "type": "shadow_clone",
+                    "cloneCount": 3,
+                    "duration": 15,
+                    "damageRatio": 50
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "permanent_stealth",
+            "description": "이동 중일 때 자동으로 은신 상태가 되며, 공격 후에도 3초 내에 다시 은신 상태가 됩니다."
+        },
+        "ultimateSkill": {
+            "id": "thousand_cuts",
+            "name": "천검류",
+            "description": "시간을 멈추고 대상 주변을 빠르게 움직이며 20회 공격하여 각각 공격력의 50%로 피해를 입힙니다.",
+            "manaCost": 70,
+            "cooldown": 60,
+            "targetType": "enemy",
+            "hitCount": 20,
+            "damageMultiplier": 50,
+            "effect": {
+                "type": "time_freeze",
+                "duration": 3
+            }
+        },
+        "compatibleWeapons": [
+            "dagger",
+            "shortsword",
+            "fist"
+        ],
+        "exclusiveWeapons": [
+            "shadow_fangs"
+        ],
+        "requiredClasses": [
+            "ninja",
+            "shadow_dancer"
+        ],
+        "requiredLevel": 20
+    },
+    {
+        "id": "battle_saint",
+        "name": "전투성인",
+        "description": "신성한 힘으로 아군을 보호하고 적을 심판하는 전사",
+        "tier": 3,
+        "baseStats": {
+            "hp": 130,
+            "mp": 110,
+            "attack": 17,
+            "defense": 15,
+            "speed": 90
+        },
+        "growthStats": {
+            "hp": 15,
+            "mp": 11,
+            "attack": 3.2,
+            "defense": 2.5,
+            "speed": 1.3
+        },
+        "abilities": [
+            {
+                "id": "divine_strike",
+                "name": "신성한 일격",
+                "description": "신성한 힘을 담아 적을 공격하여 공격력의 200%로 피해를 입히고 주변 아군의 HP를 15% 회복시킵니다.",
+                "manaCost": 30,
+                "cooldown": 12,
+                "targetType": "enemy",
+                "radius": 5,
+                "damageMultiplier": 200,
+                "damageType": "holy",
+                "effect": {
+                    "type": "aoe_heal",
+                    "healPercent": 15
+                }
+            },
+            {
+                "id": "martyrdom",
+                "name": "순교",
+                "description": "8초간 주변 아군이 입는 모든 피해를 자신이 대신 받지만, 받는 피해가 50% 감소합니다.",
+                "manaCost": 40,
+                "cooldown": 20,
+                "targetType": "self",
+                "radius": 6,
+                "effect": {
+                    "type": "damage_redirect",
+                    "damageReduction": 50,
+                    "duration": 8
+                }
+            },
+            {
+                "id": "healing_light",
+                "name": "치유의 빛",
+                "description": "주변 아군의 HP를 40% 회복시키고 모든 부정적 상태 효과를 제거합니다.",
+                "manaCost": 45,
+                "cooldown": 25,
+                "targetType": "aoe",
+                "radius": 6,
+                "effect": {
+                    "type": "mass_heal",
+                    "healPercent": 40,
+                    "cleanse": true
+                }
+            },
+            {
+                "id": "holy_conversion",
+                "name": "신성한 전환",
+                "description": "받는 피해의 50%를 HP 회복으로 전환하여 10초간 지속됩니다.",
+                "manaCost": 35,
+                "cooldown": 18,
+                "targetType": "ally",
+                "effect": {
+                    "type": "damage_to_healing",
+                    "conversionRatio": 50,
+                    "duration": 10
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "damage_conversion",
+            "description": "적에게 입히는 피해의 20%가 주변 아군에게 HP 회복으로 전환됩니다."
+        },
+        "ultimateSkill": {
+            "id": "day_of_judgment",
+            "name": "심판의 날",
+            "description": "신성한 빛이 하늘에서 내려와 넓은 지역의 적들에게 공격력의 300%로 피해를 입히고 아군의 모든 능력치를 30% 증가시킵니다.",
+            "manaCost": 70,
+            "cooldown": 60,
+            "targetType": "aoe",
+            "radius": 10,
+            "damageMultiplier": 300,
+            "damageType": "holy",
+            "effect": {
+                "type": "divine_judgment",
+                "alliedStatBoost": 30,
+                "duration": 15
+            }
+        },
+        "compatibleWeapons": [
+            "mace",
+            "sword",
+            "shield"
+        ],
+        "exclusiveWeapons": [
+            "divine_warhammer"
+        ],
+        "requiredClasses": [
+            "crusader",
+            "paladin"
+        ],
+        "requiredLevel": 20
+    },
+    {
+        "id": "archmage",
+        "name": "대마법사",
+        "description": "마법의 정수를 다루는 최상위 마법사",
+        "tier": 3,
+        "baseStats": {
+            "hp": 90,
+            "mp": 150,
+            "attack": 20,
+            "defense": 8,
+            "speed": 90
+        },
+        "growthStats": {
+            "hp": 9,
+            "mp": 15,
+            "attack": 4,
+            "defense": 1.2,
+            "speed": 1.3
+        },
+        "abilities": [
+            {
+                "id": "arcane_explosion",
+                "name": "비전 폭발",
+                "description": "주변에 강력한 비전 에너지를 폭발시켜 공격력의 180%로 광역 피해를 입힙니다.",
+                "manaCost": 40,
+                "cooldown": 15,
+                "targetType": "aoe",
+                "radius": 5,
+                "damageMultiplier": 180,
+                "damageType": "arcane"
+            },
+            {
+                "id": "elemental_shift",
+                "name": "원소 변환",
+                "description": "10초간 모든 주문의 원소 속성을 변경할 수 있고 원소 피해가 25% 증가합니다.",
+                "manaCost": 35,
+                "cooldown": 25,
+                "targetType": "self",
+                "effect": {
+                    "type": "elemental_mastery",
+                    "elementalDamageBoost": 25,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "mana_surge",
+                "name": "마나 쇄도",
+                "description": "5초간 MP 소모 없이 주문을 시전할 수 있지만 그 후 10초간 MP 회복이 중단됩니다.",
+                "manaCost": 50,
+                "cooldown": 30,
+                "targetType": "self",
+                "effect": {
+                    "type": "free_casting",
+                    "duration": 5,
+                    "penalty": {
+                        "type": "mp_recovery_block",
+                        "duration": 10
+                    }
+                }
+            },
+            {
+                "id": "greater_teleport",
+                "name": "상급 순간이동",
+                "description": "자신과 주변 아군을 목표 지점으로 이동시키고 5초간 대미지를 10% 증가시킵니다.",
+                "manaCost": 45,
+                "cooldown": 20,
+                "targetType": "position",
+                "radius": 3,
+                "range": 12,
+                "effect": {
+                    "type": "group_teleport",
+                    "damageBoost": 10,
+                    "duration": 5
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "spell_echo",
+            "chance": 20,
+            "description": "주문 시전 시 20% 확률로 같은 주문을 추가 비용 없이 한 번 더 시전합니다."
+        },
+        "ultimateSkill": {
+            "id": "meteor_storm",
+            "name": "운석 폭풍",
+            "description": "8초 동안 대상 지역에 거대한 운석을 떨어뜨려 각각 공격력의 150%로 광역 피해를 입히고 지속적인 화염 피해를 남깁니다.",
+            "manaCost": 80,
+            "cooldown": 60,
+            "targetType": "position",
+            "radius": 8,
+            "meteorCount": 5,
+            "damageMultiplier": 150,
+            "damageType": "fire",
+            "effect": {
+                "type": "burn_ground",
+                "damagePerTick": 20,
+                "duration": 8
+            }
+        },
+        "compatibleWeapons": [
+            "staff",
+            "wand",
+            "orb"
+        ],
+        "exclusiveWeapons": [
+            "staff_of_the_archmage"
+        ],
+        "requiredClasses": [
+            "elementalist",
+            "summoner"
+        ],
+        "requiredLevel": 20
+    },
+    {
+        "id": "demon_hunter",
+        "name": "악마 사냥꾼",
+        "description": "악마를 사냥하기 위해 특화된 헌터",
+        "tier": 3,
+        "baseStats": {
+            "hp": 105,
+            "mp": 90,
+            "attack": 21,
+            "defense": 10,
+            "speed": 115
+        },
+        "growthStats": {
+            "hp": 12,
+            "mp": 9,
+            "attack": 4.2,
+            "defense": 1.5,
+            "speed": 1.8
+        },
+        "abilities": [
+            {
+                "id": "demon_bane",
+                "name": "악마의 천적",
+                "description": "악마 유형의 적에게 공격력의 300%로 피해를 입히고 일반 적에게는 180%로 피해를 입힙니다.",
+                "manaCost": 30,
+                "cooldown": 12,
+                "targetType": "enemy",
+                "damageMultiplier": 180,
+                "demonDamageMultiplier": 300
+            },
+            {
+                "id": "trap_network",
+                "name": "덫 네트워크",
+                "description": "5개의 특수 덫을 설치하여 적이 밟으면 3초간 속박하고 공격력의 150%로 피해를 입힙니다.",
+                "manaCost": 35,
+                "cooldown": 18,
+                "targetType": "position",
+                "radius": 8,
+                "trapCount": 5,
+                "damageMultiplier": 150,
+                "effect": {
+                    "type": "root",
+                    "duration": 3
+                }
+            },
+            {
+                "id": "shadow_veil",
+                "name": "그림자 장막",
+                "description": "8초간 그림자에 숨어 은신 상태가 되고 모든 공격이 치명타로 적용되며 악마 유형 적에 대한 탐지 능력이 크게 증가합니다.",
+                "manaCost": 30,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "stealth",
+                    "guaranteedCritical": true,
+                    "demonSensing": true,
+                    "duration": 8
+                }
+            },
+            {
+                "id": "binding_shot",
+                "name": "속박 사격",
+                "description": "특수 화살로 적을 공격하여 공격력의 160%로 피해를 입히고 5초간 적의 이동 속도를 70% 감소시킵니다.",
+                "manaCost": 25,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "damageMultiplier": 160,
+                "effect": {
+                    "type": "slow",
+                    "value": 70,
+                    "duration": 5
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "demon_slayer",
+            "bonusDamage": 100,
+            "description": "악마 유형의 적에게 주는 피해가 100% 증가하고 악마로부터 받는 피해가 30% 감소합니다."
+        },
+        "ultimateSkill": {
+            "id": "demon_form",
+            "name": "악마 변신",
+            "description": "15초간 악마의 형태로 변신하여 모든 능력치가 50% 증가하고 공격 시 추가 화염 피해를 입히며 비행이 가능해집니다.",
+            "manaCost": 70,
+            "cooldown": 60,
+            "effect": {
+                "type": "demonic_transformation",
+                "statBoost": 50,
+                "fireDamage": 40,
+                "flight": true,
+                "duration": 15
+            }
+        },
+        "compatibleWeapons": [
+            "crossbow",
+            "dagger",
+            "throwing"
+        ],
+        "exclusiveWeapons": [
+            "demon_slayer_crossbow"
+        ],
+        "requiredClasses": [
+            "assassin",
+            "guardian"
+        ],
+        "requiredLevel": 20
+    },
+    {
+        "id": "chronomancer",
+        "name": "시간술사",
+        "description": "시간의 흐름을 조작하는 마법사",
+        "tier": 3,
+        "baseStats": {
+            "hp": 95,
+            "mp": 140,
+            "attack": 18,
+            "defense": 9,
+            "speed": 100
+        },
+        "growthStats": {
+            "hp": 10,
+            "mp": 14,
+            "attack": 3.6,
+            "defense": 1.4,
+            "speed": 1.6
+        },
+        "abilities": [
+            {
+                "id": "time_dilation",
+                "name": "시간 확장",
+                "description": "아군의 시간을 빠르게 하여 10초간 공격 속도와 이동 속도를 60% 증가시킵니다.",
+                "manaCost": 40,
+                "cooldown": 20,
+                "targetType": "ally",
+                "effect": {
+                    "type": "time_acceleration",
+                    "attackSpeedBoost": 60,
+                    "moveSpeedBoost": 60,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "time_compression",
+                "name": "시간 압축",
+                "description": "대상 적의 시간을 느리게 하여 8초간 공격 속도와 이동 속도를 70% 감소시킵니다.",
+                "manaCost": 35,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "effect": {
+                    "type": "time_slow",
+                    "attackSpeedReduction": 70,
+                    "moveSpeedReduction": 70,
+                    "duration": 8
+                }
+            },
+            {
+                "id": "temporal_rewind",
+                "name": "시간 되돌리기",
+                "description": "자신이나 아군의 시간을 5초 전으로 되돌려 HP와 위치를 그 때의 상태로 복원합니다.",
+                "manaCost": 50,
+                "cooldown": 25,
+                "targetType": "ally",
+                "effect": {
+                    "type": "rewind",
+                    "duration": 5
+                }
+            },
+            {
+                "id": "future_sight",
+                "name": "미래시",
+                "description": "미래를 보고 공격을 가하여 공격력의 200%로 피해를 입히고 8초간 대상 주변 지역의 모든 적을 감지합니다.",
+                "manaCost": 30,
+                "cooldown": 18,
+                "targetType": "enemy",
+                "damageMultiplier": 200,
+                "radius": 6,
+                "effect": {
+                    "type": "foresight",
+                    "revealDuration": 8
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "time_flux",
+            "cooldownReduction": 15,
+            "spellEchoChance": 10,
+            "description": "모든 능력의 쿨다운이 15% 감소하고 10% 확률로 주문 시전 직후 쿨다운이 초기화됩니다."
+        },
+        "ultimateSkill": {
+            "id": "time_stop",
+            "name": "시간 정지",
+            "description": "5초간 시간을 완전히 멈추어 자신을 제외한 모든 적과 아군이 행동할 수 없게 하지만 피해는 입을 수 있습니다.",
+            "manaCost": 80,
+            "cooldown": 60,
+            "effect": {
+                "type": "time_freeze",
+                "duration": 5,
+                "excludeSelf": true
+            }
+        },
+        "compatibleWeapons": [
+            "staff",
+            "wand",
+            "orb"
+        ],
+        "exclusiveWeapons": [
+            "chronomancer_staff"
+        ],
+        "requiredClasses": [
+            "dark_mage",
+            "elementalist"
+        ],
+        "requiredLevel": 20
+    },
+    {
+        "id": "dragon_tamer",
+        "name": "용 조련사",
+        "description": "드래곤을 부리는 마법 헌터",
+        "tier": 3,
+        "baseStats": {
+            "hp": 110,
+            "mp": 100,
+            "attack": 19,
+            "defense": 11,
+            "speed": 95
+        },
+        "growthStats": {
+            "hp": 12,
+            "mp": 10,
+            "attack": 3.8,
+            "defense": 1.6,
+            "speed": 1.4
+        },
+        "abilities": [
+            {
+                "id": "dragon_companion",
+                "name": "드래곤 동료",
+                "description": "영구적인 드래곤 동료를 소환합니다. 동료가 죽으면 60초의 쿨다운 후 다시 소환할 수 있습니다.",
+                "manaCost": 60,
+                "cooldown": 60,
+                "targetType": "self",
+                "effect": {
+                    "type": "permanent_dragon",
+                    "dragonHP": 300,
+                    "dragonAttack": 100
+                }
+            },
+            {
+                "id": "dragon_breath",
+                "name": "용의 숨결",
+                "description": "드래곤 동료가 불꽃을 내뿜어 직선 상의 적들에게 공격력의 200%로 화염 피해를 입힙니다.",
+                "manaCost": 40,
+                "cooldown": 15,
+                "targetType": "direction",
+                "requirement": "dragon_companion",
+                "range": 10,
+                "damageMultiplier": 200,
+                "damageType": "fire"
+            },
+            {
+                "id": "draconic_bond",
+                "name": "용의 유대",
+                "description": "12초간 드래곤 동료와의 유대를 강화하여 서로의 공격력이 40% 증가하고 받는 피해의 30%를 분배합니다.",
+                "manaCost": 35,
+                "cooldown": 20,
+                "targetType": "self",
+                "requirement": "dragon_companion",
+                "effect": {
+                    "type": "dragon_bond",
+                    "attackBoost": 40,
+                    "damageShare": 30,
+                    "duration": 12
+                }
+            },
+            {
+                "id": "dragon_scales",
+                "name": "드래곤 비늘",
+                "description": "드래곤의 비늘로 자신과 동료를 보호하여 10초간 받는 모든 피해를 40% 감소시킵니다.",
+                "manaCost": 30,
+                "cooldown": 18,
+                "targetType": "self",
+                "effect": {
+                    "type": "dragon_armor",
+                    "damageReduction": 40,
+                    "duration": 10
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "dragon_mastery",
+            "dragonBonus": 35,
+            "description": "드래곤 동료의 공격력과 HP가 35% 증가하고 용 유형의 적으로부터 20% 적은 피해를 받습니다."
+        },
+        "ultimateSkill": {
+            "id": "dragon_ascension",
+            "name": "드래곤 승천",
+            "description": "15초간 드래곤 동료와 합체하여 거대한 용으로 변신합니다. 모든 능력치가 80% 증가하고 비행이 가능해지며 강력한 화염 공격을 사용할 수 있습니다.",
+            "manaCost": 70,
+            "cooldown": 60,
+            "targetType": "self",
+            "requirement": "dragon_companion",
+            "effect": {
+                "type": "dragon_fusion",
+                "statBoost": 80,
+                "flight": true,
+                "fireDamageBoost": 100,
+                "duration": 15
+            }
+        },
+        "compatibleWeapons": [
+            "spear",
+            "staff",
+            "bow"
+        ],
+        "exclusiveWeapons": [
+            "dragonheart_spear"
+        ],
+        "requiredClasses": [
+            "warden",
+            "summoner"
+        ],
+        "requiredLevel": 20
+    },
+    {
+        "id": "blade_dancer",
+        "name": "검무도가",
+        "description": "칼날과 마법을 결합한 춤추는 검사",
+        "tier": 3,
+        "baseStats": {
+            "hp": 105,
+            "mp": 95,
+            "attack": 20,
+            "defense": 9,
+            "speed": 115
+        },
+        "growthStats": {
+            "hp": 11,
+            "mp": 10,
+            "attack": 4,
+            "defense": 1.3,
+            "speed": 1.9
+        },
+        "abilities": [
+            {
+                "id": "blade_vortex",
+                "name": "칼날 소용돌이",
+                "description": "주변에 마법 검의 소용돌이를 생성하여 8초간 주변 적들에게 초당 공격력의 50%로 피해를 입힙니다.",
+                "manaCost": 35,
+                "cooldown": 15,
+                "targetType": "self",
+                "radius": 4,
+                "effect": {
+                    "type": "blade_field",
+                    "damagePerTick": 50,
+                    "duration": 8
+                }
+            },
+            {
+                "id": "flash_step",
+                "name": "섬광 걸음",
+                "description": "순간적으로 적에게 접근하여 공격력의 200%로 피해를 입히고 2초간 다른 적들이 자신을 공격할 수 없게 합니다.",
+                "manaCost": 30,
+                "cooldown": 10,
+                "targetType": "enemy",
+                "range": 10,
+                "damageMultiplier": 200,
+                "effect": {
+                    "type": "dash_strike",
+                    "tauntDuration": 2
+                }
+            },
+            {
+                "id": "blade_shield",
+                "name": "칼날 방패",
+                "description": "10초간 자신 주위를 회전하는 마법 검을 생성하여 받는 피해를 30% 감소시키고 접촉한 적에게 공격력의 40%로 피해를 입힙니다.",
+                "manaCost": 40,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "blade_barrier",
+                    "damageReduction": 30,
+                    "barrierDamage": 40,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "crescent_slash",
+                "name": "초승달 베기",
+                "description": "넓은 범위를 가로지르는 강력한 베기를 날려 공격력의 180%로 피해를 입히고 적의 방어력을 4초간 25% 감소시킵니다.",
+                "manaCost": 35,
+                "cooldown": 12,
+                "targetType": "cone",
+                "range": 6,
+                "damageMultiplier": 180,
+                "effect": {
+                    "type": "defense_reduction",
+                    "value": 25,
+                    "duration": 4
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "blade_mastery",
+            "description": "칼날 소용돌이가 플레이어를 자동으로 추적하며, 치명타 확률이 15% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "blade_dance",
+            "name": "검무",
+            "description": "12초간 무적 상태로 전장을 춤추듯 누비며 주변의 모든 적에게 총 24회 공격하여 각각 공격력의 40%로 피해를 입힙니다.",
+            "manaCost": 60,
+            "cooldown": 60,
+            "targetType": "self",
+            "effect": {
+                "type": "invulnerable_dance",
+                "hitCount": 24,
+                "damageMultiplier": 40,
+                "duration": 12
+            }
+        },
+        "compatibleWeapons": [
+            "sword",
+            "shortsword",
+            "dagger"
+        ],
+        "exclusiveWeapons": [
+            "dancing_blades"
+        ],
+        "requiredClasses": [
+            "spellblade",
+            "shadow_dancer"
+        ],
+        "requiredLevel": 20
+    },
+    {
+        "id": "soul_wanderer",
+        "name": "영혼방랑자",
+        "description": "영혼계를 자유롭게 오가는 마법 사용자",
+        "tier": 3,
+        "baseStats": {
+            "hp": 100,
+            "mp": 130,
+            "attack": 17,
+            "defense": 9,
+            "speed": 100
+        },
+        "growthStats": {
+            "hp": 11,
+            "mp": 13,
+            "attack": 3.4,
+            "defense": 1.4,
+            "speed": 1.6
+        },
+        "abilities": [
+            {
+                "id": "spirit_form",
+                "name": "영혼 형태",
+                "description": "8초간 영혼 형태로 변해 물리적 공격을 무시하고 벽을 통과할 수 있지만 받는 마법 피해가 30% 증가합니다.",
+                "manaCost": 40,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "ghost_form",
+                    "physicalImmunity": true,
+                    "magicVulnerability": 30,
+                    "phasing": true,
+                    "duration": 8
+                }
+            },
+            {
+                "id": "soul_drain",
+                "name": "영혼 흡수",
+                "description": "대상의 영혼을 흡수하여 공격력의 170%로 피해를 입히고 그만큼 자신의 HP와 MP를 회복합니다.",
+                "manaCost": 35,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "damageMultiplier": 170,
+                "effect": {
+                    "type": "life_mana_drain",
+                    "drainRatio": 100
+                }
+            },
+            {
+                "id": "spirit_well",
+                "name": "영혼의 샘",
+                "description": "대상 지역에 영혼 에너지의 샘을 생성하여 12초간 아군에게 초당 HP와 MP를 5%씩 회복시킵니다.",
+                "manaCost": 45,
+                "cooldown": 25,
+                "targetType": "position",
+                "radius": 5,
+                "effect": {
+                    "type": "healing_field",
+                    "hpRegenPercent": 5,
+                    "mpRegenPercent": 5,
+                    "duration": 12
+                }
+            },
+            {
+                "id": "astral_projection",
+                "name": "영체 투사",
+                "description": "영혼의 분신을 생성하여 15초간 조종할 수 있습니다. 분신은 플레이어의 공격력 60%로 피해를 입히고 벽을 통과할 수 있습니다.",
+                "manaCost": 50,
+                "cooldown": 30,
+                "targetType": "position",
+                "effect": {
+                    "type": "spirit_clone",
+                    "damageRatio": 60,
+                    "phasing": true,
+                    "duration": 15
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "ethereal",
+            "description": "적 통과가 가능하며, 죽을 때 8초간 영혼 상태로 계속 싸울 수 있고 그 후 부활 확률이 20%입니다."
+        },
+        "ultimateSkill": {
+            "id": "spirit_realm",
+            "name": "영혼 세계",
+            "description": "10초간 자신과 주변 아군을 영혼 세계로 이동시켜 모든 피해를 무효화하고 이동 속도를 50% 증가시킵니다.",
+            "manaCost": 70,
+            "cooldown": 60,
+            "targetType": "aoe",
+            "radius": 6,
+            "effect": {
+                "type": "invulnerability",
+                "speedBoost": 50,
+                "duration": 10
+            }
+        },
+        "compatibleWeapons": [
+            "staff",
+            "orb",
+            "wand"
+        ],
+        "exclusiveWeapons": [
+            "spirit_staff"
+        ],
+        "requiredClasses": [
+            "druid",
+            "herbalist"
+        ],
+        "requiredLevel": 20
+    },
+    {
+        "id": "divine_inquisitor",
+        "name": "성 심문관",
+        "description": "신성한 심판을 내리는 종교적 전사",
+        "tier": 3,
+        "baseStats": {
+            "hp": 115,
+            "mp": 105,
+            "attack": 18,
+            "defense": 12,
+            "speed": 95
+        },
+        "growthStats": {
+            "hp": 12,
+            "mp": 11,
+            "attack": 3.5,
+            "defense": 1.8,
+            "speed": 1.5
+        },
+        "abilities": [
+            {
+                "id": "divine_judgement",
+                "name": "신성한 심판",
+                "description": "하늘에서 신성한 빛을 내려 공격력의 200%로 피해를 입히고 언데드나 악마에게는 300%로 피해를 입힙니다.",
+                "manaCost": 35,
+                "cooldown": 12,
+                "targetType": "enemy",
+                "damageMultiplier": 200,
+                "evilDamageMultiplier": 300,
+                "damageType": "holy"
+            },
+            {
+                "id": "purifying_flames",
+                "name": "정화의 불꽃",
+                "description": "신성한 불꽃으로 적을 공격하여 공격력의 150%로 피해를 입히고 주변 아군의 부정적 상태 효과를 제거합니다.",
+                "manaCost": 30,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "radius": 4,
+                "damageMultiplier": 150,
+                "effect": {
+                    "type": "purify",
+                    "cleanse": true
+                }
+            },
+            {
+                "id": "holy_bullets",
+                "name": "성스러운 총알",
+                "description": "신성한 에너지로 된 투사체를 5발 발사하여 각각 공격력의 80%로 피해를 입히고 피해량의 20%만큼 아군을 치유합니다.",
+                "manaCost": 40,
+                "cooldown": 18,
+                "targetType": "enemy",
+                "hitCount": 5,
+                "damageMultiplier": 80,
+                "effect": {
+                    "type": "healing",
+                    "healRatio": 20
+                }
+            },
+            {
+                "id": "divine_armor",
+                "name": "신성한 갑옷",
+                "description": "10초간 신성한 갑옷을 착용하여 모든 피해를 40% 감소시키고 적이 가하는 피해의 30%만큼 자신의 HP를 회복합니다.",
+                "manaCost": 45,
+                "cooldown": 25,
+                "targetType": "self",
+                "effect": {
+                    "type": "divine_protection",
+                    "damageReduction": 40,
+                    "lifeStealFromDamage": 30,
+                    "duration": 10
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "holy_conviction",
+            "evilDamageBonus": 50,
+            "description": "악마와 언데드에게 50% 추가 피해를 입히고 그들로부터 받는 피해가 30% 감소합니다."
+        },
+        "ultimateSkill": {
+            "id": "orbital_strike",
+            "name": "신의 벌",
+            "description": "하늘에서 거대한 신성한 광선을 내려 공격력의 350%로 광역 피해를 입히고 적들을 4초간 기절시킵니다.",
+            "manaCost": 70,
+            "cooldown": 60,
+            "targetType": "position",
+            "radius": 8,
+            "damageMultiplier": 350,
+            "damageType": "holy",
+            "effect": {
+                "type": "stun",
+                "duration": 4
+            }
+        },
+        "compatibleWeapons": [
+            "mace",
+            "gun",
+            "sword"
+        ],
+        "exclusiveWeapons": [
+            "holy_judgement"
+        ],
+        "requiredClasses": [
+            "battle_saint",
+            "gunner"
+        ],
+        "requiredLevel": 20
+    },
+    {
+        "id": "blood_mage",
+        "name": "혈마법사",
+        "description": "자신의 피를 마법 에너지로 변환하는 마법사",
+        "tier": 3,
+        "baseStats": {
+            "hp": 95,
+            "mp": 140,
+            "attack": 19,
+            "defense": 8,
+            "speed": 95
+        },
+        "growthStats": {
+            "hp": 10,
+            "mp": 14,
+            "attack": 3.7,
+            "defense": 1.2,
+            "speed": 1.4
+        },
+        "abilities": [
+            {
+                "id": "blood_lance",
+                "name": "피의 창",
+                "description": "자신의 HP를 8% 소모하여 강력한 혈액 창을 발사해 공격력의 250%로 피해를 입힙니다.",
+                "manaCost": 15,
+                "cooldown": 8,
+                "targetType": "enemy",
+                "healthCost": 8,
+                "damageMultiplier": 250,
+                "effect": {
+                    "type": "health_cost_attack"
+                }
+            },
+            {
+                "id": "blood_sacrifice",
+                "name": "피의 희생",
+                "description": "HP를 15% 소모하여 15초간 모든 주문의 피해량을 60% 증가시킵니다.",
+                "manaCost": 20,
+                "cooldown": 20,
+                "targetType": "self",
+                "healthCost": 15,
+                "effect": {
+                    "type": "spell_power_boost",
+                    "value": 60,
+                    "duration": 15
+                }
+            },
+            {
+                "id": "blood_shield",
+                "name": "피의 방패",
+                "description": "HP를 10% 소모하여 10초간 받는 피해를 50% 감소시키는 피의 보호막을 생성합니다.",
+                "manaCost": 25,
+                "cooldown": 15,
+                "targetType": "self",
+                "healthCost": 10,
+                "effect": {
+                    "type": "blood_barrier",
+                    "damageReduction": 50,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "crimson_ritual",
+                "name": "진홍의 의식",
+                "description": "HP를 20% 소모하여 주변의 모든 적에게 공격력의 180%로 피해를 입히고 그 피해량의 50%만큼 자신의 HP를 회복합니다.",
+                "manaCost": 40,
+                "cooldown": 18,
+                "targetType": "aoe",
+                "radius": 6,
+                "healthCost": 20,
+                "damageMultiplier": 180,
+                "effect": {
+                    "type": "mass_drain",
+                    "drainRatio": 50
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "blood_magic",
+            "description": "HP가 최대 HP의 10%에 해당하는 마나로 변환되어 마나 회복량이 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "blood_moon",
+            "name": "피의 달",
+            "description": "거대한 붉은 달을 소환하여 15초간 자신과 아군 모두가 공격 시 피해량의 30%만큼 HP를 회복하고 주문력이 50% 증가합니다.",
+            "manaCost": 60,
+            "cooldown": 60,
+            "targetType": "aoe",
+            "radius": 10,
+            "effect": {
+                "type": "team_lifesteal",
+                "lifeStealRatio": 30,
+                "spellPowerBoost": 50,
+                "duration": 15
+            }
+        },
+        "compatibleWeapons": [
+            "staff",
+            "dagger",
+            "wand"
+        ],
+        "exclusiveWeapons": [
+            "blood_staff"
+        ],
+        "requiredClasses": [
+            "dark_mage",
+            "berserker"
+        ],
+        "requiredLevel": 20
+    },
+    {
+        "id": "forest_guardian",
+        "name": "숲의 수호자",
+        "description": "자연의 수호자로서 숲의 힘을 다루는 자",
+        "tier": 3,
+        "baseStats": {
+            "hp": 110,
+            "mp": 120,
+            "attack": 16,
+            "defense": 11,
+            "speed": 100
+        },
+        "growthStats": {
+            "hp": 12,
+            "mp": 12,
+            "attack": 3,
+            "defense": 1.7,
+            "speed": 1.6
+        },
+        "abilities": [
+            {
+                "id": "nature_wrath",
+                "name": "자연의 분노",
+                "description": "주변에 거대한 덩굴과 뿌리를 소환하여 적들을 3초간 속박하고 공격력의 180%로 피해를 입힙니다.",
+                "manaCost": 35,
+                "cooldown": 15,
+                "targetType": "aoe",
+                "radius": 6,
+                "damageMultiplier": 180,
+                "effect": {
+                    "type": "root",
+                    "duration": 3
+                }
+            },
+            {
+                "id": "healing_grove",
+                "name": "치유의 숲",
+                "description": "대상 지역에 치유의 숲을 생성하여 15초간 아군이 그 안에 있을 때 초당 HP의 8%를 회복합니다.",
+                "manaCost": 40,
+                "cooldown": 20,
+                "targetType": "position",
+                "radius": 5,
+                "effect": {
+                    "type": "healing_field",
+                    "hpRegenPercent": 8,
+                    "duration": 15
+                }
+            },
+            {
+                "id": "nature_communion",
+                "name": "자연과의 교감",
+                "description": "12초간 자연과 하나가 되어 방어력이 40% 증가하고 공격 시 대상 주변에 식물이 자라나 추가 피해를 입힙니다.",
+                "manaCost": 45,
+                "cooldown": 25,
+                "targetType": "self",
+                "effect": {
+                    "type": "nature_bond",
+                    "defenseBoost": 40,
+                    "splashDamage": 30,
+                    "duration": 12
+                }
+            },
+            {
+                "id": "seed_of_life",
+                "name": "생명의 씨앗",
+                "description": "생명의 씨앗을 심어 주변 아군의 HP를 30% 회복시키고 8초간 추가로 HP를 초당 3%씩 회복시킵니다.",
+                "manaCost": 30,
+                "cooldown": 18,
+                "targetType": "ally",
+                "radius": 4,
+                "effect": {
+                    "type": "life_seed",
+                    "instantHeal": 30,
+                    "hpRegenPercent": 3,
+                    "duration": 8
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "healing_plant",
+            "description": "전투 중 랜덤으로 치유 식물이 생성되어 주변 아군의 HP를 회복시킵니다."
+        },
+        "ultimateSkill": {
+            "id": "world_tree",
+            "name": "세계수",
+            "description": "거대한 세계수를 소환하여 20초간 적들에게 지속적인 피해를 입히고 아군은 계속 회복시킵니다.",
+            "manaCost": 70,
+            "cooldown": 60,
+            "targetType": "position",
+            "radius": 8,
+            "effect": {
+                "type": "yggdrasil",
+                "damagePerTick": 40,
+                "healPerTick": 30,
+                "duration": 20
+            }
+        },
+        "compatibleWeapons": [
+            "staff",
+            "wand",
+            "mace"
+        ],
+        "exclusiveWeapons": [
+            "world_tree_staff"
+        ],
+        "requiredClasses": [
+            "druid",
+            "battle_saint"
+        ],
+        "requiredLevel": 20
+    },
+    {
+        "id": "void_stalker",
+        "name": "공허 추적자",
+        "description": "차원 사이를 여행하며 적을 사냥하는 자",
+        "tier": 3,
+        "baseStats": {
+            "hp": 100,
+            "mp": 110,
+            "attack": 21,
+            "defense": 9,
+            "speed": 120
+        },
+        "growthStats": {
+            "hp": 11,
+            "mp": 11,
+            "attack": 4.2,
+            "defense": 1.3,
+            "speed": 2
+        },
+        "abilities": [
+            {
+                "id": "void_strike",
+                "name": "공허 타격",
+                "description": "공허의 힘으로 적을 공격하여 공격력의 220%로 피해를 입히고 3초간 침묵시킵니다.",
+                "manaCost": 30,
+                "cooldown": 12,
+                "targetType": "enemy",
+                "damageMultiplier": 220,
+                "damageType": "void",
+                "effect": {
+                    "type": "silence",
+                    "duration": 3
+                }
+            },
+            {
+                "id": "dimensional_shift",
+                "name": "차원 이동",
+                "description": "짧은 거리를 순간이동하여 3초간 모든 피해를 회피하고 이동 후 공격 시 공격력의 150%로 피해를 입힙니다.",
+                "manaCost": 25,
+                "cooldown": 8,
+                "targetType": "position",
+                "range": 10,
+                "effect": {
+                    "type": "blink",
+                    "invulnerability": true,
+                    "duration": 3,
+                    "attackBonus": 150
+                }
+            },
+            {
+                "id": "void_prison",
+                "name": "공허 감옥",
+                "description": "대상 적을 5초간 공허 감옥에 가두어 행동 불가 상태로 만들고 초당 공격력의 20%로 피해를 입힙니다.",
+                "manaCost": 40,
+                "cooldown": 20,
+                "targetType": "enemy",
+                "effect": {
+                    "type": "stasis",
+                    "damagePerTick": 20,
+                    "duration": 5
+                }
+            },
+            {
+                "id": "null_field",
+                "name": "공허 장",
+                "description": "주변에 공허 에너지 장을 생성하여 10초간 적의 이동 속도와 공격 속도를 50% 감소시킵니다.",
+                "manaCost": 35,
+                "cooldown": 15,
+                "targetType": "aoe",
+                "radius": 6,
+                "effect": {
+                    "type": "void_aura",
+                    "speedReduction": 50,
+                    "attackSpeedReduction": 50,
+                    "duration": 10
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "blink_dodge",
+            "chance": 15,
+            "description": "공격을 받을 때 15% 확률로 짧은 거리를 텔레포트하여 회피합니다."
+        },
+        "ultimateSkill": {
+            "id": "dimensional_rift",
+            "name": "차원 균열",
+            "description": "대상 지역에 거대한 차원 균열을 만들어 모든 적에게 공격력의 400%로 피해를 입히고 6초간 이동불가 상태로 만듭니다.",
+            "manaCost": 70,
+            "cooldown": 60,
+            "targetType": "position",
+            "radius": 8,
+            "damageMultiplier": 400,
+            "damageType": "void",
+            "effect": {
+                "type": "rift",
+                "rootDuration": 6
+            }
+        },
+        "compatibleWeapons": [
+            "dagger",
+            "shortsword",
+            "wand"
+        ],
+        "exclusiveWeapons": [
+            "void_blade"
+        ],
+        "requiredClasses": [
+            "shadow_dancer",
+            "chronomancer"
+        ],
+        "requiredLevel": 20
+    },
+    {
+        "id": "runesmith",
+        "name": "룬 대장장이",
+        "description": "고대 룬의 힘을 무기에 담는 장인",
+        "tier": 3,
+        "baseStats": {
+            "hp": 105,
+            "mp": 115,
+            "attack": 18,
+            "defense": 11,
+            "speed": 90
+        },
+        "growthStats": {
+            "hp": 12,
+            "mp": 12,
+            "attack": 3.5,
+            "defense": 1.6,
+            "speed": 1.3
+        },
+        "abilities": [
+            {
+                "id": "rune_enhance",
+                "name": "룬 강화",
+                "description": "무기에 강력한 룬을 새겨 15초간 공격력을 50% 증가시키고 공격 시 20%의 추가 원소 피해를 입힙니다.",
+                "manaCost": 30,
+                "cooldown": 18,
+                "targetType": "self",
+                "effect": {
+                    "type": "weapon_enchant",
+                    "attackBoost": 50,
+                    "elementalDamage": 20,
+                    "duration": 15
+                }
+            },
+            {
+                "id": "rune_blast",
+                "name": "룬 폭발",
+                "description": "폭발하는 룬을 설치하여 적이 밟으면 공격력의 200%로 피해를 입히고 2초간 기절시킵니다.",
+                "manaCost": 35,
+                "cooldown": 15,
+                "targetType": "position",
+                "damageMultiplier": 200,
+                "effect": {
+                    "type": "runic_trap",
+                    "stunDuration": 2
+                }
+            },
+            {
+                "id": "runic_armor",
+                "name": "룬 갑옷",
+                "description": "자신의 방어구에 보호 룬을 새겨 12초간 받는 피해를 40% 감소시키고 공격자에게 공격력의 30%만큼 반사 피해를 입힙니다.",
+                "manaCost": 40,
+                "cooldown": 20,
+                "targetType": "self",
+                "effect": {
+                    "type": "runic_shield",
+                    "damageReduction": 40,
+                    "reflectionDamage": 30,
+                    "duration": 12
+                }
+            },
+            {
+                "id": "rune_draw",
+                "name": "룬 추출",
+                "description": "주변의 룬 에너지를 모아 HP와 MP를 25% 회복하고 모든 능력의 쿨다운을 5초 감소시킵니다.",
+                "manaCost": 20,
+                "cooldown": 25,
+                "targetType": "self",
+                "effect": {
+                    "type": "rune_absorption",
+                    "healthRestore": 25,
+                    "manaRestore": 25,
+                    "cooldownReduction": 5
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "weapon_enchantment",
+            "description": "무기에 마법을 부여하여 공격력의 15%를 추가 원소 피해로 입히고, 룬 사용 시 25% 확률로 마나를 소모하지 않습니다."
+        },
+        "ultimateSkill": {
+            "id": "rune_explosion",
+            "name": "룬 폭발",
+            "description": "자신이 설치한 모든 룬과 주변 지역에 대규모 룬 폭발을 일으켜 공격력의 350%로 광역 피해를 입히고 4초간 기절시킵니다.",
+            "manaCost": 60,
+            "cooldown": 60,
+            "targetType": "aoe",
+            "radius": 8,
+            "damageMultiplier": 350,
+            "effect": {
+                "type": "mass_explosion",
+                "stunDuration": 4
+            }
+        },
+        "compatibleWeapons": [
+            "sword",
+            "hammer",
+            "axe"
+        ],
+        "exclusiveWeapons": [
+            "runic_hammer"
+        ],
+        "requiredClasses": [
+            "spellspear",
+            "alchemist"
+        ],
+        "requiredLevel": 20
+    },
+    {
+        "id": "dragon_knight",
+        "name": "드래곤 나이트",
+        "description": "용의 힘을 다루는 전설적인 기사",
+        "tier": 4,
+        "baseStats": {
+            "hp": 150,
+            "mp": 120,
+            "attack": 22,
+            "defense": 18,
+            "speed": 100
+        },
+        "growthStats": {
+            "hp": 18,
+            "mp": 12,
+            "attack": 4.5,
+            "defense": 3,
+            "speed": 1.5
+        },
+        "abilities": [
+            {
+                "id": "dragon_breath",
+                "name": "용의 숨결",
+                "description": "용의 숨결을 내뿜어 전방의 넓은 범위에 공격력의 200%로 원소 피해를 입힙니다.",
+                "manaCost": 40,
+                "cooldown": 15,
+                "targetType": "cone",
+                "range": 8,
+                "damageMultiplier": 200,
+                "damageType": "elemental"
+            },
+            {
+                "id": "dragon_scales",
+                "name": "용의 비늘",
+                "description": "15초간 용의 비늘을 생성하여 모든 피해를 50% 감소시키고 원소 저항력을 80% 증가시킵니다.",
+                "manaCost": 50,
+                "cooldown": 25,
+                "targetType": "self",
+                "effect": {
+                    "type": "dragon_armor",
+                    "damageReduction": 50,
+                    "elementalResistance": 80,
+                    "duration": 15
+                }
+            },
+            {
+                "id": "draconic_might",
+                "name": "용의 힘",
+                "description": "12초간 용의 힘을 불러내어 공격력을 70% 증가시키고 공격 시 추가 화염 피해를 입힙니다.",
+                "manaCost": 60,
+                "cooldown": 30,
+                "targetType": "self",
+                "effect": {
+                    "type": "attack_boost",
+                    "value": 70,
+                    "additionalFireDamage": 40,
+                    "duration": 12
+                }
+            },
+            {
+                "id": "dragon_leap",
+                "name": "용의 도약",
+                "description": "높이 도약하여 목표 지점에 착지하면서 주변의 모든 적에게 공격력의 250%로 피해를 입히고 3초간 기절시킵니다.",
+                "manaCost": 45,
+                "cooldown": 20,
+                "targetType": "position",
+                "range": 12,
+                "radius": 5,
+                "damageMultiplier": 250,
+                "effect": {
+                    "type": "stun",
+                    "duration": 3
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "dragon_transformation",
+            "description": "용 변신이 가능하여 전투 중 한 번 HP가 20% 이하로 떨어질 때 변신하여 모든 능력치가 50% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "eternal_flame",
+            "name": "영원한 불꽃",
+            "description": "전장에 영원한 용의 불꽃을 불러내어 20초간 지속되는 대규모 화염 지대를 생성합니다. 이 지역에 있는 모든 적은 초당 공격력의 60%로 피해를 입습니다.",
+            "manaCost": 100,
+            "cooldown": 120,
+            "targetType": "position",
+            "radius": 12,
+            "effect": {
+                "type": "persistent_aoe",
+                "damagePerTick": 60,
+                "duration": 20
+            }
+        },
+        "compatibleWeapons": [
+            "sword",
+            "spear",
+            "axe"
+        ],
+        "exclusiveWeapons": [
+            "dragonslayer"
+        ],
+        "requiredClasses": [
+            "death_knight",
+            "dragon_tamer"
+        ],
+        "requiredLevel": 30
+    },
+    {
+        "id": "celestial_sage",
+        "name": "천공의 현자",
+        "description": "우주의 비밀을 다루는 초월적 마법사",
+        "tier": 4,
+        "baseStats": {
+            "hp": 110,
+            "mp": 180,
+            "attack": 25,
+            "defense": 10,
+            "speed": 95
+        },
+        "growthStats": {
+            "hp": 11,
+            "mp": 18,
+            "attack": 5,
+            "defense": 1.5,
+            "speed": 1.4
+        },
+        "abilities": [
+            {
+                "id": "celestial_beam",
+                "name": "천상의 광선",
+                "description": "하늘에서 강력한 광선을 내려쏘아 공격력의 250%로 피해를 입히고 주변 적에게 공격력의 150%로 광역 피해를 입힙니다.",
+                "manaCost": 50,
+                "cooldown": 18,
+                "targetType": "position",
+                "radius": 5,
+                "damageMultiplier": 250,
+                "splashDamageMultiplier": 150,
+                "damageType": "celestial"
+            },
+            {
+                "id": "astral_shift",
+                "name": "별의 이동",
+                "description": "순간적으로 별의 형태로 변하여 목표 지점으로 이동하고 10초간 마법 피해가 40% 증가합니다.",
+                "manaCost": 40,
+                "cooldown": 15,
+                "targetType": "position",
+                "range": 15,
+                "effect": {
+                    "type": "blink",
+                    "magicDamageBoost": 40,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "cosmic_shield",
+                "name": "우주의 보호막",
+                "description": "15초간 우주 에너지로 된 보호막을 생성하여 모든 피해를 60% 감소시키고 주변 적에게 초당 공격력의 20%로 피해를 입힙니다.",
+                "manaCost": 60,
+                "cooldown": 25,
+                "targetType": "self",
+                "radius": 4,
+                "effect": {
+                    "type": "cosmic_barrier",
+                    "damageReduction": 60,
+                    "damagePerTick": 20,
+                    "duration": 15
+                }
+            },
+            {
+                "id": "gravity_well",
+                "name": "중력장",
+                "description": "대상 지역에 5초간 중력장을 생성하여 적들을 중심으로 끌어당기고 이동속도를 80% 감소시키며 초당 공격력의 30%로 피해를 입힙니다.",
+                "manaCost": 55,
+                "cooldown": 20,
+                "targetType": "position",
+                "radius": 6,
+                "effect": {
+                    "type": "gravity_field",
+                    "slowRatio": 80,
+                    "pullStrength": 5,
+                    "damagePerTick": 30,
+                    "duration": 5
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "levitation",
+            "description": "항상 공중에 떠 있어 대부분의 지형 효과를 무시하고 이동할 수 있습니다."
+        },
+        "ultimateSkill": {
+            "id": "galaxy_collapse",
+            "name": "은하 붕괴",
+            "description": "광범위한 지역에 우주의 힘을 모아 붕괴시켜 모든 적에게 공격력의 500%로 피해를 입히고 5초간 기절시킵니다.",
+            "manaCost": 100,
+            "cooldown": 120,
+            "targetType": "aoe",
+            "radius": 12,
+            "damageMultiplier": 500,
+            "effect": {
+                "type": "stun",
+                "duration": 5
+            }
+        },
+        "compatibleWeapons": [
+            "staff",
+            "orb",
+            "wand"
+        ],
+        "exclusiveWeapons": [
+            "staff_of_cosmos"
+        ],
+        "requiredClasses": [
+            "archmage",
+            "soul_wanderer"
+        ],
+        "requiredLevel": 30
+    },
+    {
+        "id": "eternal_champion",
+        "name": "영원의 챔피언",
+        "description": "생사의 경계를 초월한 궁극의 전사",
+        "tier": 4,
+        "baseStats": {
+            "hp": 140,
+            "mp": 140,
+            "attack": 20,
+            "defense": 15,
+            "speed": 110
+        },
+        "growthStats": {
+            "hp": 16,
+            "mp": 14,
+            "attack": 4,
+            "defense": 2.5,
+            "speed": 1.8
+        },
+        "abilities": [
+            {
+                "id": "eternal_blade",
+                "name": "영원의 칼날",
+                "description": "모든 차원을 가로지르는 검격으로 공격력의 250%로 피해를 입히고 대상의 모든 보호막과 방어 효과를 무시합니다.",
+                "manaCost": 45,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "damageMultiplier": 250,
+                "effect": {
+                    "type": "defense_penetration",
+                    "value": 100
+                }
+            },
+            {
+                "id": "transcendence",
+                "name": "초월",
+                "description": "10초간 물리적 형태를 초월하여 모든 공격을 50% 회피하고 이동 속도가 60% 증가합니다.",
+                "manaCost": 50,
+                "cooldown": 25,
+                "targetType": "self",
+                "effect": {
+                    "type": "ethereal",
+                    "dodgeChance": 50,
+                    "speedBoost": 60,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "eternal_spirit",
+                "name": "영원의 정신",
+                "description": "15초간 영혼이 강화되어 모든 피해를 체력 대신 마나로 30% 받으며 사망 시 부활합니다.",
+                "manaCost": 60,
+                "cooldown": 30,
+                "targetType": "self",
+                "effect": {
+                    "type": "life_bond",
+                    "damageToMana": 30,
+                    "reviveOnDeath": true,
+                    "duration": 15
+                }
+            },
+            {
+                "id": "time_slash",
+                "name": "시간 베기",
+                "description": "시간을 잠시 멈추고 주변의 모든 적에게 총 5회 공격하여 각각 공격력의 100%로 피해를 입힙니다.",
+                "manaCost": 55,
+                "cooldown": 20,
+                "targetType": "aoe",
+                "radius": 6,
+                "hitCount": 5,
+                "damageMultiplier": 100,
+                "effect": {
+                    "type": "time_stop",
+                    "duration": 1
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "immortality",
+            "description": "던전 당 1회 HP가 1 이하로 내려가지 않고 무적 상태가 되어 10초간 모든 능력치가 100% 증가합니다."
+        },
+        "ultimateSkill": {
+            "id": "limit_break",
+            "name": "리미트 브레이크",
+            "description": "20초간 모든 한계를 초월하여 능력치가 100% 증가하고 쿨다운이 0이 되며 공격 속도가 100% 증가합니다.",
+            "manaCost": 100,
+            "cooldown": 120,
+            "effect": {
+                "type": "limit_break",
+                "statBoost": 100,
+                "cooldownReset": true,
+                "attackSpeedBoost": 100,
+                "duration": 20
+            }
+        },
+        "compatibleWeapons": [
+            "sword",
+            "axe",
+            "fist"
+        ],
+        "exclusiveWeapons": [
+            "eternal_blade"
+        ],
+        "requiredClasses": [
+            "blade_dancer",
+            "divine_inquisitor"
+        ],
+        "requiredLevel": 30
+    },
+    {
+        "id": "doom_herald",
+        "name": "종말의 인도자",
+        "description": "멸망을 부르는 공허의 전령",
+        "tier": 4,
+        "baseStats": {
+            "hp": 120,
+            "mp": 150,
+            "attack": 23,
+            "defense": 12,
+            "speed": 105
+        },
+        "growthStats": {
+            "hp": 13,
+            "mp": 15,
+            "attack": 4.6,
+            "defense": 1.8,
+            "speed": 1.6
+        },
+        "abilities": [
+            {
+                "id": "void_annihilation",
+                "name": "공허의 섬멸",
+                "description": "공허의 힘으로 적을 공격하여 공격력의 280%로 피해를 입히고 5초간 매초 추가 피해를 입힙니다.",
+                "manaCost": 45,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "damageMultiplier": 280,
+                "damageType": "void",
+                "effect": {
+                    "type": "damage_over_time",
+                    "damagePerTick": 40,
+                    "duration": 5
+                }
+            },
+            {
+                "id": "death_field",
+                "name": "죽음의 장",
+                "description": "주변에 죽음의 에너지를 방출하여 10초간 적들에게 초당 공격력의 40%로 피해를 입히고 HP 회복을 60% 감소시킵니다.",
+                "manaCost": 60,
+                "cooldown": 20,
+                "targetType": "aoe",
+                "radius": 6,
+                "effect": {
+                    "type": "anti_healing_field",
+                    "damagePerTick": 40,
+                    "healingReduction": 60,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "dimensional_rip",
+                "name": "차원 찢기",
+                "description": "공간을 찢어 적을 4초간 다른 차원으로 보내 행동 불가 상태로 만들고 돌아올 때 공격력의 200%로 피해를 입힙니다.",
+                "manaCost": 50,
+                "cooldown": 25,
+                "targetType": "enemy",
+                "damageMultiplier": 200,
+                "effect": {
+                    "type": "banish",
+                    "duration": 4
+                }
+            },
+            {
+                "id": "blood_sacrifice",
+                "name": "피의 희생",
+                "description": "HP를 20% 소모하여 15초간 모든 주문의 피해량을 80% 증가시키고 적 처치 시 HP를 10% 회복합니다.",
+                "manaCost": 40,
+                "cooldown": 30,
+                "targetType": "self",
+                "healthCost": 20,
+                "effect": {
+                    "type": "bloodlust",
+                    "spellDamageBoost": 80,
+                    "hpOnKill": 10,
+                    "duration": 15
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "death_explosion",
+            "description": "적 처치 시 폭발을 일으켜 주변 적들에게 공격력의 100%로 피해를 입힙니다."
+        },
+        "ultimateSkill": {
+            "id": "apocalypse",
+            "name": "종말의 날",
+            "description": "광범위한 지역에 대재앙을 일으켜 모든 적에게 공격력의 450%로 피해를 입히고 15초간 모든 능력치를 30% 감소시킵니다.",
+            "manaCost": 100,
+            "cooldown": 120,
+            "targetType": "aoe",
+            "radius": 15,
+            "damageMultiplier": 450,
+            "effect": {
+                "type": "debuff",
+                "statReduction": 30,
+                "duration": 15
+            }
+        },
+        "compatibleWeapons": [
+            "staff",
+            "scythe",
+            "orb"
+        ],
+        "exclusiveWeapons": [
+            "harbinger_scythe"
+        ],
+        "requiredClasses": [
+            "blood_mage",
+            "void_stalker"
+        ],
+        "requiredLevel": 30
+    },
+    {
+        "id": "divine_arbiter",
+        "name": "신성 심판관",
+        "description": "신의 뜻을 세상에 실현하는 심판자",
+        "tier": 4,
+        "baseStats": {
+            "hp": 130,
+            "mp": 150,
+            "attack": 21,
+            "defense": 14,
+            "speed": 100
+        },
+        "growthStats": {
+            "hp": 14,
+            "mp": 15,
+            "attack": 4.2,
+            "defense": 2.2,
+            "speed": 1.5
+        },
+        "abilities": [
+            {
+                "id": "divine_verdict",
+                "name": "신성한 판결",
+                "description": "신의 힘으로 적을 심판하여 공격력의 300%로 피해를 입히고 신성한 불꽃을 남겨 5초간 추가 피해를 입힙니다.",
+                "manaCost": 45,
+                "cooldown": 15,
+                "targetType": "enemy",
+                "damageMultiplier": 300,
+                "damageType": "holy",
+                "effect": {
+                    "type": "holy_burn",
+                    "damagePerTick": 40,
+                    "duration": 5
+                }
+            },
+            {
+                "id": "heavenly_protection",
+                "name": "천상의 보호",
+                "description": "자신과 주변 아군에게 천상의 보호막을 부여해 12초간 받는 피해를 50% 감소시키고 상태이상 면역을 부여합니다.",
+                "manaCost": 60,
+                "cooldown": 25,
+                "targetType": "aoe",
+                "radius": 6,
+                "effect": {
+                    "type": "divine_shield",
+                    "damageReduction": 50,
+                    "statusImmunity": true,
+                    "duration": 12
+                }
+            },
+            {
+                "id": "divine_restoration",
+                "name": "신성한 회복",
+                "description": "주변 아군의 HP를 50% 회복시키고 10초간 지속적으로 초당 5%씩 추가 회복합니다.",
+                "manaCost": 50,
+                "cooldown": 20,
+                "targetType": "aoe",
+                "radius": 8,
+                "effect": {
+                    "type": "mass_heal",
+                    "healPercent": 50,
+                    "hpRegenPercent": 5,
+                    "duration": 10
+                }
+            },
+            {
+                "id": "righteous_reflection",
+                "name": "의로운 반사",
+                "description": "15초간 팀 전체가 받는 피해의 30%를 공격자에게 신성한 피해로 돌려줍니다.",
+                "manaCost": 55,
+                "cooldown": 30,
+                "targetType": "aoe",
+                "radius": 8,
+                "effect": {
+                    "type": "team_reflection",
+                    "reflectionRatio": 30,
+                    "duration": 15
+                }
+            }
+        ],
+        "passiveEffect": {
+            "type": "team_damage_reflection",
+            "description": "팀 전체가 받는 피해의 10%를 공격자에게 신성한 피해로 돌려줍니다."
+        },
+        "ultimateSkill": {
+            "id": "heavenly_judgment",
+            "name": "천국의 심판",
+            "description": "거대한 신성한 레이저를 하늘에서 내려쏘아 광범위한 지역에 공격력의 400%로 피해를 입히고 적들을 6초간 기절시킵니다.",
+            "manaCost": 100,
+            "cooldown": 120,
+            "targetType": "position",
+            "radius": 10,
+            "damageMultiplier": 400,
+            "damageType": "holy",
+            "effect": {
+                "type": "stun",
+                "duration": 6
+            }
+        },
+        "compatibleWeapons": [
+            "mace",
+            "sword",
+            "staff"
+        ],
+        "exclusiveWeapons": [
+            "divine_judgment_hammer"
+        ],
+        "requiredClasses": [
+            "celestial_sage",
+            "battle_saint"
+        ],
+        "requiredLevel": 30
+    }
+]
