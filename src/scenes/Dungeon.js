@@ -1493,7 +1493,7 @@ class DungeonScene extends Phaser.Scene {
             enemy.nextMoveTime -= delta;
         }
     }
-  
+
     enemyAttack(enemy) {
         // 공격 쿨다운 확인
         const now = Date.now();

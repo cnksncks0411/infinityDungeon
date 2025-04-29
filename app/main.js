@@ -24,7 +24,7 @@ function createWindow() {
 
   // 메인 HTML 파일 로드
   mainWindow.loadFile(path.join(__dirname, '../index.html'));
-  
+
   // 로딩 완료 시 윈도우 표시
   mainWindow.once('ready-to-show', () => {
     mainWindow.show();
@@ -38,11 +38,11 @@ function createWindow() {
   // 윈도우가 닫힐 때 자동 저장
   mainWindow.on('close', async (e) => {
     e.preventDefault(); // 기본 동작 방지
-    
+
     try {
       // 게임 데이터 저장 요청
       mainWindow.webContents.send('request-save-game');
-      
+
       // 약간의 지연 후 앱 종료 (저장 완료 대기)
       setTimeout(() => {
         mainWindow = null;
@@ -59,12 +59,12 @@ function createWindow() {
 // Electron이 초기화를 완료하고 준비되면 윈도우 생성
 app.whenReady().then(() => {
   createWindow();
-  
+
   // macOS에서 앱 아이콘 클릭 시 윈도우 재생성
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
-  
+
   // 업데이터 초기화 및 업데이트 확인
   const updater = new GameUpdater(mainWindow);
   updater.checkForUpdates();
@@ -95,7 +95,7 @@ ipcMain.handle('calculate-combination-chance', async (event, { class1Level, clas
   const baseChance = getBaseChanceForCombination(class1, class2);
   const levelBonus = Math.min(40, (class1Level + class2Level - 20)); // 최대 +40%
   const keyBonus = hasGoldenKey ? 20 : 0;
-  
+
   return Math.min(100, baseChance + levelBonus + keyBonus + alchemistBonus);
 });
 
