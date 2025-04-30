@@ -5219,43 +5219,4 @@
             "frameHeight": 128
         }
     },
-    {
-        "id": "nightmare_spawn",
-        "name": "악몽의 생성물",
-        "type": "minion",
-        "description": "심연의 공포가 소환한 악몽의 존재",
-        "baseStats": {
-            "hp": 35,
-            "attack": 14,
-            "defense": 5,
-            "speed": 75
-        },
-        "growthRate": {
-            "hp": 4,
-            "attack": 2.5,
-            "defense": 0.6,
-            "speed": 1
-        },
-        "attackType": "magic",
-        "element": "void",
-        "abilities": [
-            {
-                "id": "nightmare_touch",
-                "name": "악몽의 접촉",
-                "type": "melee_attack",
-                "description": "접촉하여 공포를 심어줍니다",
-                "cooldown": 6,
-                "damageMultiplier": 1.0,
-                "chance": 0.5,
-                "effectType": "fear",
-                "value": 20,
-                "duration": 3
-            }
-        ],
-        "sprite": {
-            "key": "nightmare_spawn",
-            "frameWidth": 48,
-            "frameHeight": 48
-        }
-    }
 ]
