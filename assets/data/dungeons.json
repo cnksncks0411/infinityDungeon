@@ -1,0 +1,1596 @@
+{
+    "dungeons": [
+        {
+            "id": "sword_forest",
+            "name": "검의 숲",
+            "type": "forest",
+            "description": "수많은 검이 꽂혀 있는 신비한 숲입니다. 고대의 전사들의 영혼이 깃든 장소로 알려져 있습니다.",
+            "recommendedLevel": 1,
+            "difficulty": {
+                "base": 1,
+                "growth": 1.2
+            },
+            "layout": {
+                "roomSizeMin": 8,
+                "roomSizeMax": 20,
+                "maxRooms": 15,
+                "minRooms": 8,
+                "specialRoomChance": 0.4
+            },
+            "monsters": {
+                "normal": [
+                    "goblin",
+                    "wolf",
+                    "spider",
+                    "bandit",
+                    "fungal_spore"
+                ],
+                "elite": [
+                    "giant_spider",
+                    "corrupted_druid"
+                ],
+                "boss": "ancient_treant"
+            },
+            "lootTable": {
+                "common": [
+                    "basic_sword",
+                    "basic_bow",
+                    "minor_health_potion"
+                ],
+                "uncommon": [
+                    "reinforced_chest",
+                    "fine_sword",
+                    "normal_health_potion"
+                ],
+                "rare": [
+                    "superior_sword",
+                    "ranger_bow",
+                    "greater_health_potion"
+                ],
+                "epic": [
+                    "ancient_bark",
+                    "nature_staff"
+                ]
+            },
+            "environmentHazards": [
+                "poisonous_plants",
+                "falling_branches"
+            ]
+        },
+        {
+            "id": "staff_tower",
+            "name": "지팡이 타워",
+            "type": "tower",
+            "description": "마법사들의 비밀 연구가 행해지던 높은 탑입니다. 다양한 마법 장치와 구조물이 존재합니다.",
+            "recommendedLevel": 5,
+            "difficulty": {
+                "base": 2,
+                "growth": 1.3
+            },
+            "layout": {
+                "roomSizeMin": 4,
+                "roomSizeMax": 10,
+                "maxRooms": 20,
+                "minRooms": 10,
+                "specialRoomChance": 0.25
+            },
+            "monsters": {
+                "normal": [
+                    "mage_cultist",
+                    "elemental_fire",
+                    "elemental_ice",
+                    "living_book",
+                    "mana_wisp"
+                ],
+                "elite": [
+                    "clockwork_sentinel",
+                    "ancient_construct"
+                ],
+                "boss": "archmage"
+            },
+            "lootTable": {
+                "common": [
+                    "basic_staff",
+                    "basic_wand",
+                    "minor_mana_potion"
+                ],
+                "uncommon": [
+                    "reinforced_helmet",
+                    "fine_staff",
+                    "normal_mana_potion"
+                ],
+                "rare": [
+                    "superior_staff",
+                    "battle_mage_wand",
+                    "greater_mana_potion"
+                ],
+                "epic": [
+                    "arcane_staff",
+                    "spell_book",
+                    "mana_crystal"
+                ]
+            },
+            "environmentHazards": [
+                "magic_device",
+                "unstable_portals"
+            ]
+        },
+        {
+            "id": "temple_ruins",
+            "name": "사원 유적",
+            "type": "ruins",
+            "description": "고대 신을 숭배하던 사원의 잔해입니다. 이제는 언데드들이 이곳을 지배하고 있습니다.",
+            "recommendedLevel": 10,
+            "difficulty": {
+                "base": 3,
+                "growth": 1.4
+            },
+            "layout": {
+                "roomSizeMin": 6,
+                "roomSizeMax": 12,
+                "maxRooms": 16,
+                "minRooms": 9,
+                "specialRoomChance": 0.35
+            },
+            "monsters": {
+                "normal": [
+                    "skeleton",
+                    "ghost",
+                    "zombie",
+                    "bandit",
+                    "mage_cultist"
+                ],
+                "elite": [
+                    "wraith",
+                    "cursed_knight",
+                    "living_armor"
+                ],
+                "boss": "lich_lord"
+            },
+            "lootTable": {
+                "common": [
+                    "basic_mace",
+                    "basic_amulet",
+                    "minor_strength_potion"
+                ],
+                "uncommon": [
+                    "reinforced_gloves",
+                    "fine_mace",
+                    "normal_strength_potion"
+                ],
+                "rare": [
+                    "superior_mace",
+                    "paladin_hammer",
+                    "greater_strength_potion"
+                ],
+                "epic": [
+                    "lich_staff",
+                    "soul_gem",
+                    "ancient_tome"
+                ]
+            },
+            "environmentHazards": [
+                "collapsing_pillars",
+                "cursed_altars"
+            ]
+        },
+        {
+            "id": "crystal_caves",
+            "name": "수정 동굴",
+            "type": "cave",
+            "description": "빛나는 수정으로 가득한 거대한 동굴 네트워크입니다. 이 수정들은 마법적인 힘을 가지고 있습니다.",
+            "recommendedLevel": 15,
+            "difficulty": {
+                "base": 4,
+                "growth": 1.5
+            },
+            "layout": {
+                "roomSizeMin": 4,
+                "roomSizeMax": 25,
+                "maxRooms": 15,
+                "minRooms": 8,
+                "specialRoomChance": 0.2
+            },
+            "monsters": {
+                "normal": [
+                    "bat",
+                    "slime",
+                    "fungal_spore",
+                    "spider",
+                    "crystal_butterfly"
+                ],
+                "elite": [
+                    "stone_golem",
+                    "crystal_golem",
+                    "giant_spider"
+                ],
+                "boss": "cave_troll"
+            },
+            "lootTable": {
+                "common": [
+                    "basic_hammer",
+                    "basic_ring",
+                    "minor_defense_potion"
+                ],
+                "uncommon": [
+                    "reinforced_boots",
+                    "fine_hammer",
+                    "normal_defense_potion"
+                ],
+                "rare": [
+                    "superior_hammer",
+                    "golem_fist",
+                    "greater_defense_potion"
+                ],
+                "epic": [
+                    "crystal_shard",
+                    "earth_rune",
+                    "rare_gem"
+                ]
+            },
+            "environmentHazards": [
+                "falling_rocks",
+                "crystal_radiation"
+            ]
+        },
+        {
+            "id": "dark_castle",
+            "name": "암흑 성",
+            "type": "castle",
+            "description": "어둠의 힘으로 가득 찬 거대한 성입니다. 암흑 기사와 그의 군대가 이곳을 지배하고 있습니다.",
+            "recommendedLevel": 20,
+            "difficulty": {
+                "base": 5,
+                "growth": 1.6
+            },
+            "layout": {
+                "roomSizeMin": 7,
+                "roomSizeMax": 14,
+                "maxRooms": 18,
+                "minRooms": 10,
+                "specialRoomChance": 0.3
+            },
+            "monsters": {
+                "normal": [
+                    "skeleton",
+                    "zombie",
+                    "ghost",
+                    "mage_cultist"
+                ],
+                "elite": [
+                    "living_armor",
+                    "wraith",
+                    "shadow_assassin",
+                    "cursed_knight"
+                ],
+                "boss": "dark_knight"
+            },
+            "lootTable": {
+                "common": [
+                    "basic_sword",
+                    "basic_shield",
+                    "minor_speed_potion"
+                ],
+                "uncommon": [
+                    "reinforced_chest",
+                    "fine_shield",
+                    "normal_speed_potion"
+                ],
+                "rare": [
+                    "superior_shield",
+                    "guardian_armor",
+                    "greater_speed_potion"
+                ],
+                "epic": [
+                    "cursed_blade",
+                    "shadow_plate",
+                    "dark_essence"
+                ]
+            },
+            "environmentHazards": [
+                "swinging_blades",
+                "arrow_traps"
+            ]
+        },
+        {
+            "id": "forbidden_library",
+            "name": "금단의 도서관",
+            "type": "library",
+            "description": "금지된 지식이 저장된 거대한 도서관입니다. 책의 마법으로 소환된 생물체들이 지식을 보호하고 있습니다.",
+            "recommendedLevel": 25,
+            "difficulty": {
+                "base": 6,
+                "growth": 1.7
+            },
+            "layout": {
+                "roomSizeMin": 5,
+                "roomSizeMax": 12,
+                "maxRooms": 15,
+                "minRooms": 8,
+                "specialRoomChance": 0.35
+            },
+            "monsters": {
+                "normal": [
+                    "living_book",
+                    "mage_cultist",
+                    "mana_wisp"
+                ],
+                "elite": [
+                    "ancient_construct",
+                    "corrupted_druid",
+                    "shadow_lurker"
+                ],
+                "boss": "knowledge_guardian"
+            },
+            "lootTable": {
+                "common": [
+                    "basic_staff",
+                    "basic_book",
+                    "minor_mana_potion"
+                ],
+                "uncommon": [
+                    "reinforced_gloves",
+                    "fine_book",
+                    "normal_mana_potion"
+                ],
+                "rare": [
+                    "superior_book",
+                    "archmage_tome",
+                    "greater_mana_potion"
+                ],
+                "epic": [
+                    "arcane_tome",
+                    "knowledge_crystal",
+                    "ancient_quill"
+                ]
+            },
+            "environmentHazards": [
+                "animated_bookshelves",
+                "knowledge_drain"
+            ]
+        },
+        {
+            "id": "abandoned_mine",
+            "name": "버려진 광산",
+            "type": "mine",
+            "description": "한때 풍부한 광물을 캐던 광산입니다. 지금은 위험한 생물들이 살고 있습니다.",
+            "recommendedLevel": 30,
+            "difficulty": {
+                "base": 7,
+                "growth": 1.8
+            },
+            "layout": {
+                "roomSizeMin": 5,
+                "roomSizeMax": 18,
+                "maxRooms": 16,
+                "minRooms": 9,
+                "specialRoomChance": 0.3
+            },
+            "monsters": {
+                "normal": [
+                    "goblin",
+                    "bat",
+                    "slime",
+                    "mud_golem"
+                ],
+                "elite": [
+                    "stone_golem",
+                    "crystal_golem",
+                    "desert_worm"
+                ],
+                "boss": "crystal_golem"
+            },
+            "lootTable": {
+                "common": [
+                    "basic_pickaxe",
+                    "basic_belt",
+                    "minor_health_potion"
+                ],
+                "uncommon": [
+                    "reinforced_gloves",
+                    "fine_pickaxe",
+                    "normal_health_potion"
+                ],
+                "rare": [
+                    "superior_pickaxe",
+                    "miner_hammer",
+                    "greater_health_potion"
+                ],
+                "epic": [
+                    "golem_core",
+                    "heavy_stone",
+                    "earth_essence"
+                ]
+            },
+            "environmentHazards": [
+                "cave_in",
+                "toxic_gas"
+            ]
+        },
+        {
+            "id": "ancient_city",
+            "name": "고대 도시",
+            "type": "city",
+            "description": "한때 번성했던 도시의 폐허입니다. 과거의 영광은 사라지고 이제는 위험한 생물들의 서식지가 되었습니다.",
+            "recommendedLevel": 35,
+            "difficulty": {
+                "base": 8,
+                "growth": 1.9
+            },
+            "layout": {
+                "roomSizeMin": 6,
+                "roomSizeMax": 15,
+                "maxRooms": 17,
+                "minRooms": 10,
+                "specialRoomChance": 0.3
+            },
+            "monsters": {
+                "normal": [
+                    "bandit",
+                    "skeleton",
+                    "ghost",
+                    "mage_cultist"
+                ],
+                "elite": [
+                    "shadow_assassin",
+                    "living_armor",
+                    "void_specter"
+                ],
+                "boss": "assassin_master"
+            },
+            "lootTable": {
+                "common": [
+                    "basic_dagger",
+                    "basic_cloak",
+                    "minor_agility_potion"
+                ],
+                "uncommon": [
+                    "reinforced_boots",
+                    "fine_dagger",
+                    "normal_agility_potion"
+                ],
+                "rare": [
+                    "superior_dagger",
+                    "assassin_blade",
+                    "greater_agility_potion"
+                ],
+                "epic": [
+                    "assassin_blade",
+                    "shadow_veil",
+                    "poison_vial"
+                ]
+            },
+            "environmentHazards": [
+                "collapsing_buildings",
+                "sewer_gas"
+            ]
+        },
+        {
+            "id": "volcanic_forge",
+            "name": "화산 대장간",
+            "type": "forge",
+            "description": "화산의 심장부에 위치한 고대 대장간입니다. 용암과 불의 생물체들이 이곳을 지배합니다.",
+            "recommendedLevel": 40,
+            "difficulty": {
+                "base": 9,
+                "growth": 2.0
+            },
+            "layout": {
+                "roomSizeMin": 6,
+                "roomSizeMax": 16,
+                "maxRooms": 15,
+                "minRooms": 8,
+                "specialRoomChance": 0.3
+            },
+            "monsters": {
+                "normal": [
+                    "elemental_fire",
+                    "mud_golem",
+                    "mage_cultist"
+                ],
+                "elite": [
+                    "stone_golem",
+                    "shadow_lurker",
+                    "ancient_construct"
+                ],
+                "boss": "molten_guardian"
+            },
+            "lootTable": {
+                "common": [
+                    "basic_hammer",
+                    "basic_gauntlet",
+                    "minor_strength_potion"
+                ],
+                "uncommon": [
+                    "reinforced_chest",
+                    "fine_hammer",
+                    "normal_strength_potion"
+                ],
+                "rare": [
+                    "superior_hammer",
+                    "flame_gauntlet",
+                    "greater_strength_potion"
+                ],
+                "epic": [
+                    "molten_core",
+                    "magma_crystal",
+                    "flame_heart"
+                ]
+            },
+            "environmentHazards": [
+                "lava_flow",
+                "heat_surge"
+            ]
+        },
+        {
+            "id": "frozen_peak",
+            "name": "얼어붙은 봉우리",
+            "type": "snow",
+            "description": "영원히 얼어붙은 산봉우리입니다. 얼음과 눈의 생명체들이 이곳을 차지하고 있습니다.",
+            "recommendedLevel": 45,
+            "difficulty": {
+                "base": 10,
+                "growth": 2.1
+            },
+            "layout": {
+                "roomSizeMin": 7,
+                "roomSizeMax": 18,
+                "maxRooms": 16,
+                "minRooms": 9,
+                "specialRoomChance": 0.25
+            },
+            "monsters": {
+                "normal": [
+                    "elemental_ice",
+                    "wolf",
+                    "spirit_fox"
+                ],
+                "elite": [
+                    "storm_elemental",
+                    "corrupted_druid",
+                    "desert_worm"
+                ],
+                "boss": "frost_giant"
+            },
+            "lootTable": {
+                "common": [
+                    "basic_axe",
+                    "basic_cloak",
+                    "minor_defense_potion"
+                ],
+                "uncommon": [
+                    "reinforced_chest",
+                    "fine_axe",
+                    "normal_defense_potion"
+                ],
+                "rare": [
+                    "superior_axe",
+                    "frost_shield",
+                    "greater_defense_potion"
+                ],
+                "epic": [
+                    "frozen_heart",
+                    "giant_ice_shard",
+                    "perpetual_ice"
+                ]
+            },
+            "environmentHazards": [
+                "avalanche",
+                "freezing_wind"
+            ]
+        },
+        {
+            "id": "void_rift",
+            "name": "공허의 균열",
+            "type": "void",
+            "description": "현실과 공허 사이의 균열입니다. 비정상적인 생명체들이 이곳을 통해 들어옵니다.",
+            "recommendedLevel": 50,
+            "difficulty": {
+                "base": 11,
+                "growth": 2.2
+            },
+            "layout": {
+                "roomSizeMin": 4,
+                "roomSizeMax": 20,
+                "maxRooms": 17,
+                "minRooms": 10,
+                "specialRoomChance": 0.3
+            },
+            "monsters": {
+                "normal": [
+                    "mana_wisp",
+                    "crystal_butterfly",
+                    "ghost"
+                ],
+                "elite": [
+                    "void_specter",
+                    "shadow_lurker",
+                    "wraith"
+                ],
+                "boss": "void_monarch"
+            },
+            "lootTable": {
+                "common": [
+                    "basic_staff",
+                    "basic_amulet",
+                    "minor_mana_potion"
+                ],
+                "uncommon": [
+                    "reinforced_gloves",
+                    "fine_staff",
+                    "normal_mana_potion"
+                ],
+                "rare": [
+                    "superior_staff",
+                    "void_staff",
+                    "greater_mana_potion"
+                ],
+                "epic": [
+                    "void_crown",
+                    "reality_shard",
+                    "essence_of_chaos"
+                ]
+            },
+            "environmentHazards": [
+                "reality_flicker",
+                "void_tears"
+            ]
+        },
+        {
+            "id": "celestial_temple",
+            "name": "천상의 사원",
+            "type": "temple",
+            "description": "하늘 위에 떠 있는 신비로운 사원입니다. 천상의 존재들이 이곳을 수호합니다.",
+            "recommendedLevel": 55,
+            "difficulty": {
+                "base": 12,
+                "growth": 2.3
+            },
+            "layout": {
+                "roomSizeMin": 8,
+                "roomSizeMax": 16,
+                "maxRooms": 16,
+                "minRooms": 9,
+                "specialRoomChance": 0.4
+            },
+            "monsters": {
+                "normal": [
+                    "mana_wisp",
+                    "spirit_fox",
+                    "crystal_butterfly"
+                ],
+                "elite": [
+                    "storm_elemental",
+                    "ancient_construct",
+                    "corrupted_druid"
+                ],
+                "boss": "celestial_guardian"
+            },
+            "lootTable": {
+                "common": [
+                    "basic_staff",
+                    "basic_ring",
+                    "minor_health_potion"
+                ],
+                "uncommon": [
+                    "reinforced_helmet",
+                    "fine_staff",
+                    "normal_health_potion"
+                ],
+                "rare": [
+                    "superior_staff",
+                    "divine_mace",
+                    "greater_health_potion"
+                ],
+                "epic": [
+                    "celestial_core",
+                    "divine_feather",
+                    "holy_light_essence"
+                ]
+            },
+            "environmentHazards": [
+                "light_pillar",
+                "gravity_shift"
+            ]
+        },
+        {
+            "id": "crimson_crypt",
+            "name": "진홍의 지하실",
+            "type": "crypt",
+            "description": "피로 물든 지하 묘지입니다. 죽음과 피의 마법이 이곳을 지배합니다.",
+            "recommendedLevel": 60,
+            "difficulty": {
+                "base": 13,
+                "growth": 2.4
+            },
+            "layout": {
+                "roomSizeMin": 5,
+                "roomSizeMax": 14,
+                "maxRooms": 15,
+                "minRooms": 9,
+                "specialRoomChance": 0.3
+            },
+            "monsters": {
+                "normal": [
+                    "skeleton",
+                    "zombie",
+                    "ghost",
+                    "wraith"
+                ],
+                "elite": [
+                    "shadow_lurker",
+                    "cursed_knight",
+                    "void_specter"
+                ],
+                "boss": "blood_necromancer"
+            },
+            "lootTable": {
+                "common": [
+                    "basic_dagger",
+                    "basic_cloak",
+                    "minor_health_potion"
+                ],
+                "uncommon": [
+                    "reinforced_boots",
+                    "fine_dagger",
+                    "normal_health_potion"
+                ],
+                "rare": [
+                    "superior_staff",
+                    "blood_staff",
+                    "greater_health_potion"
+                ],
+                "epic": [
+                    "blood_orb",
+                    "necromancer_skull",
+                    "crimson_staff"
+                ]
+            },
+            "environmentHazards": [
+                "blood_pool",
+                "bone_spike"
+            ]
+        },
+        {
+            "id": "abyssal_depths",
+            "name": "심연의 깊이",
+            "type": "abyss",
+            "description": "바다 밑 심연에 존재하는 상상할 수 없는 공포가 깃든 곳입니다.",
+            "recommendedLevel": 65,
+            "difficulty": {
+                "base": 14,
+                "growth": 2.5
+            },
+            "layout": {
+                "roomSizeMin": 6,
+                "roomSizeMax": 18,
+                "maxRooms": 16,
+                "minRooms": 9,
+                "specialRoomChance": 0.3
+            },
+            "monsters": {
+                "normal": [
+                    "slime",
+                    "ghost",
+                    "water_elemental"
+                ],
+                "elite": [
+                    "void_specter",
+                    "shadow_lurker",
+                    "storm_elemental"
+                ],
+                "boss": "abyssal_horror"
+            },
+            "lootTable": {
+                "common": [
+                    "basic_staff",
+                    "basic_trident",
+                    "minor_mana_potion"
+                ],
+                "uncommon": [
+                    "reinforced_gloves",
+                    "fine_trident",
+                    "normal_mana_potion"
+                ],
+                "rare": [
+                    "superior_staff",
+                    "void_trident",
+                    "greater_mana_potion"
+                ],
+                "epic": [
+                    "abyssal_eye",
+                    "eldritch_tentacle",
+                    "void_heart"
+                ]
+            },
+            "environmentHazards": [
+                "crushing_pressure",
+                "tentacle_grasp"
+            ]
+        },
+        {
+            "id": "mechanical_labyrinth",
+            "name": "기계 미로",
+            "type": "laboratory",
+            "description": "자동화된 기계와 기술의 복잡한 미로입니다. 기계 생명체들이 이곳을 방어합니다.",
+            "recommendedLevel": 70,
+            "difficulty": {
+                "base": 15,
+                "growth": 2.6
+            },
+            "layout": {
+                "roomSizeMin": 5,
+                "roomSizeMax": 15,
+                "maxRooms": 18,
+                "minRooms": 10,
+                "specialRoomChance": 0.25
+            },
+            "monsters": {
+                "normal": [
+                    "mana_wisp",
+                    "elemental_fire",
+                    "elemental_ice"
+                ],
+                "elite": [
+                    "clockwork_sentinel",
+                    "ancient_construct",
+                    "storm_elemental"
+                ],
+                "boss": "mechanical_hydra"
+            },
+            "lootTable": {
+                "common": [
+                    "basic_hammer",
+                    "basic_gear",
+                    "minor_strength_potion"
+                ],
+                "uncommon": [
+                    "reinforced_gloves",
+                    "fine_gear",
+                    "normal_strength_potion"
+                ],
+                "rare": [
+                    "superior_gear",
+                    "mechanical_bow",
+                    "greater_strength_potion"
+                ],
+                "epic": [
+                    "hydra_core",
+                    "mechanical_heart",
+                    "power_crystal"
+                ]
+            },
+            "environmentHazards": [
+                "gear_trap",
+                "steam_vent"
+            ]
+        },
+        {
+            "id": "timeless_clocktower",
+            "name": "시간 없는 시계탑",
+            "type": "clocktower",
+            "description": "시간의 흐름이 불규칙한 고대의 시계탑입니다. 시간의 수호자가 이곳을 지배합니다.",
+            "recommendedLevel": 75,
+            "difficulty": {
+                "base": 16,
+                "growth": 2.7
+            },
+            "layout": {
+                "roomSizeMin": 6,
+                "roomSizeMax": 14,
+                "maxRooms": 17,
+                "minRooms": 10,
+                "specialRoomChance": 0.3
+            },
+            "monsters": {
+                "normal": [
+                    "living_book",
+                    "mana_wisp",
+                    "crystal_butterfly"
+                ],
+                "elite": [
+                    "clockwork_sentinel",
+                    "ancient_construct",
+                    "void_specter"
+                ],
+                "boss": "time_keeper"
+            },
+            "lootTable": {
+                "common": [
+                    "basic_staff",
+                    "basic_clock",
+                    "minor_mana_potion"
+                ],
+                "uncommon": [
+                    "reinforced_gloves",
+                    "fine_clock",
+                    "normal_mana_potion"
+                ],
+                "rare": [
+                    "superior_staff",
+                    "time_wand",
+                    "greater_mana_potion"
+                ],
+                "epic": [
+                    "chronos_pendulum",
+                    "time_crystal",
+                    "eternal_hourglass"
+                ]
+            },
+            "environmentHazards": [
+                "time_anomaly",
+                "gear_collapse"
+            ]
+        }
+    ],
+    "roomTypes": {
+        "normal": {
+            "name": "일반 방",
+            "description": "일반적인 던전 방입니다.",
+            "monsterDensity": 1.0,
+            "treasureChance": 0.3,
+            "trapDensity": 1.0
+        },
+        "entrance": {
+            "name": "입구",
+            "description": "던전의 입구입니다. 대체로 안전합니다.",
+            "monsterDensity": 0.0,
+            "treasureChance": 0.0,
+            "trapDensity": 0.0
+        },
+        "treasure": {
+            "name": "보물 방",
+            "description": "보물이 가득한 방입니다. 가끔 보물을 지키는 몬스터가 있을 수 있습니다.",
+            "monsterDensity": 0.2,
+            "treasureChance": 1.0,
+            "trapDensity": 1.2,
+            "guardianChance": 0.5
+        },
+        "challenge": {
+            "name": "도전 방",
+            "description": "여러 웨이브의 몬스터들과 싸워야 하는 도전적인 방입니다. 성공 시 보상이 주어집니다.",
+            "monsterDensity": 2.0,
+            "treasureChance": 1.0,
+            "trapDensity": 0.5,
+            "waveCount": {
+                "min": 2,
+                "max": 4
+            }
+        },
+        "merchant": {
+            "name": "상인 방",
+            "description": "던전에서 아이템을 사고 팔 수 있는 상인이 있는 방입니다.",
+            "monsterDensity": 0.0,
+            "treasureChance": 0.0,
+            "trapDensity": 0.0
+        },
+        "shrine": {
+            "name": "신단 방",
+            "description": "일시적인 버프를 제공하는 신단이 있는 방입니다.",
+            "monsterDensity": 0.0,
+            "treasureChance": 0.1,
+            "trapDensity": 0.5,
+            "shrineTypes": [
+                "health",
+                "strength",
+                "defense",
+                "speed",
+                "mana"
+            ]
+        },
+        "boss": {
+            "name": "보스 방",
+            "description": "던전의 최종 보스가 있는 방입니다. 도전적인 전투가 기다리고 있습니다.",
+            "monsterDensity": 0.5,
+            "treasureChance": 1.0,
+            "trapDensity": 0.2,
+            "bossPresent": true,
+            "minionCount": {
+                "min": 2,
+                "max": 4
+            }
+        }
+    },
+    "hazards": {
+        "spike": {
+            "name": "가시 함정",
+            "description": "바닥에서 튀어나오는 날카로운 가시들입니다.",
+            "damageMultiplier": 1.0,
+            "statusEffect": null,
+            "detectChance": 0.5
+        },
+        "poison": {
+            "name": "독 함정",
+            "description": "독성 가스를 방출하는 함정입니다.",
+            "damageMultiplier": 0.8,
+            "statusEffect": "poison",
+            "statusDuration": 5,
+            "detectChance": 0.4
+        },
+        "arrow": {
+            "name": "화살 함정",
+            "description": "벽에서 발사되는 화살 함정입니다.",
+            "damageMultiplier": 1.2,
+            "statusEffect": null,
+            "detectChance": 0.6
+        },
+        "fire": {
+            "name": "화염 함정",
+            "description": "바닥에서 불꽃이 솟아오르는 함정입니다.",
+            "damageMultiplier": 1.3,
+            "statusEffect": "burn",
+            "statusDuration": 3,
+            "detectChance": 0.5
+        },
+        "frost": {
+            "name": "냉기 함정",
+            "description": "차가운 기운을 방출하는 함정입니다.",
+            "damageMultiplier": 0.7,
+            "statusEffect": "slow",
+            "statusDuration": 4,
+            "slowAmount": 0.5,
+            "detectChance": 0.5
+        },
+        "falling_rocks": {
+            "name": "낙석",
+            "description": "천장에서 바위가 떨어지는 환경적 위험요소입니다.",
+            "damageMultiplier": 1.5,
+            "interval": {
+                "min": 5,
+                "max": 10
+            },
+            "detectChance": 0.3,
+            "dungeonTypes": [
+                "cave",
+                "mine",
+                "ruins"
+            ]
+        },
+        "poisonous_plants": {
+            "name": "독성 식물",
+            "description": "닿으면 독을 주입하는 식물들입니다.",
+            "damageMultiplier": 0.5,
+            "statusEffect": "poison",
+            "statusDuration": 8,
+            "slowAmount": 0.3,
+            "detectChance": 0.4,
+            "dungeonTypes": [
+                "forest",
+                "swamp"
+            ]
+        },
+        "magic_device": {
+            "name": "마법 장치",
+            "description": "불규칙하게 마법 에너지를 발산하는 장치입니다.",
+            "damageMultiplier": 1.8,
+            "elementTypes": [
+                "fire",
+                "ice",
+                "lightning"
+            ],
+            "interval": {
+                "min": 6,
+                "max": 12
+            },
+            "detectChance": 0.7,
+            "dungeonTypes": [
+                "tower",
+                "library",
+                "laboratory"
+            ]
+        },
+        "swinging_blades": {
+            "name": "흔들리는 칼날",
+            "description": "왔다갔다 움직이는 날카로운 칼날 함정입니다.",
+            "damageMultiplier": 1.6,
+            "interval": {
+                "min": 2,
+                "max": 4
+            },
+            "detectChance": 0.6,
+            "dungeonTypes": [
+                "castle",
+                "ruins",
+                "temple"
+            ]
+        },
+        "collapsing_pillars": {
+            "name": "무너지는 기둥",
+            "description": "쓰러지는 기둥이 넓은 영역에 피해를 입힙니다.",
+            "damageMultiplier": 1.7,
+            "interval": {
+                "min": 15,
+                "max": 25
+            },
+            "areaOfEffect": 3,
+            "collapsing_pillars": {
+                "name": "무너지는 기둥",
+                "description": "쓰러지는 기둥이 넓은 영역에 피해를 입힙니다.",
+                "damageMultiplier": 1.7,
+                "interval": {
+                    "min": 15,
+                    "max": 25
+                },
+                "areaOfEffect": 3,
+                "detectChance": 0.3,
+                "dungeonTypes": [
+                    "ruins",
+                    "temple",
+                    "castle"
+                ]
+            },
+            "unstable_portals": {
+                "name": "불안정한 포탈",
+                "description": "랜덤하게 나타나는 포탈이 다양한 원소 에너지를 방출합니다.",
+                "damageMultiplier": 1.4,
+                "elementTypes": [
+                    "fire",
+                    "ice",
+                    "lightning",
+                    "arcane"
+                ],
+                "interval": {
+                    "min": 8,
+                    "max": 15
+                },
+                "detectChance": 0.5,
+                "dungeonTypes": [
+                    "tower",
+                    "library",
+                    "void"
+                ]
+            },
+            "animated_bookshelves": {
+                "name": "움직이는 책장",
+                "description": "마법에 걸린 책장이 주기적으로 이동하며 부딪힐 경우 피해를 입힙니다.",
+                "damageMultiplier": 1.3,
+                "interval": {
+                    "min": 10,
+                    "max": 20
+                },
+                "detectChance": 0.4,
+                "dungeonTypes": [
+                    "library",
+                    "tower"
+                ]
+            },
+            "lava_flow": {
+                "name": "용암 흐름",
+                "description": "바닥을 흐르는 용암이 심각한 화상을 입힙니다.",
+                "damageMultiplier": 2.0,
+                "statusEffect": "burn",
+                "statusDuration": 5,
+                "detectChance": 0.8,
+                "dungeonTypes": [
+                    "forge",
+                    "volcano",
+                    "cave"
+                ]
+            },
+            "avalanche": {
+                "name": "눈사태",
+                "description": "거대한 눈덩어리가 쏟아져 내립니다.",
+                "damageMultiplier": 1.8,
+                "statusEffect": "slow",
+                "statusDuration": 4,
+                "interval": {
+                    "min": 20,
+                    "max": 40
+                },
+                "areaOfEffect": 4,
+                "detectChance": 0.2,
+                "dungeonTypes": [
+                    "snow",
+                    "mountain"
+                ]
+            },
+            "reality_flicker": {
+                "name": "현실 깜빡임",
+                "description": "현실의 구조가 불안정하게 깜빡이며 무작위 위치에 대미지를 입힙니다.",
+                "damageMultiplier": 1.2,
+                "interval": {
+                    "min": 3,
+                    "max": 8
+                },
+                "areaOfEffect": 2,
+                "detectChance": 0.3,
+                "dungeonTypes": [
+                    "void",
+                    "abyss"
+                ]
+            },
+            "blood_pool": {
+                "name": "피의 웅덩이",
+                "description": "바닥에 고여 있는 저주받은 피가 생명력을 흡수합니다.",
+                "damageMultiplier": 0.8,
+                "statusEffect": "life_drain",
+                "statusDuration": 6,
+                "detectChance": 0.5,
+                "dungeonTypes": [
+                    "crypt",
+                    "castle",
+                    "ruins"
+                ]
+            },
+            "time_anomaly": {
+                "name": "시간 이상",
+                "description": "시간이 불규칙하게 흐르는 영역으로, 대상의 행동 속도가 무작위로 변합니다.",
+                "damageMultiplier": 0.5,
+                "statusEffects": [
+                    "slow",
+                    "haste"
+                ],
+                "statusDuration": 8,
+                "detectChance": 0.2,
+                "dungeonTypes": [
+                    "clocktower",
+                    "void",
+                    "library"
+                ]
+            },
+            "gear_collapse": {
+                "name": "기어 붕괴",
+                "description": "천장에서 거대한 기어가 떨어져 큰 피해를 입힙니다.",
+                "damageMultiplier": 2.2,
+                "interval": {
+                    "min": 15,
+                    "max": 30
+                },
+                "areaOfEffect": 3,
+                "detectChance": 0.3,
+                "dungeonTypes": [
+                    "clocktower",
+                    "laboratory",
+                    "factory"
+                ]
+            },
+            "crushing_pressure": {
+                "name": "압착 압력",
+                "description": "갑자기 증가하는 수압이 전체 지역에 피해를 입힙니다.",
+                "damageMultiplier": 1.4,
+                "interval": {
+                    "min": 25,
+                    "max": 45
+                },
+                "areaOfEffect": 6,
+                "detectChance": 0.1,
+                "dungeonTypes": [
+                    "abyss",
+                    "ocean"
+                ]
+            }
+        },
+        "shrines": {
+            "health": {
+                "name": "생명의 신단",
+                "description": "생명력을 회복하고 최대 체력을 일시적으로 증가시킵니다.",
+                "effects": {
+                    "heal_percent": 0.5,
+                    "max_hp_bonus": 0.2,
+                    "duration": 300
+                }
+            },
+            "strength": {
+                "name": "힘의 신단",
+                "description": "공격력을 일시적으로 증가시킵니다.",
+                "effects": {
+                    "attack_bonus": 0.3,
+                    "duration": 300
+                }
+            },
+            "defense": {
+                "name": "방어의 신단",
+                "description": "방어력을 일시적으로 증가시킵니다.",
+                "effects": {
+                    "defense_bonus": 0.3,
+                    "damage_reduction": 0.15,
+                    "duration": 300
+                }
+            },
+            "speed": {
+                "name": "속도의 신단",
+                "description": "이동 속도와 공격 속도를 일시적으로 증가시킵니다.",
+                "effects": {
+                    "move_speed_bonus": 0.2,
+                    "attack_speed_bonus": 0.2,
+                    "duration": 300
+                }
+            },
+            "mana": {
+                "name": "마나의 신단",
+                "description": "마나를 회복하고 마나 재생 속도를 일시적으로 증가시킵니다.",
+                "effects": {
+                    "mana_restore_percent": 0.8,
+                    "mana_regen_bonus": 0.5,
+                    "spell_power_bonus": 0.1,
+                    "duration": 300
+                }
+            },
+            "fortune": {
+                "name": "행운의 신단",
+                "description": "아이템 드롭률과 골드 획득량을 일시적으로 증가시킵니다.",
+                "effects": {
+                    "item_find_bonus": 0.4,
+                    "gold_find_bonus": 0.3,
+                    "critical_chance_bonus": 0.1,
+                    "duration": 300
+                }
+            },
+            "elements": {
+                "name": "원소의 신단",
+                "description": "무작위 원소 대미지를 증가시키고 해당 원소 저항력을 부여합니다.",
+                "effects": {
+                    "element_damage_bonus": 0.35,
+                    "element_resistance_bonus": 0.5,
+                    "elements": [
+                        "fire",
+                        "ice",
+                        "lightning",
+                        "poison",
+                        "arcane"
+                    ],
+                    "duration": 300
+                }
+            },
+            "protection": {
+                "name": "보호의 신단",
+                "description": "일정량의 대미지를 흡수하는 보호막을 제공합니다.",
+                "effects": {
+                    "shield_amount": 100,
+                    "duration": 300
+                }
+            }
+        },
+        "treasureChests": {
+            "wooden": {
+                "name": "나무 상자",
+                "description": "일반적인 나무 상자입니다. 기본적인 아이템이 들어있습니다.",
+                "rarityDistribution": {
+                    "common": 75,
+                    "uncommon": 20,
+                    "rare": 5,
+                    "epic": 0,
+                    "legendary": 0
+                },
+                "goldRange": {
+                    "min": 5,
+                    "max": 20
+                },
+                "itemCount": {
+                    "min": 1,
+                    "max": 2
+                },
+                "trapChance": 0.1
+            },
+            "silver": {
+                "name": "은 상자",
+                "description": "은장식이 있는 상자입니다. 더 나은 아이템이 들어있습니다.",
+                "rarityDistribution": {
+                    "common": 40,
+                    "uncommon": 45,
+                    "rare": 15,
+                    "epic": 0,
+                    "legendary": 0
+                },
+                "goldRange": {
+                    "min": 20,
+                    "max": 50
+                },
+                "itemCount": {
+                    "min": 1,
+                    "max": 3
+                },
+                "trapChance": 0.2
+            },
+            "golden": {
+                "name": "황금 상자",
+                "description": "황금으로 장식된 상자입니다. 희귀한 아이템이 들어있을 가능성이 높습니다.",
+                "rarityDistribution": {
+                    "common": 15,
+                    "uncommon": 40,
+                    "rare": 35,
+                    "epic": 10,
+                    "legendary": 0
+                },
+                "goldRange": {
+                    "min": 50,
+                    "max": 150
+                },
+                "itemCount": {
+                    "min": 2,
+                    "max": 4
+                },
+                "trapChance": 0.3
+            },
+            "crystal": {
+                "name": "크리스탈 상자",
+                "description": "마법 크리스탈로 만들어진 상자입니다. 매우 귀중한 아이템이 들어있습니다.",
+                "rarityDistribution": {
+                    "common": 0,
+                    "uncommon": 20,
+                    "rare": 50,
+                    "epic": 25,
+                    "legendary": 5
+                },
+                "goldRange": {
+                    "min": 150,
+                    "max": 300
+                },
+                "itemCount": {
+                    "min": 2,
+                    "max": 4
+                },
+                "trapChance": 0.4
+            },
+            "ancient": {
+                "name": "고대 상자",
+                "description": "고대 문명에서 만들어진 상자입니다. 전설적인 아이템이 들어있을 가능성이 있습니다.",
+                "rarityDistribution": {
+                    "common": 0,
+                    "uncommon": 5,
+                    "rare": 35,
+                    "epic": 45,
+                    "legendary": 15
+                },
+                "goldRange": {
+                    "min": 300,
+                    "max": 500
+                },
+                "itemCount": {
+                    "min": 3,
+                    "max": 5
+                },
+                "trapChance": 0.5
+            },
+            "dragon": {
+                "name": "용의 보물 상자",
+                "description": "용이 수집한 귀중한 보물이 담긴 상자입니다. 최고급 아이템이 들어있습니다.",
+                "rarityDistribution": {
+                    "common": 0,
+                    "uncommon": 0,
+                    "rare": 10,
+                    "epic": 60,
+                    "legendary": 30
+                },
+                "goldRange": {
+                    "min": 500,
+                    "max": 1000
+                },
+                "itemCount": {
+                    "min": 3,
+                    "max": 6
+                },
+                "trapChance": 0.6
+            }
+        },
+        "merchants": {
+            "standard": {
+                "name": "일반 상인",
+                "description": "기본적인 아이템을 판매하는 방랑 상인입니다.",
+                "inventorySize": {
+                    "min": 5,
+                    "max": 10
+                },
+                "rarityDistribution": {
+                    "common": 60,
+                    "uncommon": 30,
+                    "rare": 10,
+                    "epic": 0,
+                    "legendary": 0
+                },
+                "priceMultiplier": 1.0,
+                "buyRate": 0.5
+            },
+            "blacksmith": {
+                "name": "대장장이",
+                "description": "고품질 무기와 방어구를 판매하는 대장장이입니다.",
+                "inventorySize": {
+                    "min": 4,
+                    "max": 8
+                },
+                "itemTypes": [
+                    "weapon",
+                    "armor"
+                ],
+                "rarityDistribution": {
+                    "common": 30,
+                    "uncommon": 40,
+                    "rare": 25,
+                    "epic": 5,
+                    "legendary": 0
+                },
+                "priceMultiplier": 1.2,
+                "buyRate": 0.6
+            },
+            "alchemist": {
+                "name": "연금술사",
+                "description": "포션과 마법 아이템을 판매하는 연금술사입니다.",
+                "inventorySize": {
+                    "min": 5,
+                    "max": 12
+                },
+                "itemTypes": [
+                    "potion",
+                    "scroll",
+                    "consumable"
+                ],
+                "rarityDistribution": {
+                    "common": 40,
+                    "uncommon": 35,
+                    "rare": 20,
+                    "epic": 5,
+                    "legendary": 0
+                },
+                "priceMultiplier": 1.1,
+                "buyRate": 0.55
+            },
+            "mystic": {
+                "name": "신비한 상인",
+                "description": "희귀하고 특이한 아이템을 판매하는 신비한 상인입니다.",
+                "inventorySize": {
+                    "min": 3,
+                    "max": 6
+                },
+                "rarityDistribution": {
+                    "common": 10,
+                    "uncommon": 30,
+                    "rare": 40,
+                    "epic": 18,
+                    "legendary": 2
+                },
+                "priceMultiplier": 1.5,
+                "buyRate": 0.4
+            },
+            "black_market": {
+                "name": "암시장 상인",
+                "description": "불법적인 방법으로 얻은 고급 아이템을 판매하는 암시장 상인입니다.",
+                "inventorySize": {
+                    "min": 4,
+                    "max": 7
+                },
+                "rarityDistribution": {
+                    "common": 5,
+                    "uncommon": 25,
+                    "rare": 45,
+                    "epic": 20,
+                    "legendary": 5
+                },
+                "priceMultiplier": 1.7,
+                "buyRate": 0.3
+            },
+            "wandering_spirit": {
+                "name": "방랑하는 영혼",
+                "description": "다른 차원에서 온 아이템을 판매하는, 반투명한 형태의 영혼입니다.",
+                "inventorySize": {
+                    "min": 2,
+                    "max": 5
+                },
+                "rarityDistribution": {
+                    "common": 0,
+                    "uncommon": 10,
+                    "rare": 30,
+                    "epic": 50,
+                    "legendary": 10
+                },
+                "priceMultiplier": 2.0,
+                "buyRate": 0.2
+            }
+        },
+        "difficultyScaling": {
+            "monsterHealthMultiplier": 1.1,
+            "monsterDamageMultiplier": 1.15,
+            "monsterDefenseMultiplier": 1.05,
+            "eliteHealthBonus": 1.5,
+            "eliteDamageBonus": 1.3,
+            "eliteDefenseBonus": 1.4,
+            "bossHealthBonus": 3.0,
+            "bossDamageBonus": 2.0,
+            "bossDefenseBonus": 2.5,
+            "expGainMultiplier": 1.1,
+            "goldGainMultiplier": 1.15,
+            "lootQualityMultiplier": 1.2,
+            "specialRoomChanceMultiplier": 1.1,
+            "trapDamageMultiplier": 1.2
+        }
+    },
+}

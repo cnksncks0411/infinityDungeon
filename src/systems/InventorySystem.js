@@ -3,24 +3,27 @@ class InventorySystem {
     constructor(scene) {
         this.scene = scene;
         this.game = scene.game;
-
+        
+        // 아이템 데이터 로드
+        this.itemData = this.loadItemData();
+        
         // 인벤토리 참조
         this.inventory = this.scene.game.gameData.inventory || [];
-
+        
         // 장비 참조
         this.equipment = this.scene.game.gameData.player.equipment || {
             weapon: null,
             armor: null,
             accessory: null
         };
-
+        
         // 장비 슬롯 설정
         this.equipmentSlots = {
             weapon: ['sword', 'axe', 'mace', 'spear', 'bow', 'staff', 'dagger', 'wand', 'hammer', 'fist'],
             armor: ['helmet', 'chest', 'gloves', 'boots', 'shield'],
             accessory: ['ring', 'amulet', 'bracelet', 'belt', 'cloak']
         };
-
+        
         // 아이템 사용 효과 함수 매핑
         this.itemEffects = {
             // 포션 효과
@@ -29,7 +32,7 @@ class InventorySystem {
             'strength_potion': this.useStrengthPotion.bind(this),
             'defense_potion': this.useDefensePotion.bind(this),
             'speed_potion': this.useSpeedPotion.bind(this),
-
+            
             // 스크롤 효과
             'teleport_scroll': this.useTeleportScroll.bind(this),
             'identify_scroll': this.useIdentifyScroll.bind(this),
@@ -39,121 +42,304 @@ class InventorySystem {
             'lightning_scroll': this.useLightningScroll.bind(this),
             'healing_scroll': this.useHealingScroll.bind(this),
             'protection_scroll': this.useProtectionScroll.bind(this),
-
+            
             // 기타 소비 아이템
             'food': this.useFood.bind(this),
             'bomb': this.useBomb.bind(this)
         };
-
+        
         // 아이템 효과 이벤트 리스너
         this.scene.events.on('itemEffect', this.handleItemEffect, this);
     }
-
+    
+    // 아이템 데이터 로드
+    loadItemData() {
+        try {
+            const rawData = this.scene.cache.json.get('items');
+            return this.processItemData(rawData);
+        } catch (error) {
+            console.error('아이템 데이터 로드 실패:', error);
+            return [];
+        }
+    }
+    
+    // 아이템 데이터 처리
+    processItemData(rawData) {
+        return rawData.map(item => ({
+            ...item,
+            // 필요한 경우 추가 처리
+            value: item.value || 0,
+            requiredLevel: item.requiredLevel || 1,
+            dropRate: item.dropRate || 0.01
+        }));
+    }
+    
     // 인벤토리 가져오기
     getInventory() {
         return this.inventory;
     }
-
+    
     // 장비 가져오기
     getEquipment() {
         return this.equipment;
     }
-
+    
+    // 아이템 템플릿 가져오기
+    getItemTemplate(itemId) {
+        return this.itemData.find(item => item.id === itemId);
+    }
+    
+    // 새 아이템 생성
+    createNewItem(itemId, options = {}) {
+        const template = this.getItemTemplate(itemId);
+        if (!template) return null;
+        
+        // 기본 아이템 복제
+        const newItem = { 
+            ...template,
+            instanceId: `${itemId}_${Date.now()}_${Math.floor(Math.random() * 1000)}` // 고유 인스턴스 ID
+        };
+        
+        // 추가 옵션 적용
+        if (options.quality) newItem.quality = options.quality;
+        if (options.count) newItem.count = options.count;
+        if (options.enchantLevel) newItem.enchantLevel = options.enchantLevel;
+        
+        // 희귀도에 따른 랜덤 속성 추가
+        if (options.generateAttributes) {
+            newItem.attributes = this.generateItemAttributes(newItem);
+        }
+        
+        return newItem;
+    }
+    
+    // 아이템 희귀도에 따른 랜덤 속성 생성
+    generateItemAttributes(item) {
+        if (!item || !item.rarity) return [];
+        
+        const attributes = [];
+        let attrCount = 0;
+        
+        // 희귀도에 따른 속성 수 결정
+        switch (item.rarity) {
+            case 'common': attrCount = 0; break;
+            case 'uncommon': attrCount = Math.floor(Math.random() * 2) + 1; break; // 1-2
+            case 'rare': attrCount = Math.floor(Math.random() * 2) + 2; break; // 2-3
+            case 'epic': attrCount = Math.floor(Math.random() * 2) + 3; break; // 3-4
+            case 'legendary': attrCount = Math.floor(Math.random() * 2) + 4; break; // 4-5
+            case 'mythic': attrCount = Math.floor(Math.random() * 3) + 5; break; // 5-7
+        }
+        
+        // 가능한 속성 목록
+        const possibleAttributes = [
+            { type: 'attack_bonus', min: 1, max: 10 },
+            { type: 'defense_bonus', min: 1, max: 10 },
+            { type: 'hp_bonus', min: 5, max: 50 },
+            { type: 'mp_bonus', min: 5, max: 30 },
+            { type: 'speed_bonus', min: 1, max: 5 },
+            { type: 'crit_chance', min: 1, max: 10 },
+            { type: 'crit_damage', min: 5, max: 30 },
+            { type: 'elem_resistance', min: 5, max: 20, element: ['fire', 'ice', 'lightning', 'poison'] }
+        ];
+        
+        // 속성 생성
+        for (let i = 0; i < attrCount; i++) {
+            const attrTemplate = possibleAttributes[Math.floor(Math.random() * possibleAttributes.length)];
+            
+            let attribute = {
+                type: attrTemplate.type,
+                value: Math.floor(Math.random() * (attrTemplate.max - attrTemplate.min + 1)) + attrTemplate.min
+            };
+            
+            // 속성이 원소 저항인 경우 원소 타입 추가
+            if (attrTemplate.type === 'elem_resistance') {
+                attribute.element = attrTemplate.element[Math.floor(Math.random() * attrTemplate.element.length)];
+            }
+            
+            attributes.push(attribute);
+        }
+        
+        return attributes;
+    }
+    
+    // 클래스에 착용 가능한 아이템인지 확인
+    canEquipByClass(itemId, classId) {
+        const template = this.getItemTemplate(itemId);
+        if (!template || !template.classRestriction) return true; // 제한 없음
+        
+        const className = this.getClassNameById(classId);
+        return template.classRestriction.includes(className);
+    }
+    
+    // 클래스 ID에 해당하는 이름 가져오기
+    getClassNameById(classId) {
+        const classNameMap = {
+            'warrior': '전사',
+            'archer': '궁수',
+            'mage': '마법사',
+            'thief': '도적',
+            'lancer': '창병',
+            'monk': '무도가',
+            'cleric': '성직자',
+            'hunter': '사냥꾼',
+            'knight': '기사',
+            'alchemist': '연금술사',
+            'magic_knight': '마검사',
+            'ranger': '레인저',
+            'assassin': '어쌔신',
+            'battle_mage': '배틀메이지',
+            'crusader': '십자군',
+            'druid': '드루이드',
+            'ninja': '닌자',
+            'paladin': '팔라딘',
+            'gunner': '거너',
+            'berserker': '광전사',
+            'bard': '음유시인',
+            'summoner': '소환사',
+            'dark_mage': '암흑마법사',
+            'guardian': '수호자',
+            'spellblade': '스펠블레이드',
+            'scout': '정찰병',
+            'warden': '와든',
+            'shadowdancer': '그림자춤꾼',
+            'elementalist': '정령술사',
+            'herbalist': '약초학자'
+        };
+        
+        return classNameMap[classId] || classId;
+    }
+    
     // 아이템 추가
-    addItem(item) {
-        // 기존 아이템인지 확인 (포션 같은 소비 아이템)
+    addItem(itemId, options = {}) {
+        let item;
+        
+        // 이미 생성된 아이템 객체인 경우
+        if (typeof itemId === 'object') {
+            item = itemId;
+        } else {
+            // 아이템 ID를 기반으로 새 아이템 생성
+            item = this.createNewItem(itemId, options);
+            if (!item) return null;
+        }
+        
+        // 기존 소비 아이템인지 확인
         if (item.type === 'consumable') {
-            const existingItem = this.inventory.find(i =>
-                i.id === item.id && i.type === 'consumable'
+            const existingItem = this.inventory.find(i => 
+                i.id === item.id && i.type === 'consumable' && 
+                (!item.quality || i.quality === item.quality)
             );
-
+            
             if (existingItem) {
                 existingItem.count = (existingItem.count || 1) + (item.count || 1);
                 return existingItem;
             }
         }
-
+        
         // 새 아이템 추가
         this.inventory.push(item);
-
+        
         // 아이템 획득 이벤트 발생
         this.scene.events.emit('itemAcquired', item);
-
+        
+        // UI 업데이트
+        if (this.scene.ui && this.scene.ui.updateInventory) {
+            this.scene.ui.updateInventory(this.inventory);
+        }
+        
         return item;
     }
-
+    
     // 아이템 제거
     removeItem(itemId, count = 1) {
-        const index = this.inventory.findIndex(item => item.id === itemId);
-
+        const index = this.inventory.findIndex(item => 
+            item.id === itemId || item.instanceId === itemId
+        );
+        
         if (index === -1) return false;
-
+        
         const item = this.inventory[index];
-
+        
         // 소비 아이템인 경우 개수 감소
         if (item.type === 'consumable' && item.count > count) {
             item.count -= count;
+            
+            // UI 업데이트
+            if (this.scene.ui && this.scene.ui.updateInventory) {
+                this.scene.ui.updateInventory(this.inventory);
+            }
+            
             return true;
         }
-
+        
         // 아이템 제거
         this.inventory.splice(index, 1);
-
+        
         // 아이템 제거 이벤트 발생
         this.scene.events.emit('itemRemoved', itemId);
-
+        
+        // UI 업데이트
+        if (this.scene.ui && this.scene.ui.updateInventory) {
+            this.scene.ui.updateInventory(this.inventory);
+        }
+        
         return true;
     }
-
+    
     // 아이템 사용
     useItem(itemId) {
         const item = this.getItemById(itemId);
-
         if (!item) return false;
-
+        
         // 아이템 타입에 따른 처리
         if (item.type === 'consumable') {
             // 효과 함수 찾기
             const effectFunction = this.itemEffects[item.id] || this.itemEffects[item.subType];
-
+            
             if (effectFunction) {
                 // 아이템 효과 적용
                 const success = effectFunction(item);
-
+                
                 if (success) {
                     // 아이템 소비
                     this.removeItem(itemId, 1);
-
+                    
                     // 아이템 사용 이벤트 발생
                     this.scene.events.emit('itemUsed', item);
-
+                    
                     return true;
                 }
             }
         }
-
+        
         return false;
     }
-
+    
     // 아이템 장착
     equipItem(itemId) {
         const item = this.getItemById(itemId);
-
         if (!item) return false;
-
+        
         // 장착 가능한 아이템인지 확인
-        if (!this.isEquippable(item)) return false;
-
+        if (!this.isEquippable(item)) {
+            this.scene.ui.showNotification('장착할 수 없는 아이템입니다.', 0xff0000);
+            return false;
+        }
+        
         // 요구 레벨 확인
         if (item.requiredLevel && this.scene.player.level < item.requiredLevel) {
-            // 레벨 부족 알림
             this.scene.ui.showNotification(`아이템 장착에 필요한 레벨(${item.requiredLevel})이 부족합니다.`, 0xff0000);
             return false;
         }
-
+        
+        // 클래스 제한 확인
+        if (!this.canEquipByClass(item.id, this.scene.player.classId)) {
+            this.scene.ui.showNotification('이 클래스에서 장착할 수 없는 아이템입니다.', 0xff0000);
+            return false;
+        }
+        
         // 현재 장착 슬롯 결정
         let slotType = null;
-
+        
         if (item.type === 'weapon') {
             slotType = 'weapon';
         } else if (item.type === 'armor') {
@@ -161,51 +347,51 @@ class InventorySystem {
         } else if (item.type === 'accessory') {
             slotType = 'accessory';
         }
-
+        
         if (!slotType) return false;
-
+        
         // 이미 같은 아이템이 장착되어 있는지 확인
         if (this.equipment[slotType] === itemId) {
             // 장착 해제
             this.unequipItem(slotType);
             return true;
         }
-
+        
         // 이전 장비 해제
         if (this.equipment[slotType]) {
             this.unequipItem(slotType);
         }
-
+        
         // 새 장비 장착
         this.equipment[slotType] = itemId;
-
+        
         // 장비 효과 적용
         this.applyEquipmentEffects();
-
+        
         // 장비 변경 이벤트 발생
         this.scene.events.emit('equipmentChanged', { slot: slotType, itemId: itemId });
-
+        
         return true;
     }
-
+    
     // 아이템 장착 해제
     unequipItem(slotType) {
         if (!this.equipment[slotType]) return false;
-
+        
         const itemId = this.equipment[slotType];
-
+        
         // 장비 해제
         this.equipment[slotType] = null;
-
+        
         // 장비 효과 제거
         this.applyEquipmentEffects();
-
+        
         // 장비 변경 이벤트 발생
         this.scene.events.emit('equipmentChanged', { slot: slotType, itemId: null });
-
+        
         return true;
     }
-
+    
     // 장착 가능한 아이템인지 확인
     isEquippable(item) {
         if (item.type === 'weapon' || item.type === 'armor' || item.type === 'accessory') {
@@ -213,33 +399,33 @@ class InventorySystem {
         }
         return false;
     }
-
+    
     // 장비 효과 적용
     applyEquipmentEffects() {
         // 플레이어 기본 스탯 복원
         this.resetPlayerStats();
-
+        
         // 각 장비 효과 적용
         for (const slotType in this.equipment) {
             const itemId = this.equipment[slotType];
             if (!itemId) continue;
-
+            
             const item = this.getItemById(itemId);
             if (!item) continue;
-
+            
             // 기본 스탯 보너스 적용
             this.applyItemStats(item);
-
-            // 특수 효과 적용 (추후 구현)
+            
+            // 특수 효과 적용
             this.applyItemSpecialEffects(item);
         }
-
+        
         // 플레이어 HUD 업데이트
         if (this.scene.ui) {
             this.scene.ui.updatePlayerHUD(this.scene.player);
         }
     }
-
+    
     // 플레이어 스탯 초기화
     resetPlayerStats() {
         // ClassSystem에서 계산된 기본 스탯 가져오기
@@ -248,25 +434,27 @@ class InventorySystem {
                 this.scene.player.classId,
                 this.scene.player.level
             );
-
+            
             if (baseStats) {
                 this.scene.player.stats = { ...baseStats };
             }
         }
     }
-
+    
     // 아이템 스탯 적용
     applyItemStats(item) {
+        const player = this.scene.player;
+        
         // 무기 공격력
-        if (item.type === 'weapon' && item.attack) {
-            this.scene.player.stats.attack += item.attack;
+        if (item.type === 'weapon' && item.stats && item.stats.damage) {
+            player.stats.attack += item.stats.damage;
         }
-
+        
         // 방어구 방어력
         if (item.type === 'armor' && item.defense) {
-            this.scene.player.stats.defense += item.defense;
+            player.stats.defense += item.defense;
         }
-
+        
         // 속성 보너스
         if (item.attributes) {
             item.attributes.forEach(attr => {
@@ -274,11 +462,11 @@ class InventorySystem {
             });
         }
     }
-
+    
     // 아이템 속성 적용
     applyAttribute(attr) {
         const player = this.scene.player;
-
+        
         switch (attr.type) {
             case 'hp_bonus':
                 player.stats.maxHp += attr.value;
@@ -297,14 +485,21 @@ class InventorySystem {
             case 'speed_bonus':
                 player.stats.speed += attr.value;
                 break;
-            // 기타 속성은 CombatSystem에서 처리함
+            case 'crit_chance':
+                player.stats.critChance = (player.stats.critChance || 0) + attr.value;
+                break;
+            case 'crit_damage':
+                player.stats.critDamage = (player.stats.critDamage || 0) + attr.value;
+                break;
+            case 'elem_resistance':
+                if (!player.stats.resistance) player.stats.resistance = {};
+                player.stats.resistance[attr.element] = (player.stats.resistance[attr.element] || 0) + attr.value;
+                break;
         }
     }
-
+    
     // 아이템 특수 효과 적용
     applyItemSpecialEffects(item) {
-        // 특수 효과는 CombatSystem에서 처리함
-        // 여기서는 이벤트만 발생시킴
         if (item.specialEffect) {
             this.scene.events.emit('itemSpecialEffect', {
                 effects: item.specialEffect,
@@ -312,24 +507,80 @@ class InventorySystem {
             });
         }
     }
-
+    
     // ID로 아이템 찾기
     getItemById(itemId) {
-        return this.inventory.find(item => item.id === itemId);
+        return this.inventory.find(item => 
+            item.id === itemId || item.instanceId === itemId
+        );
     }
-
+    
     // 아이템 소지 여부 확인
     hasItem(itemId) {
         return this.inventory.some(item => item.id === itemId);
     }
-
+    
+    // 아이템 정렬
+    sortInventory(sortBy = 'type') {
+        switch (sortBy) {
+            case 'type':
+                this.inventory.sort((a, b) => {
+                    if (a.type !== b.type) return a.type.localeCompare(b.type);
+                    return a.name.localeCompare(b.name);
+                });
+                break;
+            case 'rarity':
+                // 희귀도 순서 맵
+                const rarityOrder = {
+                    'common': 0,
+                    'uncommon': 1,
+                    'rare': 2,
+                    'epic': 3,
+                    'legendary': 4,
+                    'mythic': 5
+                };
+                
+                this.inventory.sort((a, b) => {
+                    const rarityA = rarityOrder[a.rarity] || 0;
+                    const rarityB = rarityOrder[b.rarity] || 0;
+                    if (rarityA !== rarityB) return rarityB - rarityA; // 높은 희귀도 먼저
+                    return a.name.localeCompare(b.name);
+                });
+                break;
+            case 'level':
+                this.inventory.sort((a, b) => {
+                    const levelA = a.requiredLevel || 1;
+                    const levelB = b.requiredLevel || 1;
+                    if (levelA !== levelB) return levelA - levelB;
+                    return a.name.localeCompare(b.name);
+                });
+                break;
+            case 'value':
+                this.inventory.sort((a, b) => {
+                    const valueA = a.value || 0;
+                    const valueB = b.value || 0;
+                    if (valueA !== valueB) return valueB - valueA; // 높은 가치 먼저
+                    return a.name.localeCompare(b.name);
+                });
+                break;
+            case 'name':
+                this.inventory.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+        }
+        
+        // UI 업데이트
+        if (this.scene.ui && this.scene.ui.updateInventory) {
+            this.scene.ui.updateInventory(this.inventory);
+        }
+    }
+    
     // 아이템 효과 핸들러
     handleItemEffect(data) {
         const { item, target } = data;
-
+        
         // 적절한 효과 함수 찾기
         const effectFunction = this.itemEffects[item.id] || this.itemEffects[item.subType];
-
+        
         if (effectFunction) {
             effectFunction(item, target);
         }
