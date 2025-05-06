@@ -2,33 +2,21 @@
 class EffectsManager {
     constructor(scene) {
         this.scene = scene;
-
-        // 파티클 이미터 저장
-        this.emitters = {};
-
-        // 애니메이션 설정
-        this.setupAnimations();
-
-        // 이펙트 그룹
-        this.effectsGroup = this.scene.add.group();
-
-        // 사운드 효과 세팅
-        this.setupSoundEffects();
+        this.emitters = {}; // 파티클 이미터 저장
+        this.setupAnimations(); // 애니메이션 설정
+        this.effectsGroup = this.scene.add.group(); // 이펙트 그룹
+        this.setupSoundEffects(); // 사운드 효과 세팅
     }
 
-    // 애니메이션 설정
+    /**
+     * 애니메이션 설정 - 각종 파티클 텍스쳐 초기화
+     */
     setupAnimations() {
-        // 파티클 텍스쳐 설정 (애셋이 로드되어 있어야 함)
         try {
-            const textures = [
-                'particle_circle',
-                'particle_square',
-                'particle_star',
-                'particle_triangle',
-                'particle_diamond'
-            ];
-
-            // 각 파티클 텍스쳐마다 색상 변형 생성
+            // 기본 파티클 텍스쳐
+            const textures = ['particle_circle', 'particle_square', 'particle_star', 'particle_triangle', 'particle_diamond'];
+            
+            // 색상 변형 목록
             const colors = [
                 { key: 'red', tint: 0xff0000 },
                 { key: 'green', tint: 0x00ff00 },
@@ -40,16 +28,15 @@ class EffectsManager {
                 { key: 'white', tint: 0xffffff }
             ];
 
-            // 각 텍스쳐와 색상 조합 생성
+            // 모든 텍스쳐/색상 조합 생성
             textures.forEach(texture => {
                 colors.forEach(color => {
-                    // 게임 내에서 사용할 수 있는 파티클 키 생성
-                    // 예: 'particle_circle_red', 'particle_star_blue', 등
                     const key = `${texture}_${color.key}`;
-
                     if (this.scene.textures.exists(texture)) {
-                        // 원래 텍스쳐를 복제하여 색상 버전 생성
-                        this.scene.textures.generate(key, { data: this.scene.textures.getFrame(texture), tint: color.tint });
+                        this.scene.textures.generate(key, { 
+                            data: this.scene.textures.getFrame(texture), 
+                            tint: color.tint 
+                        });
                     }
                 });
             });
@@ -58,9 +45,10 @@ class EffectsManager {
         }
     }
 
-    // 사운드 효과 설정
+    /**
+     * 사운드 효과 설정 - 각종 효과음 매핑
+     */
     setupSoundEffects() {
-        // 사운드 효과 매핑
         this.sounds = {
             // 공격 효과음
             attack: 'attack_swing',
@@ -91,7 +79,11 @@ class EffectsManager {
         };
     }
 
-    // 효과음 재생
+    /**
+     * 효과음 재생
+     * @param {string} key - 사운드 키
+     * @param {Object} config - 재생 설정 (volume, rate, detune)
+     */
     playSound(key, config = {}) {
         const soundKey = this.sounds[key] || key;
 
@@ -104,53 +96,39 @@ class EffectsManager {
         }
     }
 
-    // ======== 전투 효과 ========
+    //==================== 전투 효과 ====================
 
-    // 공격 효과
+    /**
+     * 무기 타입에 따른 공격 효과 재생
+     * @param {Object} attacker - 공격자 객체
+     * @param {Object} target - 대상 객체
+     * @param {string} weaponType - 무기 타입 (sword, axe, bow 등)
+     */
     playAttackEffect(attacker, target, weaponType) {
-        // 공격 타입에 따른 효과
-        switch (weaponType) {
-            case 'sword':
-                this.playSwordAttackEffect(attacker, target);
-                break;
-            case 'axe':
-                this.playAxeAttackEffect(attacker, target);
-                break;
-            case 'bow':
-                this.playBowAttackEffect(attacker, target);
-                break;
-            case 'staff':
-                this.playStaffAttackEffect(attacker, target);
-                break;
-            case 'dagger':
-                this.playDaggerAttackEffect(attacker, target);
-                break;
-            case 'spear':
-                this.playSpearAttackEffect(attacker, target);
-                break;
-            default:
-                this.playDefaultAttackEffect(attacker, target);
-                break;
-        }
+        const attackMethods = {
+            'sword': this.playSwordAttackEffect,
+            'axe': this.playAxeAttackEffect,
+            'bow': this.playBowAttackEffect,
+            'staff': this.playStaffAttackEffect,
+            'dagger': this.playDaggerAttackEffect,
+            'spear': this.playSpearAttackEffect
+        };
+
+        const method = attackMethods[weaponType] || this.playDefaultAttackEffect;
+        method.call(this, attacker, target);
     }
 
-    // 검 공격 효과
+    /**
+     * 검 공격 효과
+     */
     playSwordAttackEffect(attacker, target) {
-        // 공격 궤적
-        const startX = attacker.x;
-        const startY = attacker.y;
-        const targetX = target.x;
-        const targetY = target.y;
-
         // 공격 방향 계산
-        const angle = Phaser.Math.Angle.Between(startX, startY, targetX, targetY);
+        const angle = Phaser.Math.Angle.Between(attacker.x, attacker.y, target.x, target.y);
 
         // 검 휘두름 효과 (원호 모양)
         const arcPoints = 8;
         const arcRadius = 40;
         const arcAngle = 2; // 라디안, 약 115도
-
-        // 공격 시작 각도 (플레이어 바라보는 방향에서 조금 뒤)
         const startAngle = angle - arcAngle / 2;
 
         // 원호 파티클 효과
@@ -169,8 +147,7 @@ class EffectsManager {
                 speed: 50,
                 lifespan: 200,
                 follow: null,
-                quantity: 1,
-                frequency: 1
+                quantity: 1
             });
 
             // 약간의 지연으로 각 파티클 생성
@@ -184,8 +161,7 @@ class EffectsManager {
                     speed: 50,
                     lifespan: 150,
                     follow: null,
-                    quantity: 1,
-                    frequency: 1
+                    quantity: 1
                 });
             });
         }
@@ -199,7 +175,9 @@ class EffectsManager {
         this.playSound('attack');
     }
 
-    // 도끼 공격 효과
+    /**
+     * 도끼 공격 효과
+     */
     playAxeAttackEffect(attacker, target) {
         // 공격 방향 계산
         const angle = Phaser.Math.Angle.Between(attacker.x, attacker.y, target.x, target.y);
@@ -208,8 +186,6 @@ class EffectsManager {
         const arcPoints = 6;
         const arcRadius = 45;
         const arcAngle = 1.5; // 라디안, 약 85도
-
-        // 공격 시작 각도
         const startAngle = angle - arcAngle / 2;
 
         // 원호 파티클 효과
@@ -228,8 +204,7 @@ class EffectsManager {
                 speed: 30,
                 lifespan: 250,
                 follow: null,
-                quantity: 1,
-                frequency: 1
+                quantity: 1
             });
         }
 
@@ -245,17 +220,16 @@ class EffectsManager {
         this.playSound('attack', { detune: -300, volume: 0.7 });
     }
 
-    // 활 공격 효과
+    /**
+     * 활 공격 효과
+     */
     playBowAttackEffect(attacker, target) {
-        // 화살 발사 포인트 계산
-        const angle = Phaser.Math.Angle.Between(attacker.x, attacker.y, target.x, target.y);
-
-        // 화살 경로 시뮬레이션
+        // 화살 발사 세부 설정
         const arrowSpeed = 500; // 픽셀/초
         const distance = Phaser.Math.Distance.Between(attacker.x, attacker.y, target.x, target.y);
         const flightTime = distance / arrowSpeed;
 
-        // 화살 이펙트 (라인 파티클)
+        // 화살 이펙트 (라인 그래픽)
         let arrowLine = this.scene.add.graphics();
         arrowLine.lineStyle(2, 0xcccccc, 0.8);
         arrowLine.beginPath();
@@ -287,8 +261,7 @@ class EffectsManager {
                     speed: 0,
                     lifespan: 100,
                     follow: null,
-                    quantity: 1,
-                    frequency: 1
+                    quantity: 1
                 });
 
                 if (progress >= 1) {
@@ -307,11 +280,10 @@ class EffectsManager {
         this.playSound('attack', { detune: 300, volume: 0.4 });
     }
 
-    // 지팡이 공격 효과
+    /**
+     * 지팡이 공격 효과
+     */
     playStaffAttackEffect(attacker, target) {
-        // 마법 발사 애니메이션
-        const angle = Phaser.Math.Angle.Between(attacker.x, attacker.y, target.x, target.y);
-
         // 마법 충전 효과
         this.createCircularAuraEffect(attacker, 'particle_star_blue', 0.5, 300);
 
@@ -338,12 +310,12 @@ class EffectsManager {
         this.playSound('arcane');
     }
 
-    // 단검 공격 효과
+    /**
+     * 단검 공격 효과
+     */
     playDaggerAttackEffect(attacker, target) {
         // 단검 공격은 빠른 여러 번의 공격
         const angle = Phaser.Math.Angle.Between(attacker.x, attacker.y, target.x, target.y);
-
-        // 빠른 공격 효과
         const slashCount = 3;
 
         for (let i = 0; i < slashCount; i++) {
@@ -380,18 +352,16 @@ class EffectsManager {
 
                 // 각 공격마다 힛 이펙트
                 this.playHitEffect(target, 'physical', false, 0.5);
-            });
-        }
-
-        // 효과음 재생 (다중)
-        for (let i = 0; i < slashCount; i++) {
-            this.scene.time.delayedCall(i * 100, () => {
+                
+                // 효과음 재생 (다중)
                 this.playSound('attack', { detune: 300 + i * 100, volume: 0.3 });
             });
         }
     }
 
-    // 창 공격 효과
+    /**
+     * 창 공격 효과
+     */
     playSpearAttackEffect(attacker, target) {
         // 창 공격은 직선 관통
         const angle = Phaser.Math.Angle.Between(attacker.x, attacker.y, target.x, target.y);
@@ -446,9 +416,11 @@ class EffectsManager {
         this.playSound('attack', { detune: -100, volume: 0.6 });
     }
 
-    // 기본 공격 효과
+    /**
+     * 기본 공격 효과
+     */
     playDefaultAttackEffect(attacker, target) {
-        // 기본 공격 애니메이션
+        // 공격 방향 계산
         const angle = Phaser.Math.Angle.Between(attacker.x, attacker.y, target.x, target.y);
 
         // 공격 이펙트 (간단한 파티클)
@@ -475,31 +447,29 @@ class EffectsManager {
         this.playSound('attack');
     }
 
-    // 적 공격 효과
+    /**
+     * 적 공격 효과 재생
+     * @param {Object} enemy - 적 객체
+     * @param {Object} target - 대상 객체
+     * @param {string} attackType - 공격 타입 (melee, ranged, magic)
+     */
     playEnemyAttackEffect(enemy, target, attackType) {
-        // 적 공격 타입에 따른 효과
-        switch (attackType) {
-            case 'melee':
-                this.playEnemyMeleeAttackEffect(enemy, target);
-                break;
-            case 'ranged':
-                this.playEnemyRangedAttackEffect(enemy, target);
-                break;
-            case 'magic':
-                this.playEnemyMagicAttackEffect(enemy, target);
-                break;
-            default:
-                this.playEnemyMeleeAttackEffect(enemy, target);
-                break;
-        }
+        const attackMethods = {
+            'melee': this.playEnemyMeleeAttackEffect,
+            'ranged': this.playEnemyRangedAttackEffect,
+            'magic': this.playEnemyMagicAttackEffect
+        };
+
+        const method = attackMethods[attackType] || this.playEnemyMeleeAttackEffect;
+        method.call(this, enemy, target);
     }
 
-    // 적 근접 공격 효과
+    /**
+     * 적 근접 공격 효과
+     */
     playEnemyMeleeAttackEffect(enemy, target) {
         // 공격 방향 계산
         const angle = Phaser.Math.Angle.Between(enemy.x, enemy.y, target.x, target.y);
-
-        // 공격 이펙트 (적의 경우 색상을 약간 다르게)
         const slashLength = 30;
 
         // 첫 번째 공격 라인
@@ -550,11 +520,10 @@ class EffectsManager {
         this.playSound('attack', { detune: -200, volume: 0.5 });
     }
 
-    // 적 원거리 공격 효과
+    /**
+     * 적 원거리 공격 효과
+     */
     playEnemyRangedAttackEffect(enemy, target) {
-        // 공격 방향 계산
-        const angle = Phaser.Math.Angle.Between(enemy.x, enemy.y, target.x, target.y);
-
         // 투사체 효과
         const projectile = this.createProjectileEffect(
             enemy.x, enemy.y,
@@ -576,11 +545,10 @@ class EffectsManager {
         this.playSound('attack', { detune: 200, volume: 0.4 });
     }
 
-    // 적 마법 공격 효과
+    /**
+     * 적 마법 공격 효과
+     */
     playEnemyMagicAttackEffect(enemy, target) {
-        // 공격 방향 계산
-        const angle = Phaser.Math.Angle.Between(enemy.x, enemy.y, target.x, target.y);
-
         // 마법 충전 효과
         this.createCircularAuraEffect(enemy, 'particle_star_purple', 0.6, 200);
 
@@ -606,143 +574,108 @@ class EffectsManager {
         // 효과음 재생
         this.playSound('arcane', { detune: -300 });
     }
-    // 맞는 효과
+
+    /**
+     * 맞는 효과 재생
+     * @param {Object} target - 대상 객체
+     * @param {string} damageType - 대미지 타입 (physical, fire, ice 등)
+     * @param {boolean} isCritical - 크리티컬 여부
+     * @param {number} scale - 이펙트 크기 배율 (기본값 1.0)
+     */
     playHitEffect(target, damageType, isCritical = false, scale = 1.0) {
-        // 타겟 위치
-        const x = target.x;
-        const y = target.y;
+        // 대미지 타입에 따른 색상 설정
+        const damageTypeColors = {
+            'physical': 'red',
+            'fire': 'orange',
+            'ice': 'cyan',
+            'lightning': 'yellow',
+            'poison': 'green',
+            'magic': 'purple',
+            'default': 'white'
+        };
 
-        // 대미지 타입에 따른 효과
-        let particleColor = 'white';
-
-        switch (damageType) {
-            case 'physical':
-                particleColor = 'red';
-                break;
-            case 'fire':
-                particleColor = 'orange';
-                break;
-            case 'ice':
-                particleColor = 'cyan';
-                break;
-            case 'lightning':
-                particleColor = 'yellow';
-                break;
-            case 'poison':
-                particleColor = 'green';
-                break;
-            case 'magic':
-                particleColor = 'purple';
-                break;
-            default:
-                particleColor = 'white';
-                break;
-        }
-
+        const particleColor = damageTypeColors[damageType] || damageTypeColors.default;
+        
         // 히트 효과 크기 (크리티컬이면 더 크게)
         const hitScale = isCritical ? 1.5 : 1.0;
 
         // 히트 효과 생성
         this.createParticleEffect({
-            x: x,
-            y: y,
+            x: target.x,
+            y: target.y,
             texture: `particle_circle_${particleColor}`,
             scale: { start: 0.8 * hitScale * scale, end: 0 },
             alpha: { start: 0.8, end: 0 },
             speed: 80 * hitScale,
             lifespan: 300,
-            follow: null,
             quantity: isCritical ? 12 : 8,
             frequency: 100
         });
 
         // 대미지 타입에 따른 추가 효과
-        switch (damageType) {
-            case 'fire':
-                // 화염 효과
+        const additionalEffects = {
+            'fire': () => {
                 this.createParticleEffect({
-                    x: x,
-                    y: y,
+                    x: target.x, y: target.y,
                     texture: 'particle_star_orange',
                     scale: { start: 0.6 * scale, end: 0 },
                     alpha: { start: 0.7, end: 0 },
-                    speed: 60,
-                    lifespan: 500,
-                    follow: null,
-                    quantity: 6,
-                    frequency: 50
+                    speed: 60, lifespan: 500,
+                    quantity: 6, frequency: 50
                 });
-                break;
-            case 'ice':
-                // 얼음 결정 효과
+            },
+            'ice': () => {
                 this.createParticleEffect({
-                    x: x,
-                    y: y,
+                    x: target.x, y: target.y,
                     texture: 'particle_diamond_cyan',
                     scale: { start: 0.5 * scale, end: 0 },
                     alpha: { start: 0.8, end: 0 },
-                    speed: 40,
-                    lifespan: 600,
-                    follow: null,
-                    quantity: 4,
-                    frequency: 60
+                    speed: 40, lifespan: 600,
+                    quantity: 4, frequency: 60
                 });
-                break;
-            case 'lightning':
-                // 번개 효과
+            },
+            'lightning': () => {
                 this.createParticleEffect({
-                    x: x,
-                    y: y,
+                    x: target.x, y: target.y,
                     texture: 'particle_star_yellow',
                     scale: { start: 0.7 * scale, end: 0 },
                     alpha: { start: 0.9, end: 0 },
-                    speed: 100,
-                    lifespan: 300,
-                    follow: null,
-                    quantity: 5,
-                    frequency: 40
+                    speed: 100, lifespan: 300,
+                    quantity: 5, frequency: 40
                 });
-                break;
-            case 'magic':
-                // 마법 효과
+            },
+            'magic': () => {
                 this.createParticleEffect({
-                    x: x,
-                    y: y,
+                    x: target.x, y: target.y,
                     texture: 'particle_star_purple',
                     scale: { start: 0.6 * scale, end: 0 },
                     alpha: { start: 0.8, end: 0 },
-                    speed: 70,
-                    lifespan: 400,
-                    follow: null,
-                    quantity: 7,
-                    frequency: 50
+                    speed: 70, lifespan: 400,
+                    quantity: 7, frequency: 50
                 });
-                break;
+            }
+        };
+
+        // 추가 효과 적용
+        if (additionalEffects[damageType]) {
+            additionalEffects[damageType]();
         }
 
         // 타겟 스프라이트 효과 (피격 깜빡임)
         if (target.setTint) {
             // 대미지 타입에 따른 색상
-            let tintColor = 0xff0000; // 기본 빨간색
+            const tintColors = {
+                'physical': 0xff0000,
+                'fire': 0xff6600,
+                'ice': 0x00ffff,
+                'lightning': 0xffff00,
+                'poison': 0x00ff00,
+                'magic': 0xff00ff,
+                'default': 0xff0000
+            };
 
-            switch (damageType) {
-                case 'fire':
-                    tintColor = 0xff6600;
-                    break;
-                case 'ice':
-                    tintColor = 0x00ffff;
-                    break;
-                case 'lightning':
-                    tintColor = 0xffff00;
-                    break;
-                case 'poison':
-                    tintColor = 0x00ff00;
-                    break;
-                case 'magic':
-                    tintColor = 0xff00ff;
-                    break;
-            }
-
+            const tintColor = tintColors[damageType] || tintColors.default;
+            
             // 피격 효과 적용
             target.setTint(tintColor);
 
@@ -760,14 +693,13 @@ class EffectsManager {
         }
 
         // 효과음 재생
-        if (isCritical) {
-            this.playSound('critical');
-        } else {
-            this.playSound('hit');
-        }
+        this.playSound(isCritical ? 'critical' : 'hit');
     }
 
-    // 회피 효과
+    /**
+     * 회피 효과 재생
+     * @param {Object} target - 대상 객체
+     */
     playDodgeEffect(target) {
         // 회피 텍스트 효과
         const dodgeText = this.scene.add.text(
@@ -812,7 +744,10 @@ class EffectsManager {
         this.playSound('miss');
     }
 
-    // 체력 회복 효과
+    /**
+     * 체력 회복 효과 재생
+     * @param {Object} target - 대상 객체
+     */
     playHealEffect(target) {
         // 회복 파티클 (상승하는 초록색 입자)
         this.createParticleEffect({
@@ -836,7 +771,11 @@ class EffectsManager {
         this.playSound('potion');
     }
 
-    // 넉백 효과
+    /**
+     * 넉백 효과 재생
+     * @param {Object} target - 대상 객체
+     * @param {number} angle - 넉백 방향 (라디안)
+     */
     playKnockbackEffect(target, angle) {
         // 대상이 뒤로 밀려나는 효과
         if (target.body) {
@@ -869,45 +808,27 @@ class EffectsManager {
         this.playSound('hit', { volume: 0.7, detune: -200 });
     }
 
-    // ======== 상태 효과 ========
+    //==================== 상태 효과 ====================
 
-    // 상태 효과 적용 시각화
+    /**
+     * 상태 효과 적용 시각화
+     * @param {Object} target - 대상 객체
+     * @param {string} effectType - 효과 타입 (burn, poison, slow 등)
+     */
     playStatusEffectApply(target, effectType) {
         // 효과 타입에 따른 파티클 설정
-        let particleConfig = {
-            texture: 'particle_circle_white',
-            color: 'white',
-            scale: 0.6,
-            duration: 500
+        const effectConfigs = {
+            'burn': { texture: 'particle_circle_orange', color: 'orange' },
+            'poison': { texture: 'particle_circle_green', color: 'green' },
+            'slow': { texture: 'particle_circle_cyan', color: 'cyan' },
+            'stun': { texture: 'particle_star_yellow', color: 'yellow' },
+            'bleed': { texture: 'particle_circle_red', color: 'red' },
+            'regeneration': { texture: 'particle_circle_green', color: 'green' },
+            'default': { texture: 'particle_circle_white', color: 'white' }
         };
 
-        switch (effectType) {
-            case 'burn':
-                particleConfig.texture = 'particle_circle_orange';
-                particleConfig.color = 'orange';
-                break;
-            case 'poison':
-                particleConfig.texture = 'particle_circle_green';
-                particleConfig.color = 'green';
-                break;
-            case 'slow':
-                particleConfig.texture = 'particle_circle_cyan';
-                particleConfig.color = 'cyan';
-                break;
-            case 'stun':
-                particleConfig.texture = 'particle_star_yellow';
-                particleConfig.color = 'yellow';
-                break;
-            case 'bleed':
-                particleConfig.texture = 'particle_circle_red';
-                particleConfig.color = 'red';
-                break;
-            case 'regeneration':
-                particleConfig.texture = 'particle_circle_green';
-                particleConfig.color = 'green';
-                break;
-        }
-
+        const config = effectConfigs[effectType] || effectConfigs.default;
+        
         // 적용 애니메이션 (대상 주변 회전 효과)
         const particleCount = 8;
         const radius = 30;
@@ -918,7 +839,7 @@ class EffectsManager {
             const y = target.y + Math.sin(angle) * radius;
 
             // 파티클 생성
-            const particle = this.scene.add.image(x, y, particleConfig.texture)
+            const particle = this.scene.add.image(x, y, config.texture)
                 .setScale(0)
                 .setAlpha(0);
 
@@ -927,9 +848,9 @@ class EffectsManager {
                 targets: particle,
                 x: target.x,
                 y: target.y,
-                scale: particleConfig.scale,
+                scale: 0.6,
                 alpha: 0.8,
-                duration: particleConfig.duration,
+                duration: 500,
                 ease: 'Quad.out',
                 onComplete: () => {
                     particle.destroy();
@@ -939,64 +860,48 @@ class EffectsManager {
 
         // 대상에 적용되는 효과 (색상 변화)
         if (target.setTint) {
-            switch (effectType) {
-                case 'burn':
-                    target.setTint(0xff6600);
-                    break;
-                case 'poison':
-                    target.setTint(0x00ff00);
-                    break;
-                case 'slow':
-                    target.setTint(0x00ffff);
-                    break;
-                case 'stun':
-                    target.setTint(0xffff00);
-                    break;
-                case 'bleed':
-                    target.setTint(0xff0000);
-                    break;
-            }
+            const tintColors = {
+                'burn': 0xff6600,
+                'poison': 0x00ff00,
+                'slow': 0x00ffff,
+                'stun': 0xffff00,
+                'bleed': 0xff0000
+            };
 
-            // 0.3초 후 원래 색상으로 복원
-            this.scene.time.delayedCall(300, () => {
-                if (target.clearTint) {
-                    target.clearTint();
-                }
-            });
+            if (tintColors[effectType]) {
+                target.setTint(tintColors[effectType]);
+
+                // 0.3초 후 원래 색상으로 복원
+                this.scene.time.delayedCall(300, () => {
+                    if (target.clearTint) {
+                        target.clearTint();
+                    }
+                });
+            }
         }
 
         // 효과음 재생
         this.playSound(effectType);
     }
 
-    // 상태 효과 갱신 효과
+    /**
+     * 상태 효과 갱신 효과
+     * @param {Object} target - 대상 객체
+     * @param {string} effectType - 효과 타입 (burn, poison, slow 등)
+     */
     playStatusEffectRefresh(target, effectType) {
-        // 간단한 갱신 효과
-        let particleTexture;
+        // 효과 타입에 따른 파티클 텍스쳐
+        const textureMap = {
+            'burn': 'particle_star_orange',
+            'poison': 'particle_star_green',
+            'slow': 'particle_star_cyan',
+            'stun': 'particle_star_yellow',
+            'bleed': 'particle_star_red',
+            'regeneration': 'particle_star_green',
+            'default': 'particle_star_white'
+        };
 
-        switch (effectType) {
-            case 'burn':
-                particleTexture = 'particle_star_orange';
-                break;
-            case 'poison':
-                particleTexture = 'particle_star_green';
-                break;
-            case 'slow':
-                particleTexture = 'particle_star_cyan';
-                break;
-            case 'stun':
-                particleTexture = 'particle_star_yellow';
-                break;
-            case 'bleed':
-                particleTexture = 'particle_star_red';
-                break;
-            case 'regeneration':
-                particleTexture = 'particle_star_green';
-                break;
-            default:
-                particleTexture = 'particle_star_white';
-                break;
-        }
+        const particleTexture = textureMap[effectType] || textureMap.default;
 
         // 갱신 파티클 (작은 효과)
         this.createParticleEffect({
@@ -1013,34 +918,24 @@ class EffectsManager {
         });
     }
 
-    // 상태 효과 제거 효과
+    /**
+     * 상태 효과 제거 효과
+     * @param {Object} target - 대상 객체
+     * @param {string} effectType - 효과 타입 (burn, poison, slow 등)
+     */
     playStatusEffectRemove(target, effectType) {
         // 색상 설정
-        let particleColor;
+        const colorMap = {
+            'burn': 'orange',
+            'poison': 'green',
+            'slow': 'cyan',
+            'stun': 'yellow',
+            'bleed': 'red',
+            'regeneration': 'green',
+            'default': 'white'
+        };
 
-        switch (effectType) {
-            case 'burn':
-                particleColor = 'orange';
-                break;
-            case 'poison':
-                particleColor = 'green';
-                break;
-            case 'slow':
-                particleColor = 'cyan';
-                break;
-            case 'stun':
-                particleColor = 'yellow';
-                break;
-            case 'bleed':
-                particleColor = 'red';
-                break;
-            case 'regeneration':
-                particleColor = 'green';
-                break;
-            default:
-                particleColor = 'white';
-                break;
-        }
+        const particleColor = colorMap[effectType] || colorMap.default;
 
         // 제거 파티클 (사라지는 효과)
         this.createParticleEffect({
@@ -1057,7 +952,10 @@ class EffectsManager {
         });
     }
 
-    // 기절 효과
+    /**
+     * 기절 효과 재생
+     * @param {Object} target - 대상 객체
+     */
     playStunEffect(target) {
         // 지속적인 효과를 위해 시간당 여러 번 별 아이콘 생성
         const stunTimer = this.scene.time.addEvent({
@@ -1149,7 +1047,10 @@ class EffectsManager {
         }
     }
 
-    // 빙결 효과
+    /**
+     * 빙결 효과 재생
+     * @param {Object} target - 대상 객체
+     */
     playFreezeEffect(target) {
         // 얼음 결정 생성
         const iceOverlay = this.scene.add.image(
@@ -1222,7 +1123,10 @@ class EffectsManager {
         });
     }
 
-    // 화염 효과
+    /**
+     * 화염 효과 재생
+     * @param {Object} target - 대상 객체
+     */
     playFireEffect(target) {
         // 불꽃 파티클 효과
         this.createParticleEffect({
@@ -1260,41 +1164,42 @@ class EffectsManager {
         this.playSound('fire', { volume: 0.4 });
     }
 
-    // ======== 방 효과 ========
+    //==================== 방 효과 ====================
 
-    // 방 입장 효과
+    /**
+     * 방 입장 효과 재생
+     * @param {number} x - 효과 X 좌표
+     * @param {number} y - 효과 Y 좌표
+     * @param {string} roomType - 방 타입 (entrance, treasure, merchant 등)
+     */
     playRoomEntranceEffect(x, y, roomType) {
-        // 방 타입에 따라 다른 효과
-        switch (roomType) {
-            case 'entrance':
+        // 방 타입에 따른 효과 설정
+        const roomEffects = {
+            'entrance': () => {
                 // 입구 효과 (청록색 빛)
                 this.createCircularAuraEffect({ x, y }, 'particle_circle_cyan', 1.0, 800);
-                break;
-            case 'treasure':
+            },
+            'treasure': () => {
                 // 보물방 효과 (황금색 빛)
                 this.createCircularAuraEffect({ x, y }, 'particle_circle_yellow', 1.0, 800);
                 this.createParticleEffect({
-                    x: x,
-                    y: y,
+                    x, y,
                     texture: 'particle_star_yellow',
                     scale: { start: 0.2, end: 0.5 },
                     alpha: { start: 0.9, end: 0 },
-                    speed: 50,
-                    lifespan: 1000,
-                    follow: null,
-                    quantity: 10,
-                    frequency: 50
+                    speed: 50, lifespan: 1000,
+                    quantity: 10, frequency: 50
                 });
-                break;
-            case 'merchant':
+            },
+            'merchant': () => {
                 // 상인방 효과 (분홍색 빛)
                 this.createCircularAuraEffect({ x, y }, 'particle_circle_purple', 0.8, 800);
-                break;
-            case 'shrine':
+            },
+            'shrine': () => {
                 // 신단방 효과 (녹색 빛)
                 this.createCircularAuraEffect({ x, y }, 'particle_circle_green', 0.8, 800);
-                break;
-            case 'boss':
+            },
+            'boss': () => {
                 // 보스방 효과 (빨간색 어두운 효과)
                 this.createCircularAuraEffect({ x, y }, 'particle_circle_red', 0.8, 1000);
 
@@ -1302,44 +1207,44 @@ class EffectsManager {
                 for (let i = 0; i < 3; i++) {
                     this.scene.time.delayedCall(i * 300, () => {
                         this.createParticleEffect({
-                            x: x,
-                            y: y,
+                            x, y,
                             texture: 'particle_circle_red',
                             scale: { start: 0.1, end: 2.0 },
                             alpha: { start: 0.2, end: 0 },
-                            speed: 0,
-                            lifespan: 300,
-                            follow: null,
-                            quantity: 1,
-                            frequency: 1
+                            speed: 0, lifespan: 300,
+                            quantity: 1, frequency: 1
                         });
                     });
                 }
-                break;
-            default:
+            },
+            'default': () => {
                 // 일반 방 효과 (흰색 작은 빛)
                 this.createCircularAuraEffect({ x, y }, 'particle_circle_white', 0.6, 500);
-                break;
-        }
+            }
+        };
+
+        // 효과 실행
+        const effectMethod = roomEffects[roomType] || roomEffects.default;
+        effectMethod();
     }
 
-    // 웨이브 시작 효과
+    /**
+     * 웨이브 시작 효과 재생
+     * @param {number} x - 효과 X 좌표
+     * @param {number} y - 효과 Y 좌표
+     */
     playWaveStartEffect(x, y) {
         // 경고 사운드
         this.playSound('alert', { volume: 0.6 });
 
         // 파동 효과 (붉은 원)
         this.createParticleEffect({
-            x: x,
-            y: y,
+            x, y,
             texture: 'particle_circle_red',
             scale: { start: 0.1, end: 3.0 },
             alpha: { start: 0.5, end: 0 },
-            speed: 0,
-            lifespan: 1000,
-            follow: null,
-            quantity: 1,
-            frequency: 1
+            speed: 0, lifespan: 1000,
+            quantity: 1, frequency: 1
         });
 
         // 적 소환 효과 (여러 위치에서 붉은 입자)
@@ -1353,16 +1258,12 @@ class EffectsManager {
 
             // 소환 지점 표시
             this.createParticleEffect({
-                x: spawnX,
-                y: spawnY,
+                x: spawnX, y: spawnY,
                 texture: 'particle_circle_red',
                 scale: { start: 0.5, end: 0 },
                 alpha: { start: 0.8, end: 0 },
-                speed: 20,
-                lifespan: 800,
-                follow: null,
-                quantity: 10,
-                frequency: 100
+                speed: 20, lifespan: 800,
+                quantity: 10, frequency: 100
             });
         }
 
@@ -1370,34 +1271,29 @@ class EffectsManager {
         this.scene.cameras.main.shake(500, 0.005);
     }
 
-    // 적 스폰 효과
+    /**
+     * 적 스폰 효과 재생
+     * @param {Object} enemy - 적 객체
+     */
     playEnemySpawnEffect(enemy) {
         // 스폰 시각 효과
         this.createParticleEffect({
-            x: enemy.x,
-            y: enemy.y,
+            x: enemy.x, y: enemy.y,
             texture: 'particle_circle_red',
             scale: { start: 0.1, end: 1.0 },
             alpha: { start: 0.8, end: 0 },
-            speed: 0,
-            lifespan: 500,
-            follow: null,
-            quantity: 1,
-            frequency: 1
+            speed: 0, lifespan: 500,
+            quantity: 1, frequency: 1
         });
 
         // 연기 효과
         this.createParticleEffect({
-            x: enemy.x,
-            y: enemy.y,
+            x: enemy.x, y: enemy.y,
             texture: 'particle_circle_white',
             scale: { start: 0.5, end: 0 },
             alpha: { start: 0.4, end: 0 },
-            speed: 30,
-            lifespan: 600,
-            follow: null,
-            quantity: 8,
-            frequency: 50
+            speed: 30, lifespan: 600,
+            quantity: 8, frequency: 50
         });
 
         // 초기에는 투명하게 시작
@@ -1411,23 +1307,22 @@ class EffectsManager {
         });
     }
 
-    // 적 사망 효과
+    /**
+     * 사망 효과 재생
+     * @param {Object} entity - 죽는 개체 (플레이어 또는 적)
+     */
     playDeathEffect(entity) {
         // 사망 파티클
         const particleColor = entity.team === 'player' ? 'blue' : 'red';
 
         // 파티클 폭발 효과
         this.createParticleEffect({
-            x: entity.x,
-            y: entity.y,
+            x: entity.x, y: entity.y,
             texture: `particle_circle_${particleColor}`,
             scale: { start: 0.6, end: 0 },
             alpha: { start: 0.8, end: 0 },
-            speed: 50,
-            lifespan: 800,
-            follow: null,
-            quantity: 15,
-            frequency: 50
+            speed: 50, lifespan: 800,
+            quantity: 15, frequency: 50
         });
 
         // 사망 애니메이션
@@ -1469,10 +1364,11 @@ class EffectsManager {
         }
     }
 
-    // 플레이어 사망 효과
+    /**
+     * 플레이어 사망 효과 재생
+     * @param {Object} player - 플레이어 객체
+     */
     playPlayerDeathEffect(player) {
-        // 특별한 사망 효과 (더 극적으로)
-
         // 카메라 효과
         this.scene.cameras.main.shake(500, 0.01);
         this.scene.cameras.main.flash(500, 255, 0, 0, true);
@@ -1493,32 +1389,25 @@ class EffectsManager {
 
         // 플레이어 주변에 파티클 폭발
         this.createParticleEffect({
-            x: player.x,
-            y: player.y,
+            x: player.x, y: player.y,
             texture: 'particle_circle_blue',
             scale: { start: 0.8, end: 0 },
             alpha: { start: 0.9, end: 0 },
-            speed: 100,
-            lifespan: 1500,
-            follow: null,
-            quantity: 30,
-            frequency: 50
+            speed: 100, lifespan: 1500,
+            quantity: 30, frequency: 50
         });
 
         // 영혼 상승 효과
         this.scene.time.delayedCall(500, () => {
             this.createParticleEffect({
-                x: player.x,
-                y: player.y,
+                x: player.x, y: player.y,
                 texture: 'particle_circle_cyan',
                 scale: { start: 0.5, end: 0 },
                 alpha: { start: 0.7, end: 0 },
                 speed: { min: 10, max: 30 },
                 lifespan: 2000,
                 gravityY: -50, // 상승 효과
-                follow: null,
-                quantity: 20,
-                frequency: 50
+                quantity: 20, frequency: 50
             });
         });
 
@@ -1526,7 +1415,10 @@ class EffectsManager {
         this.playSound('player_death');
     }
 
-    // 부활 효과
+    /**
+     * 부활 효과 재생
+     * @param {Object} entity - 부활할 개체
+     */
     playReviveEffect(entity) {
         // 부활 빛 효과
         const reviveLight = this.scene.add.graphics();
@@ -1546,33 +1438,27 @@ class EffectsManager {
 
         // 부활 파티클 (황금색)
         this.createParticleEffect({
-            x: entity.x,
-            y: entity.y,
+            x: entity.x, y: entity.y,
             texture: 'particle_star_yellow',
             scale: { start: 0.2, end: 0.8 },
             alpha: { start: 0.9, end: 0 },
             speed: { min: 50, max: 100 },
             lifespan: 1500,
-            follow: null,
-            quantity: 20,
-            frequency: 50
+            quantity: 20, frequency: 50
         });
 
         // 빛 기둥 효과
         for (let i = 0; i < 5; i++) {
             this.scene.time.delayedCall(i * 100, () => {
                 this.createParticleEffect({
-                    x: entity.x,
-                    y: entity.y - 50,
+                    x: entity.x, y: entity.y - 50,
                     texture: 'particle_circle_white',
                     scale: { start: 0.1, end: 0.5 },
                     alpha: { start: 0.8, end: 0 },
                     speed: { min: 0, max: 10 },
                     lifespan: 800,
                     gravityY: -100, // 위로 올라가는 효과
-                    follow: null,
-                    quantity: 5,
-                    frequency: 50
+                    quantity: 5, frequency: 50
                 });
             });
         }
@@ -1584,60 +1470,46 @@ class EffectsManager {
         this.playSound('revive');
     }
 
-    // ======== 아이템 효과 ========
+    //==================== 아이템 효과 ====================
 
-    // 보물 상자 열기 효과
+    /**
+     * 보물 상자 열기 효과 재생
+     * @param {number} x - 효과 X 좌표
+     * @param {number} y - 효과 Y 좌표
+     * @param {string} rarity - 희귀도 (common, uncommon, rare 등)
+     */
     playChestOpenEffect(x, y, rarity) {
         // 희귀도에 따른 색상
-        let particleColor = 'white';
+        const rarityColors = {
+            'uncommon': 'green',
+            'rare': 'blue',
+            'epic': 'purple',
+            'legendary': 'orange',
+            'mythic': 'red',
+            'default': 'white'
+        };
 
-        switch (rarity) {
-            case 'uncommon':
-                particleColor = 'green';
-                break;
-            case 'rare':
-                particleColor = 'blue';
-                break;
-            case 'epic':
-                particleColor = 'purple';
-                break;
-            case 'legendary':
-                particleColor = 'orange';
-                break;
-            case 'mythic':
-                particleColor = 'red';
-                break;
-            default:
-                particleColor = 'white';
-                break;
-        }
+        const particleColor = rarityColors[rarity] || rarityColors.default;
 
         // 빛 폭발 효과
         this.createParticleEffect({
-            x: x,
-            y: y,
+            x, y,
             texture: `particle_circle_${particleColor}`,
             scale: { start: 0.1, end: 1.5 },
             alpha: { start: 0.8, end: 0 },
-            speed: 0,
-            lifespan: 500,
-            follow: null,
-            quantity: 1,
-            frequency: 1
+            speed: 0, lifespan: 500,
+            quantity: 1, frequency: 1
         });
 
         // 빛나는 파티클 효과
         this.createParticleEffect({
-            x: x,
-            y: y,
+            x, y,
             texture: `particle_star_${particleColor}`,
             scale: { start: 0.4, end: 0 },
             alpha: { start: 0.9, end: 0 },
             speed: { min: 30, max: 80 },
             lifespan: 1000,
-            follow: null,
-            quantity: 15,
-            frequency: 50
+            quantity: 15, frequency: 50
         });
 
         // 효과음 재생
@@ -1651,16 +1523,13 @@ class EffectsManager {
             // 추가 파티클
             this.scene.time.delayedCall(300, () => {
                 this.createParticleEffect({
-                    x: x,
-                    y: y,
+                    x, y,
                     texture: `particle_star_${particleColor}`,
                     scale: { start: 0.2, end: 0.6 },
                     alpha: { start: 0.9, end: 0 },
                     speed: { min: 20, max: 60 },
                     lifespan: 1500,
-                    follow: null,
-                    quantity: 10,
-                    frequency: 50
+                    quantity: 10, frequency: 50
                 });
             });
 
@@ -1669,59 +1538,46 @@ class EffectsManager {
         }
     }
 
-    // 아이템 획득 효과
+    /**
+     * 아이템 획득 효과 재생
+     * @param {number} x - 효과 X 좌표
+     * @param {number} y - 효과 Y 좌표
+     * @param {string} rarity - 희귀도
+     */
     playItemAcquireEffect(x, y, rarity) {
         // 희귀도에 따른 색상
-        let particleColor = 'white';
+        const rarityColors = {
+            'uncommon': 'green',
+            'rare': 'blue',
+            'epic': 'purple',
+            'legendary': 'orange',
+            'mythic': 'red',
+            'default': 'white'
+        };
 
-        switch (rarity) {
-            case 'uncommon':
-                particleColor = 'green';
-                break;
-            case 'rare':
-                particleColor = 'blue';
-                break;
-            case 'epic':
-                particleColor = 'purple';
-                break;
-            case 'legendary':
-                particleColor = 'orange';
-                break;
-            case 'mythic':
-                particleColor = 'red';
-                break;
-            default:
-                particleColor = 'white';
-                break;
-        }
+        const particleColor = rarityColors[rarity] || rarityColors.default;
 
         // 아이템 획득 파티클
         this.createParticleEffect({
-            x: x,
-            y: y,
+            x, y,
             texture: `particle_star_${particleColor}`,
             scale: { start: 0.5, end: 0 },
             alpha: { start: 0.8, end: 0 },
             speed: { min: 30, max: 60 },
             lifespan: 800,
-            follow: null,
-            quantity: 8,
-            frequency: 50
+            quantity: 8, frequency: 50
         });
 
         // 위로 올라가는 빛 효과
         this.createParticleEffect({
-            x: x,
-            y: y,
+            x, y,
             texture: `particle_circle_${particleColor}`,
             scale: { start: 0.3, end: 0 },
             alpha: { start: 0.7, end: 0 },
             speed: { min: 10, max: 30 },
             lifespan: 1000,
             gravityY: -50, // 위로 올라가는 효과
-            follow: null,
-            quantity: 5,
-            frequency: 100
+            quantity: 5, frequency: 100
         });
 
         // 효과음 재생
@@ -1734,136 +1590,69 @@ class EffectsManager {
         }
     }
 
-    // 아이템 드롭 효과
+    /**
+     * 아이템 드롭 효과 재생
+     * @param {number} x - 효과 X 좌표
+     * @param {number} y - 효과 Y 좌표
+     * @param {string} rarity - 희귀도
+     */
     playItemDropEffect(x, y, rarity) {
         // 희귀도에 따른 색상
-        let particleColor = 'white';
+        const rarityColors = {
+            'uncommon': 'green',
+            'rare': 'blue',
+            'epic': 'purple',
+            'legendary': 'orange',
+            'mythic': 'red',
+            'default': 'white'
+        };
 
-        switch (rarity) {
-            case 'uncommon':
-                particleColor = 'green';
-                break;
-            case 'rare':
-                particleColor = 'blue';
-                break;
-            case 'epic':
-                particleColor = 'purple';
-                break;
-            case 'legendary':
-                particleColor = 'orange';
-                break;
-            case 'mythic':
-                particleColor = 'red';
-                break;
-            default:
-                particleColor = 'white';
-                break;
-        }
+        const particleColor = rarityColors[rarity] || rarityColors.default;
 
         // 드롭 효과 (떨어지는 느낌)
         this.createParticleEffect({
-            x: x,
-            y: y - 20,
+            x, y: y - 20,
             texture: `particle_circle_${particleColor}`,
             scale: { start: 0.5, end: 0 },
             alpha: { start: 0.8, end: 0 },
             speed: { min: 30, max: 50 },
             lifespan: 500,
             gravityY: 100, // 아래로 떨어지는 효과
-            follow: null,
-            quantity: 5,
-            frequency: 50
+            quantity: 5, frequency: 50
         });
 
         // 빛 효과
         this.createParticleEffect({
-            x: x,
-            y: y,
+            x, y,
             texture: `particle_star_${particleColor}`,
             scale: { start: 0.1, end: 0.8 },
             alpha: { start: 0.9, end: 0 },
-            speed: 0,
-            lifespan: 500,
-            follow: null,
-            quantity: 1,
-            frequency: 1
+            speed: 0, lifespan: 500,
+            quantity: 1, frequency: 1
         });
     }
 
-    // 아이템 획득 폭발 효과
-    playItemPickupEffect(x, y, rarity) {
-        // 희귀도에 따른 색상
-        let particleColor = 'white';
-
-        switch (rarity) {
-            case 'uncommon':
-                particleColor = 'green';
-                break;
-            case 'rare':
-                particleColor = 'blue';
-                break;
-            case 'epic':
-                particleColor = 'purple';
-                break;
-            case 'legendary':
-                particleColor = 'orange';
-                break;
-            case 'mythic':
-                particleColor = 'red';
-                break;
-            default:
-                particleColor = 'white';
-                break;
-        }
-
-        // 획득 파티클 폭발
-        this.createParticleEffect({
-            x: x,
-            y: y,
-            texture: `particle_circle_${particleColor}`,
-            scale: { start: 0.5, end: 0 },
-            alpha: { start: 0.8, end: 0 },
-            speed: 50,
-            lifespan: 500,
-            follow: null,
-            quantity: 10,
-            frequency: 50
-        });
-
-        // 효과음 재생
-        this.playSound('item_pickup');
-    }
-
-    // 포션 효과
+    /**
+     * 포션 효과 재생
+     * @param {Object} target - 대상 객체
+     * @param {string} potionType - 포션 타입 (health, mana 등)
+     */
     playPotionEffect(target, potionType) {
         // 포션 타입에 따른 색상
-        let particleColor;
+        const potionColors = {
+            'health': 'red',
+            'mana': 'blue',
+            'strength': 'orange',
+            'defense': 'cyan',
+            'speed': 'yellow',
+            'default': 'green'
+        };
 
-        switch (potionType) {
-            case 'health':
-                particleColor = 'red';
-                break;
-            case 'mana':
-                particleColor = 'blue';
-                break;
-            case 'strength':
-                particleColor = 'orange';
-                break;
-            case 'defense':
-                particleColor = 'cyan';
-                break;
-            case 'speed':
-                particleColor = 'yellow';
-                break;
-            default:
-                particleColor = 'green';
-                break;
-        }
+        const particleColor = potionColors[potionType] || potionColors.default;
 
         // 포션 효과 (상승하는 입자)
         this.createParticleEffect({
-            x: target.x,
-            y: target.y,
+            x: target.x, y: target.y,
             texture: `particle_circle_${particleColor}`,
             scale: { start: 0.4, end: 0 },
             alpha: { start: 0.8, end: 0 },
@@ -1871,8 +1660,7 @@ class EffectsManager {
             lifespan: 1000,
             gravityY: -40, // 위로 올라가는 효과
             follow: target,
-            quantity: 10,
-            frequency: 50
+            quantity: 10, frequency: 50
         });
 
         // 오라 효과
@@ -1882,63 +1670,47 @@ class EffectsManager {
         this.playSound('potion');
     }
 
-    // 스크롤 효과
+    /**
+     * 스크롤 효과 재생
+     * @param {Object} target - 대상 객체
+     * @param {string} scrollType - 스크롤 타입 (teleport, identify 등)
+     */
     playScrollEffect(target, scrollType) {
         // 스크롤 타입에 따른 색상
-        let particleColor;
+        const scrollColors = {
+            'teleport': 'cyan',
+            'identify': 'white',
+            'enchant': 'purple',
+            'fireball': 'orange',
+            'frost': 'cyan',
+            'lightning': 'yellow',
+            'healing': 'green',
+            'protection': 'blue',
+            'default': 'white'
+        };
 
-        switch (scrollType) {
-            case 'teleport':
-                particleColor = 'cyan';
-                break;
-            case 'identify':
-                particleColor = 'white';
-                break;
-            case 'enchant':
-                particleColor = 'purple';
-                break;
-            case 'fireball':
-                particleColor = 'orange';
-                break;
-            case 'frost':
-                particleColor = 'cyan';
-                break;
-            case 'lightning':
-                particleColor = 'yellow';
-                break;
-            case 'healing':
-                particleColor = 'green';
-                break;
-            case 'protection':
-                particleColor = 'blue';
-                break;
-            default:
-                particleColor = 'white';
-                break;
-        }
+        const particleColor = scrollColors[scrollType] || scrollColors.default;
 
         // 스크롤 사용 효과 (마법 문자 파티클)
         this.createParticleEffect({
-            x: target.x,
-            y: target.y,
+            x: target.x, y: target.y,
             texture: `particle_star_${particleColor}`,
             scale: { start: 0.5, end: 0 },
             alpha: { start: 0.8, end: 0 },
-            speed: 60,
-            lifespan: 800,
-            follow: null,
-            quantity: 15,
-            frequency: 50
+            speed: 60, lifespan: 800,
+            quantity: 15, frequency: 50
         });
 
         // 효과음 재생
         this.playSound('scroll');
     }
 
-    // 레거시 아이템 효과
+    /**
+     * 레거시 아이템 효과 재생
+     * @param {number} x - 효과 X 좌표
+     * @param {number} y - 효과 Y 좌표
+     */
     playLegacyItemEffect(x, y) {
-        // 특별한 레거시 아이템 효과 (극적인 빛 폭발)
-
         // 카메라 효과
         this.scene.cameras.main.flash(800, 255, 255, 255, true);
 
@@ -1946,16 +1718,12 @@ class EffectsManager {
         for (let i = 0; i < 10; i++) {
             this.scene.time.delayedCall(i * 100, () => {
                 this.createParticleEffect({
-                    x: x,
-                    y: y - i * 10,
+                    x, y: y - i * 10,
                     texture: 'particle_circle_white',
                     scale: { start: 0.1, end: 1.0 },
                     alpha: { start: 0.8, end: 0 },
-                    speed: 0,
-                    lifespan: 500,
-                    follow: null,
-                    quantity: 1,
-                    frequency: 1
+                    speed: 0, lifespan: 500,
+                    quantity: 1, frequency: 1
                 });
             });
         }
@@ -1966,16 +1734,13 @@ class EffectsManager {
         for (let i = 0; i < colors.length; i++) {
             this.scene.time.delayedCall(i * 100, () => {
                 this.createParticleEffect({
-                    x: x,
-                    y: y,
+                    x, y,
                     texture: `particle_star_${colors[i]}`,
                     scale: { start: 0.2, end: 0.8 },
                     alpha: { start: 0.9, end: 0 },
                     speed: 50 + i * 10,
                     lifespan: 1500,
-                    follow: null,
-                    quantity: 10,
-                    frequency: 50
+                    quantity: 10, frequency: 50
                 });
             });
         }
@@ -1989,64 +1754,30 @@ class EffectsManager {
         });
     }
 
-    // 보상 효과
-    playRewardEffect(x, y) {
-        // 보상 효과 (빛나는 금색 파티클)
-        this.createParticleEffect({
-            x: x,
-            y: y,
-            texture: 'particle_circle_yellow',
-            scale: { start: 0.1, end: 1.5 },
-            alpha: { start: 0.8, end: 0 },
-            speed: 0,
-            lifespan: 800,
-            follow: null,
-            quantity: 1,
-            frequency: 1
-        });
+    //==================== 함정 및 환경 효과 ====================
 
-        // 금 입자 폭발
-        this.createParticleEffect({
-            x: x,
-            y: y,
-            texture: 'particle_star_yellow',
-            scale: { start: 0.4, end: 0 },
-            alpha: { start: 0.9, end: 0 },
-            speed: { min: 30, max: 80 },
-            lifespan: 1200,
-            follow: null,
-            quantity: 20,
-            frequency: 50
-        });
-
-        // 효과음 재생
-        this.playSound('reward');
-    }
-
-    // ======== 함정 및 환경 효과 ========
-
-    // 함정 효과
+    /**
+     * 함정 효과 재생
+     * @param {number} x - 효과 X 좌표
+     * @param {number} y - 효과 Y 좌표
+     * @param {string} trapType - 함정 타입 (spike, poison 등)
+     */
     playTrapEffect(x, y, trapType) {
-        switch (trapType) {
-            case 'spike':
-                this.playSpikeEffect(x, y);
-                break;
-            case 'poison':
-                this.playPoisonTrapEffect(x, y);
-                break;
-            case 'fire':
-                this.playFireTrapEffect(x, y);
-                break;
-            case 'frost':
-                this.playFrostTrapEffect(x, y);
-                break;
-            default:
-                this.playDefaultTrapEffect(x, y);
-                break;
-        }
+        const trapEffects = {
+            'spike': this.playSpikeEffect,
+            'poison': this.playPoisonTrapEffect,
+            'fire': this.playFireTrapEffect,
+            'frost': this.playFrostTrapEffect,
+            'default': this.playDefaultTrapEffect
+        };
+
+        const effectMethod = trapEffects[trapType] || trapEffects.default;
+        effectMethod.call(this, x, y);
     }
 
-    // 가시 함정 효과
+    /**
+     * 가시 함정 효과
+     */
     playSpikeEffect(x, y) {
         // 가시 튀어나오는 애니메이션
         const spikeLines = [];
@@ -2070,16 +1801,12 @@ class EffectsManager {
 
             // 작은 빨간 파티클 (피)
             this.createParticleEffect({
-                x: endX,
-                y: endY,
+                x: endX, y: endY,
                 texture: 'particle_circle_red',
                 scale: { start: 0.3, end: 0 },
                 alpha: { start: 0.8, end: 0 },
-                speed: 20,
-                lifespan: 500,
-                follow: null,
-                quantity: 3,
-                frequency: 50
+                speed: 20, lifespan: 500,
+                quantity: 3, frequency: 50
             });
         }
 
@@ -2099,70 +1826,61 @@ class EffectsManager {
         this.playSound('trap_spike');
     }
 
-    // 독 함정 효과
+    /**
+     * 독 함정 효과
+     */
     playPoisonTrapEffect(x, y) {
         // 녹색 연기 효과
         this.createParticleEffect({
-            x: x,
-            y: y,
+            x, y,
             texture: 'particle_circle_green',
             scale: { start: 0.6, end: 0 },
             alpha: { start: 0.7, end: 0 },
             speed: { min: 20, max: 50 },
             lifespan: 1000,
-            follow: null,
-            quantity: 20,
-            frequency: 100
+            quantity: 20, frequency: 100
         });
 
         // 효과음 재생
         this.playSound('trap_poison');
     }
 
-    // 화염 함정 효과
+    /**
+     * 화염 함정 효과
+     */
     playFireTrapEffect(x, y) {
         // 화염 폭발 효과
         this.createParticleEffect({
-            x: x,
-            y: y,
+            x, y,
             texture: 'particle_circle_orange',
             scale: { start: 0.1, end: 1.0 },
             alpha: { start: 0.8, end: 0 },
-            speed: 0,
-            lifespan: 300,
-            follow: null,
-            quantity: 1,
-            frequency: 1
+            speed: 0, lifespan: 300,
+            quantity: 1, frequency: 1
         });
 
         // 불꽃 파티클
         this.createParticleEffect({
-            x: x,
-            y: y,
+            x, y,
             texture: 'particle_circle_orange',
             scale: { start: 0.5, end: 0 },
             alpha: { start: 0.8, end: 0 },
             speed: { min: 30, max: 80 },
             lifespan: 800,
-            follow: null,
-            quantity: 15,
-            frequency: 50
+            quantity: 15, frequency: 50
         });
 
         // 연기 효과
         this.scene.time.delayedCall(200, () => {
             this.createParticleEffect({
-                x: x,
-                y: y - 10,
+                x, y: y - 10,
                 texture: 'particle_circle_white',
                 scale: { start: 0.4, end: 0 },
                 alpha: { start: 0.3, end: 0 },
                 speed: { min: 10, max: 30 },
                 lifespan: 1000,
                 gravityY: -30, // 위로 올라가는 연기
-                follow: null,
-                quantity: 10,
-                frequency: 100
+                quantity: 10, frequency: 100
             });
         });
 
@@ -2170,61 +1888,60 @@ class EffectsManager {
         this.playSound('trap_fire');
     }
 
-    // 얼음 함정 효과
+    /**
+     * 얼음 함정 효과
+     */
     playFrostTrapEffect(x, y) {
         // 얼음 결정 효과
         this.createParticleEffect({
-            x: x,
-            y: y,
+            x, y,
             texture: 'particle_diamond_cyan',
             scale: { start: 0.5, end: 0 },
             alpha: { start: 0.8, end: 0 },
             speed: { min: 20, max: 50 },
             lifespan: 800,
-            follow: null,
-            quantity: 15,
-            frequency: 50
+            quantity: 15, frequency: 50
         });
 
         // 차가운 안개 효과
         this.createParticleEffect({
-            x: x,
-            y: y,
+            x, y,
             texture: 'particle_circle_cyan',
             scale: { start: 0.3, end: 1.0 },
             alpha: { start: 0.5, end: 0 },
             speed: { min: 10, max: 30 },
             lifespan: 1200,
-            follow: null,
-            quantity: 10,
-            frequency: 100
+            quantity: 10, frequency: 100
         });
 
         // 효과음 재생
         this.playSound('trap_frost');
     }
 
-    // 기본 함정 효과
+    /**
+     * 기본 함정 효과
+     */
     playDefaultTrapEffect(x, y) {
         // 간단한 함정 작동 효과
         this.createParticleEffect({
-            x: x,
-            y: y,
+            x, y,
             texture: 'particle_circle_white',
             scale: { start: 0.1, end: 1.0 },
             alpha: { start: 0.7, end: 0 },
-            speed: 0,
-            lifespan: 300,
-            follow: null,
-            quantity: 1,
-            frequency: 1
+            speed: 0, lifespan: 300,
+            quantity: 1, frequency: 1
         });
 
         // 효과음 재생
         this.playSound('trap_generic');
     }
 
-    // 화살 함정 효과
+    /**
+     * 화살 함정 효과 재생
+     * @param {number} x - 효과 X 좌표
+     * @param {number} y - 효과 Y 좌표
+     * @param {Object} direction - 방향 벡터 {x, y}
+     */
     playArrowTrapEffect(x, y, direction) {
         // 화살 발사 효과
         const arrowLength = 30;
@@ -2254,7 +1971,12 @@ class EffectsManager {
         this.playSound('trap_arrow');
     }
 
-    // 지면 균열 효과
+    /**
+     * 지면 균열 효과 생성
+     * @param {number} x - 효과 X 좌표
+     * @param {number} y - 효과 Y 좌표
+     * @param {number} radius - 균열 반경
+     */
     createFloorCrackEffect(x, y, radius) {
         // 균열 라인 효과
         const cracks = [];
@@ -2290,16 +2012,12 @@ class EffectsManager {
 
         // 파티클 효과 (먼지)
         this.createParticleEffect({
-            x: x,
-            y: y,
+            x, y,
             texture: 'particle_circle_white',
             scale: { start: 0.4, end: 0 },
             alpha: { start: 0.3, end: 0 },
-            speed: 30,
-            lifespan: 500,
-            follow: null,
-            quantity: 10,
-            frequency: 50
+            speed: 30, lifespan: 500,
+            quantity: 10, frequency: 50
         });
 
         // 균열 사라짐
@@ -2315,71 +2033,59 @@ class EffectsManager {
         });
     }
 
-    // 신단 활성화 효과
+    /**
+     * 신단 활성화 효과 재생
+     * @param {number} x - 효과 X 좌표
+     * @param {number} y - 효과 Y 좌표
+     * @param {string} shrineType - 신단 타입 (health, strength 등)
+     */
     playShrineActivateEffect(x, y, shrineType) {
         // 신단 타입에 따른 색상
-        let particleColor;
+        const shrineColors = {
+            'health': 'red',
+            'strength': 'orange',
+            'defense': 'blue',
+            'speed': 'yellow',
+            'mana': 'purple',
+            'default': 'white'
+        };
 
-        switch (shrineType) {
-            case 'health':
-                particleColor = 'red';
-                break;
-            case 'strength':
-                particleColor = 'orange';
-                break;
-            case 'defense':
-                particleColor = 'blue';
-                break;
-            case 'speed':
-                particleColor = 'yellow';
-                break;
-            case 'mana':
-                particleColor = 'purple';
-                break;
-            default:
-                particleColor = 'white';
-                break;
-        }
+        const particleColor = shrineColors[shrineType] || shrineColors.default;
 
         // 신단 활성화 효과 (빛 기둥)
         for (let i = 0; i < 5; i++) {
             this.scene.time.delayedCall(i * 100, () => {
                 this.createParticleEffect({
-                    x: x,
-                    y: y - i * 20,
+                    x, y: y - i * 20,
                     texture: `particle_circle_${particleColor}`,
                     scale: { start: 0.8, end: 0 },
                     alpha: { start: 0.8, end: 0 },
-                    speed: 0,
-                    lifespan: 500,
-                    follow: null,
-                    quantity: 1,
-                    frequency: 1
+                    speed: 0, lifespan: 500,
+                    quantity: 1, frequency: 1
                 });
             });
         }
 
         // 주변 파티클 효과
         this.createParticleEffect({
-            x: x,
-            y: y,
+            x, y,
             texture: `particle_star_${particleColor}`,
             scale: { start: 0.5, end: 0 },
             alpha: { start: 0.9, end: 0 },
             speed: { min: 30, max: 80 },
             lifespan: 1000,
-            follow: null,
-            quantity: 20,
-            frequency: 50
+            quantity: 20, frequency: 50
         });
 
         // 효과음 재생
         this.playSound('shrine_activate');
     }
 
-    // 던전 완료 효과
+    /**
+     * 던전 완료 효과 재생
+     * @param {Object} player - 플레이어 객체
+     */
     playDungeonCompletedEffect(player) {
-        // 던전 완료 효과 (빛의 폭발)
         const x = player.x;
         const y = player.y;
 
@@ -2388,16 +2094,12 @@ class EffectsManager {
 
         // 강렬한 빛 효과
         this.createParticleEffect({
-            x: x,
-            y: y,
+            x, y,
             texture: 'particle_circle_white',
             scale: { start: 0.1, end: 3.0 },
             alpha: { start: 0.9, end: 0 },
-            speed: 0,
-            lifespan: 1000,
-            follow: null,
-            quantity: 1,
-            frequency: 1
+            speed: 0, lifespan: 1000,
+            quantity: 1, frequency: 1
         });
 
         // 무지개 색 파티클 (승리 축하)
@@ -2406,16 +2108,12 @@ class EffectsManager {
         for (let i = 0; i < colors.length; i++) {
             this.scene.time.delayedCall(i * 100, () => {
                 this.createParticleEffect({
-                    x: x,
-                    y: y,
+                    x, y,
                     texture: `particle_star_${colors[i]}`,
                     scale: { start: 0.3, end: 0 },
                     alpha: { start: 0.9, end: 0 },
-                    speed: 100,
-                    lifespan: 1500,
-                    follow: null,
-                    quantity: 10,
-                    frequency: 50
+                    speed: 100, lifespan: 1500,
+                    quantity: 10, frequency: 50
                 });
             });
         }
@@ -2427,9 +2125,13 @@ class EffectsManager {
         });
     }
 
-    // ======== 유틸리티 메서드 ========
+    //==================== 유틸리티 메서드 ====================
 
-    // 파티클 이펙트 생성
+    /**
+     * 파티클 이펙트 생성
+     * @param {Object} config - 파티클 설정
+     * @returns {Phaser.GameObjects.Particles.ParticleEmitter} 생성된 이미터
+     */
     createParticleEffect(config) {
         try {
             // 파티클 이미터 생성 (없는 경우)
@@ -2518,7 +2220,14 @@ class EffectsManager {
         }
     }
 
-    // 원형 오라 효과
+    /**
+     * 원형 오라 효과 생성
+     * @param {Object} entity - 대상 객체 또는 좌표 {x, y}
+     * @param {string} particleTexture - 파티클 텍스쳐
+     * @param {number} scale - 크기 배율 (기본값 1.0)
+     * @param {number} duration - 지속 시간 (밀리초)
+     * @returns {Phaser.GameObjects.Graphics} 생성된 오라 객체
+     */
     createCircularAuraEffect(entity, particleTexture, scale = 1.0, duration = 500) {
         // 위치 설정
         const x = entity.x !== undefined ? entity.x : entity.x;
@@ -2594,7 +2303,16 @@ class EffectsManager {
         return aura;
     }
 
-    // 투사체 효과
+    /**
+     * 투사체 효과 생성
+     * @param {number} fromX - 시작 X 좌표
+     * @param {number} fromY - 시작 Y 좌표
+     * @param {number} toX - 도착 X 좌표
+     * @param {number} toY - 도착 Y 좌표
+     * @param {string} particleTexture - 파티클 텍스쳐
+     * @param {Object} options - 추가 옵션
+     * @returns {Phaser.GameObjects.Image} 생성된 투사체 객체
+     */
     createProjectileEffect(fromX, fromY, toX, toY, particleTexture, options = {}) {
         // 기본 설정
         const config = {
@@ -2665,7 +2383,12 @@ class EffectsManager {
         return projectile;
     }
 
-    // 멀티샷 효과
+    /**
+     * 멀티샷 효과 실행
+     * @param {Object} player - 플레이어 객체
+     * @param {Object|Array} targets - 대상 객체 또는 객체 배열
+     * @param {number} count - 샷 횟수 (기본값 3)
+     */
     executeMultiShot(player, targets, count = 3) {
         // 여러 발의 투사체 발사
         if (!Array.isArray(targets)) {
