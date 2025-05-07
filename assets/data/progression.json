@@ -1,0 +1,273 @@
+{
+    "expBase": 100,
+    "expGrowth": 1.5,
+    "classExpBonus": 0.1,
+    "goldBaseDrops": 10,
+    "goldLevelMultiplier": 0.2,
+    
+    "classCombination": {
+      "tier2BaseChance": 80,
+      "tier3BaseChance": 50,
+      "tier4BaseChance": 25,
+      "costs": {
+        "2": 1000,
+        "3": 5000,
+        "4": 20000
+      }
+    },
+  
+    "skillPointAllocation": {
+      "levelPoints": {
+        "1-10": 1,
+        "11-20": 2, 
+        "21-30": 3
+      },
+      "maxSkillLevel": 5
+    },
+  
+    "masteryBonuses": {
+      "level10": {
+        "statBonus": 5,
+        "description": "모든 스탯 +5%"
+      },
+      "level20": {
+        "statBonus": 10,
+        "description": "모든 스탯 +10%"
+      },
+      "level30": {
+        "statBonus": 15,
+        "description": "모든 스탯 +15%"
+      }
+    },
+  
+    "dungeonProgression": {
+      "unlockRequirements": {
+        "sword_forest_2": {
+          "requiredLevel": 5,
+          "requiredDungeons": ["sword_forest_1"]
+        },
+        "staff_tower_1": {
+          "requiredLevel": 10,
+          "requiredDungeons": ["sword_forest_2"]
+        },
+        "staff_tower_2": {
+          "requiredLevel": 15,
+          "requiredDungeons": ["staff_tower_1"]
+        },
+        "dagger_cave_1": {
+          "requiredLevel": 15,
+          "requiredClasses": ["thief", "assassin"],
+          "requiredDungeons": ["sword_forest_2"]
+        },
+        "dagger_cave_2": {
+          "requiredLevel": 20,
+          "requiredDungeons": ["dagger_cave_1"]
+        },
+        "bow_forest_1": {
+          "requiredLevel": 15,
+          "requiredClasses": ["archer", "ranger"],
+          "requiredDungeons": ["sword_forest_2"]
+        },
+        "bow_forest_2": {
+          "requiredLevel": 20,
+          "requiredDungeons": ["bow_forest_1"]
+        },
+        "elemental_ruins_1": {
+          "requiredLevel": 20,
+          "requiredClasses": ["elementalist", "battlemage"],
+          "requiredDungeons": ["staff_tower_2"]
+        },
+        "dark_temple_1": {
+          "requiredLevel": 25,
+          "requiredClasses": ["darkmage", "shadowdancer"],
+          "requiredDungeons": ["dagger_cave_2", "elemental_ruins_1"]
+        },
+        "ancient_library": {
+          "requiredLevel": 25,
+          "requiredDungeons": ["staff_tower_2", "bow_forest_2"]
+        },
+        "dragon_lair_1": {
+          "requiredLevel": 25,
+          "requiredDungeons": ["sword_forest_2", "elemental_ruins_1"]
+        },
+        "void_realm": {
+          "requiredLevel": 30,
+          "requiredClasses": ["voidhunter", "timemage", "deathknight"],
+          "requiredDungeons": ["dark_temple_1", "dragon_lair_1"]
+        },
+        "celestial_tower": {
+          "requiredLevel": 30,
+          "requiredClasses": ["celestialsage", "holychampion"],
+          "requiredDungeons": ["ancient_library", "elemental_ruins_1"]
+        },
+        "eternity_challenge": {
+          "requiredLevel": 30,
+          "requiredDungeons": ["void_realm", "celestial_tower"]
+        }
+      }
+    },
+  
+    "achievementProgression": {
+      "categories": [
+        "Combat",
+        "Exploration",
+        "Collection",
+        "Mastery"
+      ],
+      "tiers": {
+        "bronze": {
+          "pointsRequired": 0,
+          "rewards": {
+            "gold": 500,
+            "title": "초보 모험가"
+          }
+        },
+        "silver": {
+          "pointsRequired": 100,
+          "rewards": {
+            "gold": 2000,
+            "title": "유능한 모험가"
+          }
+        },
+        "gold": {
+          "pointsRequired": 300,
+          "rewards": {
+            "gold": 5000,
+            "specialItem": "achievement_chest_gold",
+            "title": "대담한 모험가"
+          }
+        },
+        "platinum": {
+          "pointsRequired": 600,
+          "rewards": {
+            "gold": 10000,
+            "specialItem": "achievement_chest_platinum",
+            "title": "전설적인 모험가"
+          }
+        },
+        "diamond": {
+          "pointsRequired": 1000,
+          "rewards": {
+            "gold": 20000,
+            "legacyItem": "crown_of_kings",
+            "title": "영원의 챔피언"
+          }
+        }
+      }
+    },
+  
+    "dailyChallenges": {
+      "resetTime": "00:00:00",
+      "rewards": {
+        "basic": {
+          "gold": 500,
+          "experience": 100
+        },
+        "advanced": {
+          "gold": 1000,
+          "experience": 250
+        },
+        "expert": {
+          "gold": 2000,
+          "experience": 500,
+          "rare_material": true
+        }
+      },
+      "streak": {
+        "3": {
+          "goldBonus": 20
+        },
+        "7": {
+          "expBonus": 20,
+          "specialItem": "weekly_reward_chest"
+        },
+        "30": {
+          "goldBonus": 50,
+          "expBonus": 50,
+          "specialItem": "monthly_reward_chest"
+        }
+      }
+    },
+  
+    "timePressure": {
+      "baseTime": 1800,  // 30분(초 단위)
+      "monsterStrengtheningInterval": 300,  // 5분마다 몬스터 강화
+      "monsterStrengtheningRate": {
+        "health": 0.1,   // 10% 증가
+        "damage": 0.15,  // 15% 증가
+        "defense": 0.05  // 5% 증가
+      },
+      "timeBonusThresholds": {
+        "fast": 600,     // 10분 이내
+        "medium": 1200,  // 20분 이내
+        "slow": 1800     // 30분 이내
+      },
+      "timeBonusRewards": {
+        "fast": {
+          "goldMultiplier": 1.5,
+          "expMultiplier": 1.3,
+          "rarityBoost": 0.2
+        },
+        "medium": {
+          "goldMultiplier": 1.25,
+          "expMultiplier": 1.15,
+          "rarityBoost": 0.1
+        },
+        "slow": {
+          "goldMultiplier": 1.0,
+          "expMultiplier": 1.0,
+          "rarityBoost": 0.0
+        }
+      }
+    },
+  
+    "legacyItemBonuses": {
+      "soul_guardian": {
+        "description": "던전 당 1회 부활",
+        "effect": "resurrect_once"
+      },
+      "golden_key": {
+        "description": "조합 성공률 20% 증가",
+        "effect": "combination_chance_boost",
+        "value": 20
+      },
+      "ancient_compass": {
+        "description": "전체 던전 지도 공개",
+        "effect": "reveal_map"
+      },
+      "philosophers_stone": {
+        "description": "몬스터로부터 재료 획득 +30%",
+        "effect": "material_drop_rate",
+        "value": 30
+      },
+      "kings_crown": {
+        "description": "경험치 획득 +20%",
+        "effect": "exp_gain_boost",
+        "value": 20
+      },
+      "dragon_heart": {
+        "description": "모든 스탯 +15%",
+        "effect": "all_stats_boost",
+        "value": 15
+      },
+      "time_hourglass": {
+        "description": "던전 난이도 스케일링 감소",
+        "effect": "difficulty_scaling_reduction",
+        "value": 25
+      },
+      "dimensional_pouch": {
+        "description": "인벤토리 슬롯 +10",
+        "effect": "inventory_slots",
+        "value": 10
+      },
+      "alchemist_pendant": {
+        "description": "20% 확률로 재료 소비 안 함",
+        "effect": "material_conservation_chance",
+        "value": 20
+      },
+      "secret_tome": {
+        "description": "적에 대한 숨겨진 정보 공개",
+        "effect": "reveal_enemy_info"
+      }
+    }
+  }
