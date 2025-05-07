@@ -1459,3 +1459,111 @@ class Inventory extends Phaser.Scene {
     
     /**
      * 희귀도 색상 코드 가져오기
+     * @param {string} rarity - 희귀도
+     * @returns {number} 색상 16진수 값
+     */
+    getRarityColor(rarity) {
+        const rarityColors = {
+            common: 0xFFFFFF,     // 하얀색
+            uncommon: 0x00FF00,   // 녹색
+            rare: 0x0088FF,       // 파란색
+            epic: 0xAA00FF,       // 보라색
+            legendary: 0xFF8800,  // 주황색
+            mythic: 0xFF0000      // 빨간색
+        };
+        
+        return rarityColors[rarity] || 0xFFFFFF;
+    }
+    
+    /**
+     * 희귀도 색상 문자열 가져오기
+     * @param {string} rarity - 희귀도
+     * @returns {string} 색상 문자열
+     */
+    getRarityColorString(rarity) {
+        const rarityColors = {
+            common: '#FFFFFF',     // 하얀색
+            uncommon: '#00FF00',   // 녹색
+            rare: '#0088FF',       // 파란색
+            epic: '#AA00FF',       // 보라색
+            legendary: '#FF8800',  // 주황색
+            mythic: '#FF0000'      // 빨간색
+        };
+        
+        return rarityColors[rarity] || '#FFFFFF';
+    }
+    
+    /**
+     * 희귀도 이름 가져오기
+     * @param {string} rarity - 희귀도 키
+     * @returns {string} 희귀도 이름
+     */
+    getRarityName(rarity) {
+        const rarityNames = {
+            common: '일반',
+            uncommon: '고급',
+            rare: '희귀',
+            epic: '에픽',
+            legendary: '전설',
+            mythic: '신화'
+        };
+        
+        return rarityNames[rarity] || '알 수 없음';
+    }
+    
+    /**
+     * 이벤트 리스너 설정
+     */
+    setupEventListeners() {
+        // 키보드 이벤트
+        this.input.keyboard.on('keydown-ESC', () => {
+            this.onBackButtonClick();
+        });
+        
+        // 아이템 정렬 단축키
+        this.input.keyboard.on('keydown-ONE', () => {
+            this.onSortButtonClick('rarity');
+        });
+        
+        this.input.keyboard.on('keydown-TWO', () => {
+            this.onSortButtonClick('level');
+        });
+        
+        this.input.keyboard.on('keydown-THREE', () => {
+            this.onSortButtonClick('name');
+        });
+        
+        this.input.keyboard.on('keydown-FOUR', () => {
+            this.onSortButtonClick('type');
+        });
+        
+        // 씬 종료 이벤트
+        this.events.once('shutdown', this.shutdown, this);
+    }
+    
+    /**
+     * 업데이트 (매 프레임)
+     * @param {number} time - 시간
+     * @param {number} delta - 경과 시간
+     */
+    update(time, delta) {
+        // 필요한 업데이트 로직이 있으면 여기에 구현
+    }
+    
+    /**
+     * 정리 작업
+     */
+    shutdown() {
+        // 이벤트 리스너 정리
+        this.input.keyboard.off('keydown-ESC');
+        this.input.keyboard.off('keydown-ONE');
+        this.input.keyboard.off('keydown-TWO');
+        this.input.keyboard.off('keydown-THREE');
+        this.input.keyboard.off('keydown-FOUR');
+        
+        // 게임 데이터 저장
+        this.game.config.dataManager.saveGameData();
+    }
+}
+
+export default Inventory;
