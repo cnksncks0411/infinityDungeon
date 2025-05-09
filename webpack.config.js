@@ -11,7 +11,7 @@ const isDev = process.env.NODE_ENV === 'development';
 module.exports = {
     mode: isDev ? 'development' : 'production',
     entry: {
-        game: './src/game.js',
+        game: 'src/game.js',
     },
     output: {
         path: path.resolve(__dirname, 'build'),
@@ -105,7 +105,7 @@ module.exports = {
 
         // HTML 템플릿 생성
         new HtmlWebpackPlugin({
-            template: './index.html',
+            template: 'index.html',
             filename: 'index.html',
             minify: !isDev && {
                 collapseWhitespace: true,

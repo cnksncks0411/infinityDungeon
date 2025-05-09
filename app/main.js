@@ -14,8 +14,8 @@ function createWindow() {
     width: 1280,
     height: 720,
     webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
+      nodeIntegration: false,
+      contextIsolation: true,
       preload: path.join(__dirname, 'preload.js')
     },
     backgroundColor: '#000000',
@@ -67,8 +67,8 @@ function initializeApp() {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 
-  const updater = new GameUpdater(mainWindow);
-  updater.checkForUpdates();
+  // const updater = new GameUpdater(mainWindow);
+  // updater.checkForUpdates();
 }
 
 /**
