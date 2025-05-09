@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';">
+    <title>Dungeon Loop</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        #game-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader-icon {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            border-top-color: #7157D9;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        .loader-text {
+            margin-top: 10px;
+            color: #FFF;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 게임 UI가 로드된 후 로더 숨기기 */
+        body.loaded .loader {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game-container">
+        <!-- 로딩 스피너 -->
+        <div class="loader">
+            <div class="loader-icon"></div>
+            <div class="loader-text">로딩 중...</div>
+        </div>
+    </div>
+
+    <script>
+        // 게임 로드 완료 시 로딩 UI 숨기기
+        document.addEventListener('game-loaded', function () {
+            document.body.classList.add('loaded');
+        });
+
+        // 전역 오류 처리
+        window.addEventListener('error', function (event) {
+            console.error('게임 오류 발생:', event.error);
+
+            // 오류 메시지 표시
+            if (window.game && typeof window.game.showErrorScreen === 'function') {
+                window.game.showErrorScreen(event.error);
+            }
+        });
+    </script>
+</body>
+
+</html>
